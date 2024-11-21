@@ -73,161 +73,269 @@ public class StartGameCommand : IStartGameCommand
                 if (!ValidateParameters(parameters))
                     return new ErrorInfo<InvalidGameDataReason>(InvalidGameDataReason.InvalidData, "Invalid parameters");
                 
-                CreateRoundsForGame(game, parameters);
-                
+                await CreateRoundsForGame(game, parameters);
+                await gamesService.PatchAsync(
+                    game,
+                    new JsonPatchDocument<Game>(
+                        new List<Operation<Game>>()
+                        {
+                            new()
+                            {
+                                op = "replace",
+                                path = "/state",
+                                value = GameState.InProgress
+                            }
+                        },
+                        new DefaultContractResolver()));
+
+                await dbContext.SaveChangesAsync();
+
                 return game;
             });
         return result;
     }
 
-    private void CreateRoundsForGame(Game game, StartGameRequest parameters)
+    private async Task CreateRoundsForGame(Game game, StartGameRequest parameters)
     {
         var countOfRounds = GetCountOfRoundsByGroups(parameters.Groups);
-        var rounds = new List<Round>();
         var counter = 1;
-        for (var i = parameters.Specifications.Count - 1; i > 2; i--)
+
+        var finalRound = new Round
         {
-            rounds.Add(new Round()
+            GameId = game.Id,
+            Participants = new List<Participant>(),
+            Specification = parameters.Specifications[^1],
+            Settings = parameters.Settings,
+            Order = countOfRounds,
+            Id = Guid.NewGuid()
+        };
+        var parentRoundId = finalRound.Id;
+
+        await roundsService.AddAsync(finalRound);
+
+        for (var i = parameters.Specifications.Count - 2; i > 2; i--)
+        {
+            var round = new Round
             {
                 GameId = game.Id,
-                Order = countOfRounds - counter,
+                NextRoundId = parentRoundId,
+                Participants = new List<Participant>(),
                 Specification = parameters.Specifications[i],
-                Participants = new List<Participant>()
-            });
+                Settings = parameters.Settings,
+                Order = countOfRounds - counter,
+                Id = Guid.NewGuid()
+            };
+            parentRoundId = round.Id;
+
+            await roundsService.AddAsync(round);
             counter++;
         }
 
         for (var i = parameters.Groups.Count - 1; i >= 0; i--)
         {
             var group = parameters.Groups[i];
+
             switch (group.Count)
             {
                 case 2:
-                    rounds.Add(new Round()
+                {
+                    var round = new Round
                     {
                         GameId = game.Id,
-                        Order = countOfRounds - counter,
-                        Specification = parameters.Specifications[0],
+                        NextRoundId = parentRoundId,
                         Participants = new List<Participant>
                         {
                             group[0],
                             group[1]
-                        }
-                    });
+                        },
+                        Specification = parameters.Specifications[0],
+                        Settings = parameters.Settings,
+                        Order = countOfRounds - counter,
+                        Id = Guid.NewGuid()
+                    };
+                    parentRoundId = round.Id;
+
+                    await roundsService.AddAsync(round);
                     counter++;
                     break;
+                }
                 case 3:
-                    rounds.Add(new Round()
+                {
+                    var firstRound = new Round
                     {
                         GameId = game.Id,
-                        Order = countOfRounds - counter,
-                        Specification = parameters.Specifications[0],
+                        NextRoundId = parentRoundId,
                         Participants = new List<Participant>
                         {
                             group[0],
                             group[1]
-                        }
-                    });
+                        },
+                        Specification = parameters.Specifications[0],
+                        Settings = parameters.Settings,
+                        Order = countOfRounds - counter,
+                        Id = Guid.NewGuid()
+                    };
+                    parentRoundId = firstRound.Id;
+
+                    await roundsService.AddAsync(firstRound);
                     counter++;
-                    rounds.Add(new Round()
+
+                    var secondRound = new Round
                     {
                         GameId = game.Id,
-                        Order = countOfRounds - counter,
-                        Specification = parameters.Specifications[1],
+                        NextRoundId = parentRoundId,
                         Participants = new List<Participant>
                         {
                             group[0],
                             group[2]
-                        }
-                    });
+                        },
+                        Specification = parameters.Specifications[1],
+                        Settings = parameters.Settings,
+                        Order = countOfRounds - counter,
+                        Id = Guid.NewGuid()
+                    };
+                    parentRoundId = secondRound.Id;
+
+                    await roundsService.AddAsync(secondRound);
                     counter++;
-                    rounds.Add(new Round()
+
+                    var thirdRound = new Round
                     {
                         GameId = game.Id,
-                        Order = countOfRounds - counter,
-                        Specification = parameters.Specifications[2],
+                        NextRoundId = parentRoundId,
                         Participants = new List<Participant>
                         {
                             group[1],
                             group[2]
-                        }
-                    });
+                        },
+                        Specification = parameters.Specifications[2],
+                        Settings = parameters.Settings,
+                        Order = countOfRounds - counter,
+                        Id = Guid.NewGuid()
+                    };
+                    parentRoundId = thirdRound.Id;
+
+                    await roundsService.AddAsync(thirdRound);
                     counter++;
                     break;
+                }
                 case 4:
-                    rounds.Add(new Round()
+                {
+                    var firstRound = new Round
                     {
                         GameId = game.Id,
-                        Order = countOfRounds - counter,
-                        Specification = parameters.Specifications[0],
+                        NextRoundId = parentRoundId,
                         Participants = new List<Participant>
                         {
                             group[0],
                             group[1]
-                        }
-                    });
+                        },
+                        Specification = parameters.Specifications[0],
+                        Settings = parameters.Settings,
+                        Order = countOfRounds - counter,
+                        Id = Guid.NewGuid()
+                    };
+                    parentRoundId = firstRound.Id;
+
+                    await roundsService.AddAsync(firstRound);
                     counter++;
-                    rounds.Add(new Round()
+
+                    var secondRound = new Round
                     {
                         GameId = game.Id,
-                        Order = countOfRounds - counter,
-                        Specification = parameters.Specifications[0],
+                        NextRoundId = parentRoundId,
                         Participants = new List<Participant>
                         {
                             group[2],
                             group[3]
-                        }
-                    });
+                        },
+                        Specification = parameters.Specifications[0],
+                        Settings = parameters.Settings,
+                        Order = countOfRounds - counter,
+                        Id = Guid.NewGuid()
+                    };
+                    parentRoundId = secondRound.Id;
+
+                    await roundsService.AddAsync(secondRound);
                     counter++;
-                    rounds.Add(new Round()
+
+                    var thirdRound = new Round
                     {
                         GameId = game.Id,
-                        Order = countOfRounds - counter,
-                        Specification = parameters.Specifications[1],
+                        NextRoundId = parentRoundId,
                         Participants = new List<Participant>
                         {
                             group[0],
                             group[2]
-                        }
-                    });
+                        },
+                        Specification = parameters.Specifications[1],
+                        Settings = parameters.Settings,
+                        Order = countOfRounds - counter,
+                        Id = Guid.NewGuid()
+                    };
+                    parentRoundId = thirdRound.Id;
+
+                    await roundsService.AddAsync(thirdRound);
                     counter++;
-                    rounds.Add(new Round()
+
+                    var fourthRound = new Round
                     {
                         GameId = game.Id,
-                        Order = countOfRounds - counter,
-                        Specification = parameters.Specifications[1],
+                        NextRoundId = parentRoundId,
                         Participants = new List<Participant>
                         {
                             group[1],
                             group[3]
-                        }
-                    });
+                        },
+                        Specification = parameters.Specifications[1],
+                        Settings = parameters.Settings,
+                        Order = countOfRounds - counter,
+                        Id = Guid.NewGuid()
+                    };
+                    parentRoundId = fourthRound.Id;
+
+                    await roundsService.AddAsync(fourthRound);
                     counter++;
-                    rounds.Add(new Round()
+
+                    var fifthRound = new Round
                     {
                         GameId = game.Id,
-                        Order = countOfRounds - counter,
-                        Specification = parameters.Specifications[2],
+                        NextRoundId = parentRoundId,
                         Participants = new List<Participant>
                         {
                             group[0],
                             group[3]
-                        }
-                    });
+                        },
+                        Specification = parameters.Specifications[2],
+                        Settings = parameters.Settings,
+                        Order = countOfRounds - counter,
+                        Id = Guid.NewGuid()
+                    };
+                    parentRoundId = fifthRound.Id;
+
+                    await roundsService.AddAsync(fifthRound);
                     counter++;
-                    rounds.Add(new Round()
+
+                    var sixthRound = new Round
                     {
                         GameId = game.Id,
-                        Order = countOfRounds - counter,
-                        Specification = parameters.Specifications[2],
+                        NextRoundId = parentRoundId,
                         Participants = new List<Participant>
                         {
                             group[1],
                             group[2]
-                        }
-                    });
+                        },
+                        Specification = parameters.Specifications[2],
+                        Settings = parameters.Settings,
+                        Order = countOfRounds - counter,
+                        Id = Guid.NewGuid()
+                    };
+                    parentRoundId = sixthRound.Id;
+
+                    await roundsService.AddAsync(sixthRound);
                     counter++;
                     break;
+                }
             }
         }
     }
