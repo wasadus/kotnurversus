@@ -4,7 +4,7 @@ namespace Models.Rounds;
 
 public class Round : EntityInfo, IEntity
 {
-    public Settings.Settings Settings { get; set; } = null!;
+    public Settings.Settings? Settings { get; set; } = null!;
     public Guid? WinnerId => Participants.FirstOrDefault(x => x.IsWinner)?.TeamId;
     public Specification? Specification { get; set; }
     public List<Participant> Participants { get; set; } = new();
