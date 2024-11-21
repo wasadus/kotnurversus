@@ -6,6 +6,7 @@ namespace Models.Games;
 public class Game : EntityInfo, IEntity
 {
     public List<Team> Teams { get; set; } = new();
+    public List<List<Team>> Groups { get; set; } = new();
     public Settings.Settings Settings { get; set; } = null!;
     public List<Specification> Specifications { get; set; } = new();
     public GameState State { get; set; }
