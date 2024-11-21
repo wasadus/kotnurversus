@@ -61,6 +61,210 @@ public class StartGameCommand : IStartGameCommand
         return result;
     }
 
+    public async Task<DomainResult<Game, InvalidGameDataReason>> RunAsync(Guid id, StartGameRequest parameters)
+    {
+        var result = await dataContextAccessor.AccessDataAsync<DomainResult<Game, InvalidGameDataReason>>(
+            async dbContext =>
+            {
+                var game = await gamesService.FindAsync(id);
+                if (game == null)
+                    return new ErrorInfo<InvalidGameDataReason>(InvalidGameDataReason.GameNotFound, "Game not found");
+                
+                if (!ValidateParameters(parameters))
+                    return new ErrorInfo<InvalidGameDataReason>(InvalidGameDataReason.InvalidData, "Invalid parameters");
+                
+                CreateRoundsForGame(game, parameters);
+                
+                return game;
+            });
+        return result;
+    }
+
+    private void CreateRoundsForGame(Game game, StartGameRequest parameters)
+    {
+        var countOfRounds = GetCountOfRoundsByGroups(parameters.Groups);
+        var rounds = new List<Round>();
+        var counter = 1;
+        for (var i = parameters.Specifications.Count - 1; i > 2; i--)
+        {
+            rounds.Add(new Round()
+            {
+                GameId = game.Id,
+                Order = countOfRounds - counter,
+                Specification = parameters.Specifications[i],
+                Participants = new List<Participant>()
+            });
+            counter++;
+        }
+
+        for (var i = parameters.Groups.Count - 1; i >= 0; i--)
+        {
+            var group = parameters.Groups[i];
+            switch (group.Count)
+            {
+                case 2:
+                    rounds.Add(new Round()
+                    {
+                        GameId = game.Id,
+                        Order = countOfRounds - counter,
+                        Specification = parameters.Specifications[0],
+                        Participants = new List<Participant>
+                        {
+                            group[0],
+                            group[1]
+                        }
+                    });
+                    counter++;
+                    break;
+                case 3:
+                    rounds.Add(new Round()
+                    {
+                        GameId = game.Id,
+                        Order = countOfRounds - counter,
+                        Specification = parameters.Specifications[0],
+                        Participants = new List<Participant>
+                        {
+                            group[0],
+                            group[1]
+                        }
+                    });
+                    counter++;
+                    rounds.Add(new Round()
+                    {
+                        GameId = game.Id,
+                        Order = countOfRounds - counter,
+                        Specification = parameters.Specifications[1],
+                        Participants = new List<Participant>
+                        {
+                            group[0],
+                            group[2]
+                        }
+                    });
+                    counter++;
+                    rounds.Add(new Round()
+                    {
+                        GameId = game.Id,
+                        Order = countOfRounds - counter,
+                        Specification = parameters.Specifications[2],
+                        Participants = new List<Participant>
+                        {
+                            group[1],
+                            group[2]
+                        }
+                    });
+                    counter++;
+                    break;
+                case 4:
+                    rounds.Add(new Round()
+                    {
+                        GameId = game.Id,
+                        Order = countOfRounds - counter,
+                        Specification = parameters.Specifications[0],
+                        Participants = new List<Participant>
+                        {
+                            group[0],
+                            group[1]
+                        }
+                    });
+                    counter++;
+                    rounds.Add(new Round()
+                    {
+                        GameId = game.Id,
+                        Order = countOfRounds - counter,
+                        Specification = parameters.Specifications[0],
+                        Participants = new List<Participant>
+                        {
+                            group[2],
+                            group[3]
+                        }
+                    });
+                    counter++;
+                    rounds.Add(new Round()
+                    {
+                        GameId = game.Id,
+                        Order = countOfRounds - counter,
+                        Specification = parameters.Specifications[1],
+                        Participants = new List<Participant>
+                        {
+                            group[0],
+                            group[2]
+                        }
+                    });
+                    counter++;
+                    rounds.Add(new Round()
+                    {
+                        GameId = game.Id,
+                        Order = countOfRounds - counter,
+                        Specification = parameters.Specifications[1],
+                        Participants = new List<Participant>
+                        {
+                            group[1],
+                            group[3]
+                        }
+                    });
+                    counter++;
+                    rounds.Add(new Round()
+                    {
+                        GameId = game.Id,
+                        Order = countOfRounds - counter,
+                        Specification = parameters.Specifications[2],
+                        Participants = new List<Participant>
+                        {
+                            group[0],
+                            group[3]
+                        }
+                    });
+                    counter++;
+                    rounds.Add(new Round()
+                    {
+                        GameId = game.Id,
+                        Order = countOfRounds - counter,
+                        Specification = parameters.Specifications[2],
+                        Participants = new List<Participant>
+                        {
+                            group[1],
+                            group[2]
+                        }
+                    });
+                    counter++;
+                    break;
+            }
+        }
+    }
+
+    private int GetCountOfRoundsByGroups(List<List<Participant>> groups)
+    {
+        var count = 0;
+        foreach (var group in groups)
+        {
+            switch (group.Count)
+            {
+                case 2:
+                    count += 1;
+                    break;
+                case 3:
+                    count += 3;
+                    break;
+                case 4:
+                    count += 6;
+                    break;
+            }
+        }
+
+        count += 2 * (groups.Count - 1) + 1; // 1 => 1 round, 2 => 3 rounds, 4 => 7 rounds
+        
+        return count;
+        
+    }
+
+    private bool ValidateParameters(StartGameRequest parameters)
+    {
+        return IsNumberAPowOfTwo(parameters.Groups.Count)
+            && parameters.Groups.All(x => x.Count >= 2)
+            && parameters.Specifications.Count >= 4;
+        
+    }
+    
     private async Task CreateAllTree(List<RoundCreationArgs> rounds) // TODO: научиться получать с фронта нормлаьное дерево, которое можно будет просто создать
     {
         var reversedRounds = rounds.OrderByDescending(x => x.Order).ToArray();
@@ -117,62 +321,7 @@ public class StartGameCommand : IStartGameCommand
             .All(x => x.Participants!.Count == 2);
 
         return isStartRoundsHaveTwoTeams;
-
-        
     }
 
-    public async Task<DomainResult<Game, InvalidGameDataReason>> RunAsync(Guid id, StartGameRequest parameters)
-    {
-        var result = await dataContextAccessor.AccessDataAsync<DomainResult<Game, InvalidGameDataReason>>(
-            async dbContext =>
-            {
-                var game = await gamesService.FindAsync(id);
-                if (game == null)
-                    return new ErrorInfo<InvalidGameDataReason>(InvalidGameDataReason.GameNotFound, "Game not found");
-                
-                if (!ValidateParameters(parameters))
-                    return new ErrorInfo<InvalidGameDataReason>(InvalidGameDataReason.InvalidData, "Invalid parameters");
-                
-                CreateRoundsForGame(game, parameters);
-                
-                
-                return game;
-            });
-        return result;
-    }
-
-    private void CreateRoundsForGame(Game game, StartGameRequest parameters)
-    {
-        var countOfRounds = GetCountOfRoundsByGroups(parameters.Groups);
-        var rounds = new List<Round>();
-        rounds.Add(new Round()
-        {
-            GameId = game.Id,
-            Order = countOfRounds - 1,
-            Specification = parameters.Specifications[0],
-            Participants = new List<Participant>()
-        });
-    }
-
-    private int GetCountOfRoundsByGroups(List<GroupDescription> groups)
-    {
-        var count = groups.Sum(
-            group => Enumerable.Range(1, group.Teams.Count - 1)
-                .Aggregate(1, (f, i) => f * i));
-
-        count += 2 * (groups.Count - 1) + 1; // 1 => 1 round, 2 => 3 rounds, 4 => 7 rounds
-        
-        return count;
-        
-    }
-
-    private bool ValidateParameters(StartGameRequest parameters)
-    {
-        return IsNumberAPowOfTwo(parameters.Groups.Count)
-            && parameters.Groups.All(x => x.Teams.Count >= 2)
-            && parameters.Specifications.Count >= 4;
-        
-    }
-    
     private static bool IsNumberAPowOfTwo(int n) => n > 0 && (n & (n - 1)) == 0;
 }
