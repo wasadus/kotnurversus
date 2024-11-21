@@ -11,6 +11,9 @@ public class GameDbo : Dbo
 {
     [Column("teams", TypeName = "jsonb")]
     public List<Team> Teams { get; set; } = new();
+    
+    [Column("groups", TypeName = "jsonb")]
+    public List<List<Team>> Groups { get; set; }
 
     [Column("settings", TypeName = "jsonb")]
     public Settings Settings { get; set; } = null!;
