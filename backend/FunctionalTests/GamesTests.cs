@@ -182,70 +182,52 @@ public class GamesTests : ApiTestBase
 
         entityRes.EnsureSuccess();
         var gameId = entityRes.Result.Id;
-        var createResul = await Client.Games.StartGame(
-            gameId,
-            new List<RoundCreationArgs>
+        var startGameRequest = new StartGameRequest
+        {
+            GameId = gameId,
+            Specifications = GenerateSpecifications(10),
+            Groups = new List<List<Participant>>
             {
-                new()
-                {
-                    GameId = gameId,
-                    Specification = new Specification
-                    {
-                        Title = Guid.NewGuid().ToString(),
-                        BusinessDescription = Guid.NewGuid().ToString(),
-                        TechDescription = Guid.NewGuid().ToString(),
-                    },
-                    Order = 0,
-                    Participants = new List<Participant>
-                    {
-                        new()
-                        {
-                            Order = 0,
-                            TeamId = Guid.NewGuid()
-                        }
-                    },
-                    NextRoundId = Guid.NewGuid()
-                },
-                new()
-                {
-                    GameId = gameId,
-                    Specification = new Specification
-                    {
-                        Title = Guid.NewGuid().ToString(),
-                        BusinessDescription = Guid.NewGuid().ToString(),
-                        TechDescription = Guid.NewGuid().ToString(),
-                    },
-                    Order = 1,
-                    Participants = new List<Participant>
-                    {
-                        new()
-                        {
-                            Order = 0,
-                            TeamId = Guid.NewGuid()
-                        }
-                    },
-                    NextRoundId = Guid.NewGuid()
-                },
-                new()
-                {
-                    GameId = gameId,
-                    Specification = new Specification
-                    {
-                        Title = Guid.NewGuid().ToString(),
-                        BusinessDescription = Guid.NewGuid().ToString(),
-                        TechDescription = Guid.NewGuid().ToString(),
-                    },
-                    Order = 2,
-                    Participants = new List<Participant>
-                    {
-                        new()
-                        {
-                            Order = 0,
-                            TeamId = Guid.NewGuid()
-                        }
-                    }
-                },
+                GenerateTeams(2),
+                GenerateTeams(2),
+                GenerateTeams(3),
+                GenerateTeams(4)
+            },
+            Settings = new Settings()
+        };
+
+        var createResult = await Client.Games.StartGame(gameId, startGameRequest);
+        createResult.EnsureSuccess();
+    }
+    
+    private static List<Specification> GenerateSpecifications(int count)
+    {
+        var result = new List<Specification>();
+        for (var i = 0; i < count; i++)
+        {
+            result.Add(new()
+            {
+                Title = Guid.NewGuid().ToString(),
+                BusinessDescription = Guid.NewGuid().ToString(),
+                TechDescription = Guid.NewGuid().ToString(),
             });
-        createResul.EnsureSuccess();
+        }
+
+        return result;
+    }
+    
+    private static List<Participant> GenerateTeams(int count)
+    {
+        var result = new List<Participant>();
+        for (var i = 0; i < count; i++)
+        {
+            result.Add(new()
+            {
+                Order = 0,
+                TeamId = Guid.NewGuid()
+            });
+        }
+
+        return result;
     }
 }
