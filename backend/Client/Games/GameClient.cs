@@ -14,13 +14,13 @@ internal class GameClient : EntityClientBase<Game, GameCreationArgs, RoundSearch
     {
     }
 
-    public async Task<OperationResult<Game, InvalidGameDataReason>> StartGame(Guid id, List<RoundCreationArgs> roundsToCreate)
+    public async Task<OperationResult<Game, InvalidGameDataReason>> StartGame(Guid id, StartGameRequest startGameRequest)
     {
         var request = Request
             .Post($"{Route}/{id}/start")
-            .WithJsonContent(new {RoundsToCreate = roundsToCreate});
+            .WithJsonContent(startGameRequest);
 
         var res = await SendRequestAsync<Game, InvalidGameDataReason>(request);
-        return res;
+        return res; 
     }
 }
