@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.JsonPatch.Operations;
 using Models;
 using Models.Games;
 using Models.Rounds;
+using Models.Specifications;
 using Newtonsoft.Json.Serialization;
 
 namespace Domain.Commands.Games;
@@ -65,34 +66,11 @@ public class StartGameCommand : IStartGameCommand
         var countOfRounds = GetCountOfRoundsByGroups(parameters.Groups);
         var counter = 1;
 
-        var finalRound = new Round
-        {
-            GameId = game.Id,
-            Participants = new List<Participant>(),
-            Specification = parameters.Specifications[^1],
-            Settings = parameters.Settings,
-            Order = countOfRounds,
-            Id = Guid.NewGuid()
-        };
-        var parentRoundId = finalRound.Id;
-
-        await roundsService.AddAsync(finalRound);
+        var parentRoundId = await CreateRound(game.Id, parameters, countOfRounds, parameters.Specifications[^1]);
 
         for (var i = parameters.Specifications.Count - 2; i > 2; i--)
         {
-            var round = new Round
-            {
-                GameId = game.Id,
-                NextRoundId = parentRoundId,
-                Participants = new List<Participant>(),
-                Specification = parameters.Specifications[i],
-                Settings = parameters.Settings,
-                Order = countOfRounds - counter,
-                Id = Guid.NewGuid()
-            };
-            parentRoundId = round.Id;
-
-            await roundsService.AddAsync(round);
+            parentRoundId = await CreateRound(game.Id, parameters, countOfRounds - counter, parameters.Specifications[i], parentRoundId);
             counter++;
         }
 
@@ -104,205 +82,121 @@ public class StartGameCommand : IStartGameCommand
             {
                 case 2:
                 {
-                    var round = new Round
-                    {
-                        GameId = game.Id,
-                        NextRoundId = parentRoundId,
-                        Participants = new List<Participant>
-                        {
-                            group[0],
-                            group[1]
-                        },
-                        Specification = parameters.Specifications[0],
-                        Settings = parameters.Settings,
-                        Order = countOfRounds - counter,
-                        Id = Guid.NewGuid()
-                    };
-                    parentRoundId = round.Id;
-
-                    await roundsService.AddAsync(round);
+                    parentRoundId = await CreateRound(game.Id, 
+                        parameters, 
+                        countOfRounds - counter, 
+                        parameters.Specifications[0], 
+                        parentRoundId, 
+                        (group[0], group[1]));
+                    
                     counter++;
                     break;
                 }
                 case 3:
                 {
-                    var firstRound = new Round
-                    {
-                        GameId = game.Id,
-                        NextRoundId = parentRoundId,
-                        Participants = new List<Participant>
-                        {
-                            group[0],
-                            group[1]
-                        },
-                        Specification = parameters.Specifications[0],
-                        Settings = parameters.Settings,
-                        Order = countOfRounds - counter,
-                        Id = Guid.NewGuid()
-                    };
-                    parentRoundId = firstRound.Id;
-
-                    await roundsService.AddAsync(firstRound);
+                    parentRoundId = await CreateRound(game.Id, 
+                        parameters, 
+                        countOfRounds - counter, 
+                        parameters.Specifications[0], 
+                        parentRoundId, 
+                        (group[0], group[1]));
+                    counter++;
+                    
+                    parentRoundId = await CreateRound(game.Id, 
+                        parameters, 
+                        countOfRounds - counter, 
+                        parameters.Specifications[1], 
+                        parentRoundId, 
+                        (group[0], group[2]));;
                     counter++;
 
-                    var secondRound = new Round
-                    {
-                        GameId = game.Id,
-                        NextRoundId = parentRoundId,
-                        Participants = new List<Participant>
-                        {
-                            group[0],
-                            group[2]
-                        },
-                        Specification = parameters.Specifications[1],
-                        Settings = parameters.Settings,
-                        Order = countOfRounds - counter,
-                        Id = Guid.NewGuid()
-                    };
-                    parentRoundId = secondRound.Id;
-
-                    await roundsService.AddAsync(secondRound);
-                    counter++;
-
-                    var thirdRound = new Round
-                    {
-                        GameId = game.Id,
-                        NextRoundId = parentRoundId,
-                        Participants = new List<Participant>
-                        {
-                            group[1],
-                            group[2]
-                        },
-                        Specification = parameters.Specifications[2],
-                        Settings = parameters.Settings,
-                        Order = countOfRounds - counter,
-                        Id = Guid.NewGuid()
-                    };
-                    parentRoundId = thirdRound.Id;
-
-                    await roundsService.AddAsync(thirdRound);
+                    
+                    parentRoundId = await CreateRound(game.Id, 
+                        parameters, 
+                        countOfRounds - counter, 
+                        parameters.Specifications[2], 
+                        parentRoundId, 
+                        (group[1], group[2]));;
                     counter++;
                     break;
                 }
                 case 4:
                 {
-                    var firstRound = new Round
-                    {
-                        GameId = game.Id,
-                        NextRoundId = parentRoundId,
-                        Participants = new List<Participant>
-                        {
-                            group[0],
-                            group[1]
-                        },
-                        Specification = parameters.Specifications[0],
-                        Settings = parameters.Settings,
-                        Order = countOfRounds - counter,
-                        Id = Guid.NewGuid()
-                    };
-                    parentRoundId = firstRound.Id;
-
-                    await roundsService.AddAsync(firstRound);
+                   parentRoundId = await CreateRound(game.Id, 
+                        parameters, 
+                        countOfRounds - counter, 
+                        parameters.Specifications[0], 
+                        parentRoundId, 
+                        (group[0], group[1]));;
+                    counter++;
+                    
+                    parentRoundId = await CreateRound(game.Id, 
+                        parameters, 
+                        countOfRounds - counter, 
+                        parameters.Specifications[0], 
+                        parentRoundId, 
+                        (group[2], group[3]));
+                    counter++;
+                    
+                    parentRoundId = await CreateRound(game.Id, 
+                        parameters, 
+                        countOfRounds - counter, 
+                        parameters.Specifications[1], 
+                        parentRoundId, 
+                        (group[0], group[2]));
                     counter++;
 
-                    var secondRound = new Round
-                    {
-                        GameId = game.Id,
-                        NextRoundId = parentRoundId,
-                        Participants = new List<Participant>
-                        {
-                            group[2],
-                            group[3]
-                        },
-                        Specification = parameters.Specifications[0],
-                        Settings = parameters.Settings,
-                        Order = countOfRounds - counter,
-                        Id = Guid.NewGuid()
-                    };
-                    parentRoundId = secondRound.Id;
-
-                    await roundsService.AddAsync(secondRound);
+                    parentRoundId = await CreateRound(game.Id,
+                        parameters,
+                        countOfRounds - counter,
+                        parameters.Specifications[1],
+                        parentRoundId,
+                        (group[1], group[3]));
                     counter++;
 
-                    var thirdRound = new Round
-                    {
-                        GameId = game.Id,
-                        NextRoundId = parentRoundId,
-                        Participants = new List<Participant>
-                        {
-                            group[0],
-                            group[2]
-                        },
-                        Specification = parameters.Specifications[1],
-                        Settings = parameters.Settings,
-                        Order = countOfRounds - counter,
-                        Id = Guid.NewGuid()
-                    };
-                    parentRoundId = thirdRound.Id;
-
-                    await roundsService.AddAsync(thirdRound);
+                    parentRoundId = await CreateRound(game.Id,
+                        parameters,
+                        countOfRounds - counter,
+                        parameters.Specifications[2],
+                        parentRoundId,
+                        (group[0], group[3]));
                     counter++;
 
-                    var fourthRound = new Round
-                    {
-                        GameId = game.Id,
-                        NextRoundId = parentRoundId,
-                        Participants = new List<Participant>
-                        {
-                            group[1],
-                            group[3]
-                        },
-                        Specification = parameters.Specifications[1],
-                        Settings = parameters.Settings,
-                        Order = countOfRounds - counter,
-                        Id = Guid.NewGuid()
-                    };
-                    parentRoundId = fourthRound.Id;
-
-                    await roundsService.AddAsync(fourthRound);
-                    counter++;
-
-                    var fifthRound = new Round
-                    {
-                        GameId = game.Id,
-                        NextRoundId = parentRoundId,
-                        Participants = new List<Participant>
-                        {
-                            group[0],
-                            group[3]
-                        },
-                        Specification = parameters.Specifications[2],
-                        Settings = parameters.Settings,
-                        Order = countOfRounds - counter,
-                        Id = Guid.NewGuid()
-                    };
-                    parentRoundId = fifthRound.Id;
-
-                    await roundsService.AddAsync(fifthRound);
-                    counter++;
-
-                    var sixthRound = new Round
-                    {
-                        GameId = game.Id,
-                        NextRoundId = parentRoundId,
-                        Participants = new List<Participant>
-                        {
-                            group[1],
-                            group[2]
-                        },
-                        Specification = parameters.Specifications[2],
-                        Settings = parameters.Settings,
-                        Order = countOfRounds - counter,
-                        Id = Guid.NewGuid()
-                    };
-                    parentRoundId = sixthRound.Id;
-
-                    await roundsService.AddAsync(sixthRound);
+                    parentRoundId = await CreateRound(game.Id,
+                        parameters,
+                        countOfRounds - counter,
+                        parameters.Specifications[2],
+                        parentRoundId,
+                        (group[1], group[2]));
                     counter++;
                     break;
                 }
             }
         }
+    }
+
+    private async Task<Guid> CreateRound(
+        Guid gameId, 
+        StartGameRequest parameters, 
+        int order, 
+        Specification specification, 
+        Guid? parentId = null, 
+        (Participant first, Participant second)? participants = null)
+    {
+        var round = new Round
+        {
+            GameId = gameId,
+            Participants = participants.HasValue ? [participants.Value.first, participants.Value.second] : [],
+            Specification = specification,
+            Settings = parameters.Settings,
+            Order = order,
+            NextRoundId = parentId,
+            Id = Guid.NewGuid(),
+        };
+        await roundsService.AddAsync(round);
+        
+        return round.Id;
+        
     }
 
     private int GetCountOfRoundsByGroups(List<List<Participant>> groups)
