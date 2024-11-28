@@ -1,15 +1,16 @@
-import { Button, Stack, Text } from "@chakra-ui/react";
+import {Button, Stack, Text, useDisclosure} from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import api from "~/api";
 import ButtonWithAlert from "~/components/ButtonWithAlert";
 import useHandleError from "~/hooks/useHandleError";
-import { RoundState } from "~/types/round";
+import {Round, RoundParticipant, RoundState} from "~/types/round";
 import { TourneyTeam } from "~/types/tourney";
 import queryKeys from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
 import Stage from "./Stage";
 import ChallengeSelectionWindow from "./Stage/ChallengeSelectionWindow";
+import Alert from "~/components/Alert.tsx";
 
 const STAGE_COLOR = "#D83161";
 const STAGE_STATE = RoundState.Prepare;
@@ -30,8 +31,21 @@ const PrepareStartStage = () => {
   const queryClient = useQueryClient();
   const { isOrganizer, round, getTeams } = useRoundContext();
   const [currentTeam, setCurrentTeam] = useState<TourneyTeam>();
+  const maxChallengesCount = 6;
 
-  const handleChoose = (team?: TourneyTeam) => () => setCurrentTeam(team);
+  const handleChoose = (team?: TourneyTeam, alert?: () => void) => () => {
+    const currentRound = queryClient.getQueryData(queryKeys.round(round.id));
+    if (team) {
+      const chosenParticipant = (currentRound as Round).participants.filter((p: RoundParticipant) => p.teamId === team.id)[0];
+      if (chosenParticipant.challenges.length < maxChallengesCount) {
+        setCurrentTeam(team);
+      } else {
+        if (alert) {
+          alert();
+        }
+      }
+    }
+  };
 
   const startMutation = useMutation({
     mutationFn: async () => {
@@ -45,16 +59,31 @@ const PrepareStartStage = () => {
 
   return (
     <>
-      {getTeams().map((team, i) => (
-        <Stage.Team
-          key={team?.id || i}
-          gridArea={`t${i + 1}`}
-          activeColor={STAGE_COLOR}
-          team={team}
-          isDisabled={!isOrganizer || startMutation.isPending}
-          onClick={handleChoose(team)}
-        />
-      ))}
+      {getTeams().map((team, i) => {
+          const alert = useDisclosure();
+          return (
+            <>
+              <Stage.Team
+                key={team?.id || i}
+                gridArea={`t${i + 1}`}
+                activeColor={STAGE_COLOR}
+                team={team}
+                isDisabled={!isOrganizer || startMutation.isPending}
+                onClick={handleChoose(team, alert.onOpen)}
+              />
+              <Alert
+                isOpen={alert.isOpen}
+                onClose={alert.onClose}
+                onSubmit={alert.onClose}
+                heading="Внимание"
+                okText="Ок"
+                cancelText=""
+                children={`Для команды ${team?.title} уже выбрано максимальное количество требований`}
+              />
+            </>
+          );
+      }
+      )}
       <Stage.MainInfo isMinContent children="Выбор дополнительных требований" />
       {isOrganizer && (
         <Stack align="center" gridArea="b">
