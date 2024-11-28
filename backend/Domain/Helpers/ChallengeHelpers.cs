@@ -17,7 +17,8 @@ public static class ChallengeHelpers
             GameId = gameId,
             RoundId = roundId,
             Order = order,
-            IsCatInBag = challengeDbo.IsCatInBag
+            IsCatInBag = challengeDbo.IsCatInBag,
+            Difficulty = challengeDbo.Difficulty
         };
     }
 
@@ -33,7 +34,8 @@ public static class ChallengeHelpers
             RoundId = challenge.RoundId,
             Order = challenge.Order,
             ShortDescription = challenge.ShortDescription,
-            IsCatInBag = challenge.IsCatInBag
+            IsCatInBag = challenge.IsCatInBag,
+            Difficulty = challenge.Difficulty
         };
     }
 
@@ -49,7 +51,8 @@ public static class ChallengeHelpers
             RoundId = challenge.RoundId,
             Order = challenge.Order,
             ShortDescription = challenge.ShortDescription,
-            IsCatInBag = challenge.IsCatInBag
+            IsCatInBag = challenge.IsCatInBag,
+            Difficulty = challenge.Difficulty
         };
     }
 }
