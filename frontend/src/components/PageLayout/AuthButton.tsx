@@ -214,6 +214,7 @@ const RegisterForm = ({ id, onSubmit }: AuthFormProps) => {
         size="lg"
         label="Пароль"
         placeholder="Пароль"
+        requirements={"Минимальная длина пароля 5 символов. Пароль должен содержать строчную английскую букву, заглавную английскую букву и цифру."}
         errorMessage={errors.password?.message}
       />
       <PasswordInput
