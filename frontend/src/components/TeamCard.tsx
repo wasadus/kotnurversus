@@ -120,7 +120,7 @@ const EditableTeamCard = ({
           </ListItem>
         ))}
       </TeamCardMates>
-      <AddMateButton onClick={handleAddMate} />
+      {getValues("mates").length < 4 && <AddMateButton onClick={handleAddMate} />}
       {team?.id && onRemove && <RemoveButton onRemove={handleRemove} />}
     </TeamCardLayout>
   );
