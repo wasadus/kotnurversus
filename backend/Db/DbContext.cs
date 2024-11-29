@@ -10,26 +10,16 @@ namespace Db;
 
 public class DbContext : Microsoft.EntityFrameworkCore.DbContext
 {
-    private readonly IDbSettings settings;
-
-    public DbContext(IDbSettings settings)
+    public DbContext(DbContextOptions options) : base(options)
     {
-        this.settings = settings;
+        
     }
-
     public DbSet<UserDbo> Users { get; set; } = null!;
     public DbSet<RoundDbo> Rounds { get; set; } = null!;
     public DbSet<GameDbo> Games { get; set; } = null!;
     public DbSet<ChallengeDbo> Challenges { get; set; } = null!;
     public DbSet<SnapshotChallengeDbo> SnapshotChallenges { get; set; } = null!;
     public DbSet<CategoryDbo> Categories { get; set; } = null!;
-
-    protected override void OnConfiguring(DbContextOptionsBuilder builder)
-    {
-        var dataSourceBuilder = new NpgsqlDataSourceBuilder(settings.ConnectionString);
-        dataSourceBuilder.UseJsonNet();
-        builder.UseNpgsql(dataSourceBuilder.Build(), o => o.EnableRetryOnFailure(settings.MaxRetryOnFailureCount));
-    }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
@@ -51,5 +41,20 @@ public class DbContext : Microsoft.EntityFrameworkCore.DbContext
         var snapshotChallenge = modelBuilder.Entity<SnapshotChallengeDbo>();
         snapshotChallenge.HasKey(x => new{x.Id, x.GameId, x.RoundId});
         snapshotChallenge.HasIndex(x => new {x.Id, x.GameId, x.RoundId}).IsUnique();
+        
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            foreach (var property in entityType.ClrType.GetProperties())
+            {
+                if (property.PropertyType.IsGenericType && 
+                    property.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
+                {
+                    // Устанавливаем тип данных JSON
+                    modelBuilder.Entity(entityType.ClrType)
+                        .Property(property.Name)
+                        .HasColumnType("jsonb");
+                }
+            }
+        }
     }
 }

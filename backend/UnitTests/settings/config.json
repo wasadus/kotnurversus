@@ -1,0 +1,3 @@
+﻿{
+  "DbConnectionString": "Host=localhost;Port=5434;Database=kot-test;Username=kot;Password=kot"
+}
