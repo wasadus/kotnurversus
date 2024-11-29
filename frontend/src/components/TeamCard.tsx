@@ -85,6 +85,10 @@ const EditableTeamCard = ({
     team?.id && onRemove?.(team.id);
   };
 
+  const handleRemoveMate = (mateIndex: number) => {
+    remove(mateIndex);
+  };
+
   const handleAddMate = () => {
     remove(
       getValues("mates").flatMap(({ name }, i) => (name.trim() ? [] : [i]))
@@ -111,16 +115,22 @@ const EditableTeamCard = ({
       <TeamCardMates>
         {fields.map((field, i) => (
           <ListItem ml={4} key={field.id}>
-            <Input
-              h="24px"
-              size="md"
-              placeholder="Участник"
-              {...register(`mates.${i}.name`)}
-            />
+            <div className="flex">
+              <Input
+                h="24px"
+                w="175px"
+                size="md"
+                placeholder="Участник"
+                {...register(`mates.${i}.name`)}
+              />
+              {getValues("mates").length > 1 && <RemoveMateButton onRemove={() => handleRemoveMate(i)} />}
+            </div>
           </ListItem>
         ))}
       </TeamCardMates>
-      <AddMateButton onClick={handleAddMate} />
+      {getValues("mates").length < 4 && (
+        <AddMateButton onClick={handleAddMate} />
+      )}
       {team?.id && onRemove && <RemoveButton onRemove={handleRemove} />}
     </TeamCardLayout>
   );
@@ -282,6 +292,33 @@ const RemoveButton = ({ onRemove, ...props }: RemoveButtonProps) => {
         children="Вы уверены, что хотите удалить данную команду?"
       />
     </>
+  );
+};
+
+type RemoveMateButtonProps = {
+  onRemove: () => void;
+} & ButtonProps;
+
+const RemoveMateButton = ({ onRemove, ...props }: RemoveMateButtonProps) => {
+  const alert = useDisclosure();
+
+  return (
+      <>
+        <IconButtonWithTooltip
+            size="xs"
+            label="Удалить участника"
+            borderRadius="full"
+            onClick={alert.onOpen}
+            icon={<CrossIcon boxSize={4} />}
+            {...props}
+        />
+        <Alert
+            isOpen={alert.isOpen}
+            onClose={alert.onClose}
+            onSubmit={onRemove}
+            children="Вы уверены, что хотите удалить данного участника?"
+        />
+      </>
   );
 };
 
