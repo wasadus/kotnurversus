@@ -4,6 +4,7 @@ export type Challenge = {
   title: string;
   shortDescription?: string;
   description?: string;
+  difficulty: string;
   isCatInBag: boolean;
   order?: number;
 };
