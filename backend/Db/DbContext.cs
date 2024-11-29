@@ -4,6 +4,7 @@ using Db.Dbo.Games;
 using Db.Dbo.Rounds;
 using Db.Dbo.Users;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace Db;
 
@@ -25,7 +26,9 @@ public class DbContext : Microsoft.EntityFrameworkCore.DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
-        builder.UseNpgsql(settings.ConnectionString, o => o.EnableRetryOnFailure(settings.MaxRetryOnFailureCount));
+        var dataSourceBuilder = new NpgsqlDataSourceBuilder(settings.ConnectionString);
+        dataSourceBuilder.UseJsonNet();
+        builder.UseNpgsql(dataSourceBuilder.Build(), o => o.EnableRetryOnFailure(settings.MaxRetryOnFailureCount));
     }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
