@@ -1,6 +1,5 @@
 import {
   BoxProps,
-  Button,
   Center,
   HStack,
   Heading,
@@ -23,6 +22,7 @@ import { TourneyTeam } from "~/types/tourney";
 import { isDefined } from "~/utils";
 import queryKeys from "~/utils/query-keys";
 import ChallengeWindow from "./ChallengeWindow";
+import IconButtonWithTooltip from "~/components/IconButtonWithTooltip.tsx";
 
 type Props = {
   team?: TourneyTeam;
@@ -195,19 +195,29 @@ const CategoryCard = ({
       {challenges.map((challenge, i) => {
         const isChosen = chosenChallengeId === challenge.id;
         const isDisabled = disabledChallengeIds.has(challenge.id);
+        let borderColor: string;
+        if (challenge.difficulty === "easy") {
+          borderColor = "green.500";
+        } else if (challenge.difficulty === "medium") {
+          borderColor = "yellow.500";
+        } else {
+          borderColor = "red.500";
+        }
         return (
-          <Button
+          <IconButtonWithTooltip
             key={challenge.id}
             gridArea={i}
             size="xs"
             fontSize="xl"
+            borderColor={borderColor}
             boxSize={8}
             isDisabled={isDisabled}
             onClick={() => onChoose(challenge)}
-            children={i + 1}
+            icon={<span>{i + 1}</span>}
             opacity={1}
             variant={isChosen || isDisabled ? "solid" : "outline"}
             colorScheme={isChosen ? "blue" : "gray"}
+            label={challenge.title}
           />
         );
       })}
