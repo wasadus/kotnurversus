@@ -3,15 +3,13 @@ import {
   Grid,
   Heading,
   Stack,
-  Text,
-  useColorMode,
 } from "@chakra-ui/react";
 import { format } from "date-fns";
-import { ReactNode } from "react";
 import { AutoLinkWrapper } from "~/components/AutoLinkWrapper";
 import { StateCard } from "~/components/StateCard";
 import { Tourney } from "~/types/tourney";
 import { TOURNEY_STATE_NAMES, TOURNEY_TYPE_NAMES } from "~/utils/tourney";
+import { TourneyInfoRow } from "~/pages/TourneyPage/TourneyHeader/TourneyInfoRow";
 
 type Props = {
   tourney: Tourney;
@@ -49,25 +47,3 @@ export const TourneyHeader = ({ tourney, ...props }: Props) => (
     </Stack>
   </Grid>
 );
-
-type TourneyInfoRowProps = {
-  name: string;
-  children: ReactNode;
-};
-
-const TourneyInfoRow = ({ name, children }: TourneyInfoRowProps) => {
-  const { colorMode } = useColorMode();
-
-  return (
-    <Text
-      fontSize={{ base: "sm", md: "md" }}
-      whiteSpace="pre-line"
-      wordBreak="break-word"
-    >
-      <Text as="span" color={`text.${colorMode}.extra.1`}>
-        {name}:
-      </Text>{" "}
-      {children}
-    </Text>
-  );
-};
