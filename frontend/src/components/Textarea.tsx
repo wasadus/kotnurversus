@@ -3,7 +3,7 @@ import {
   TextareaProps as ChakraTextareaProps,
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
-import FormControl, { FormControlProps } from "./FormControl";
+import { FormControl, FormControlProps } from "./FormControl";
 
 export type TextareaProps = {
   label?: string;

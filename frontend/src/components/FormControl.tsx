@@ -11,7 +11,7 @@ export type FormControlProps = {
   errorMessage?: string;
 } & ChakraFormControlProps;
 
-const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
+export const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
   ({ label, errorMessage, children, ...props }, ref) => (
     <ChakraFormControl ref={ref} isInvalid={Boolean(errorMessage)} {...props}>
       {label && (
@@ -37,5 +37,3 @@ const FormControl = forwardRef<HTMLDivElement, FormControlProps>(
     </ChakraFormControl>
   )
 );
-
-export default FormControl;

@@ -9,7 +9,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { ReactNode, forwardRef } from "react";
-import FormControl from "./FormControl";
+import { FormControl } from "./FormControl";
 
 export type InputProps = {
   label?: string;

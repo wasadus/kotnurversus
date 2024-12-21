@@ -8,7 +8,7 @@ import {
   NumberInputStepper,
   forwardRef,
 } from "@chakra-ui/react";
-import FormControl from "./FormControl";
+import { FormControl } from "./FormControl";
 
 type Props = {
   label?: string;
