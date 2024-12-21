@@ -1,7 +1,7 @@
 import { Wrap, WrapProps, useDisclosure } from "@chakra-ui/react";
 import { memo } from "react";
 import { ChallengeCard as BaseChallengeCard } from "~/components/ChallengeCard";
-import useChallengesQuery from "~/hooks/useChallengesQuery";
+import { useChallengesQuery } from "~/hooks/useChallengesQuery";
 import { useRoundContext } from "~/pages/RoundPage/round-context";
 import { Category } from "~/types/category";
 import { Challenge } from "~/types/challenge";

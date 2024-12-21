@@ -1,7 +1,7 @@
 import { Center, Heading, Stack } from "@chakra-ui/react";
 import { Loading } from "~/components/Loading";
 import { useAutoRedirect } from "~/hooks/useAutoRedirect";
-import useChallengesQuery from "~/hooks/useChallengesQuery";
+import { useChallengesQuery } from "~/hooks/useChallengesQuery";
 import { paths } from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
 import { CategoryCard } from "./CategoryCard";

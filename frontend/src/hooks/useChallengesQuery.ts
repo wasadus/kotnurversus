@@ -8,7 +8,7 @@ type UseChallengesQueryParams = {
   enabled?: boolean;
 };
 
-const useChallengesQuery = ({
+export const useChallengesQuery = ({
   roundId,
   enabled,
 }: UseChallengesQueryParams = {}) => {
@@ -51,5 +51,3 @@ const useChallengesQuery = ({
     getChallengesByCategoryId,
   };
 };
-
-export default useChallengesQuery;
