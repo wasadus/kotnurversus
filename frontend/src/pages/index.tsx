@@ -11,7 +11,7 @@ const TourneyPage = lazy(() => import("./TourneyPage").then(module => ({ default
 const RoundPage = lazy(() => import("./RoundPage").then(module => ({ default: module.RoundPage })));
 const ProfilePage = lazy(() => import("./ProfilePage").then(module => ({ default: module.ProfilePage })));
 
-export default {
+export const pages = {
   admin: {
     path: paths.admin.pathTemplate,
     Component: AdminPage,

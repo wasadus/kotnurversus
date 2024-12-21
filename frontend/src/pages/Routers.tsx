@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PageLayout } from "~/components/PageLayout";
-import pages from "~/pages";
+import { pages } from "~/pages";
 
 export const Routers = () => (
   <BrowserRouter>
