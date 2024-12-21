@@ -4,7 +4,7 @@ import { RoundArtifacts } from "./RoundArtifacts";
 import { RoundHeader } from "./RoundHeader";
 import { RoundSpecificationSection } from "./RoundSpecificationSection";
 import { RoundStages } from "./RoundStages";
-import { RoundProvider } from "./round-context";
+import { RoundProvider } from "~/pages/RoundPage/RoundProvider";
 
 type PageParams = {
   roundId: string;
