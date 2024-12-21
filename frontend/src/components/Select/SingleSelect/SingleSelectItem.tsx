@@ -1,6 +1,6 @@
 import { Text } from "@chakra-ui/react";
 import { useMemo } from "react";
-import BaseSelect from "../BaseSelect";
+import { BaseSelect } from "../BaseSelect";
 import { DropdownItemProps } from "../BaseSelect/SelectDropdownItem";
 import { SelectValue } from "../types";
 

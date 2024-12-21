@@ -12,7 +12,7 @@ import { InputProps } from "~/components/Input";
 import Popper from "~/components/Popper";
 import useOutsideAction from "~/hooks/useOutsideAction";
 import { isDefined } from "~/utils";
-import BaseSelect from "../BaseSelect";
+import { BaseSelect } from "../BaseSelect";
 import { SelectOption, SelectValue } from "../types";
 import SingleSelectInput from "./SingleSelectInput";
 import SingleSelectItem from "./SingleSelectItem";

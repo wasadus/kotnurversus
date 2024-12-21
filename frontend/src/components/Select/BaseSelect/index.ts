@@ -1,9 +1,9 @@
-import Dropdown from "./SelectDropdown";
-import DropdownItem from "./SelectDropdownItem";
-import useSelectLogic from "./useSelectLogic";
+import { SelectDropdown } from "./SelectDropdown";
+import { SelectDropdownItem } from "./SelectDropdownItem";
+import { useSelectLogic } from "./useSelectLogic";
 
-export default {
+export const BaseSelect = {
   useLogic: useSelectLogic,
-  Dropdown,
-  DropdownItem,
+  Dropdown: SelectDropdown,
+  DropdownItem: SelectDropdownItem,
 };
