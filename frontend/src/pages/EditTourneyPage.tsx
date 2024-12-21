@@ -11,7 +11,7 @@ import {
   castToCreateTourney,
   castToFormSchema,
 } from "~/components/TourneyForm/schema";
-import useAutoRedirect from "~/hooks/useAutoRedirect";
+import { useAutoRedirect } from "~/hooks/useAutoRedirect";
 import useHandleError from "~/hooks/useHandleError";
 import {paths} from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";

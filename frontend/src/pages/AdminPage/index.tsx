@@ -2,7 +2,7 @@ import { Center, Heading, Stack } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "~/api";
 import { Loading } from "~/components/Loading";
-import useAutoRedirect from "~/hooks/useAutoRedirect";
+import { useAutoRedirect } from "~/hooks/useAutoRedirect";
 import { UsersTable } from "~/pages/AdminPage/UsersTable";
 import { paths } from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
