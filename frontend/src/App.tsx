@@ -6,7 +6,7 @@ import { ru } from "date-fns/locale";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorPage } from "~/pages/ErrorPage";
 import { Routers } from "~/pages/Routers";
-import theme from "~/theme";
+import { theme } from "~/theme";
 import { AuthProvider } from "~/utils/auth-context";
 import "~/utils/extensions";
 
