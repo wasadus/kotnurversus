@@ -348,7 +348,7 @@ const castToTeam = (
   order: team?.order || 0,
 });
 
-export default {
+export const TeamCard = {
   Base: BaseTeamCard,
   Editable: EditableTeamCard,
   Button: ButtonTeamCard,

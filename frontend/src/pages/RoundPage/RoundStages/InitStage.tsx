@@ -1,7 +1,7 @@
 import { Button, Center } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "~/api";
-import TeamCard from "~/components/TeamCard";
+import { TeamCard } from "~/components/TeamCard";
 import useHandleError from "~/hooks/useHandleError";
 import ArrowRightIcon from "~/icons/ArrowRightIcon";
 import queryKeys from "~/utils/query-keys";
