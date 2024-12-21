@@ -1,7 +1,7 @@
 import { Center, Heading, Stack } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
-import api from "~/api";
+import { api } from "~/api";
 import { Loading } from "~/components/Loading";
 import { queryKeys } from "~/utils/query-keys";
 import { TourneyActionButtons } from "./TourneyActionButtons";

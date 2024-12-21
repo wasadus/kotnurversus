@@ -2,7 +2,7 @@ import { useBreakpointValue } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { compare } from "fast-json-patch";
 import { ReactNode, createContext, useContext, useMemo } from "react";
-import api from "~/api";
+import { api } from "~/api";
 import useDebounce from "~/hooks/useDebounce";
 import useSubscriptions from "~/hooks/useSubscriptions";
 import useValue, { ValueRef } from "~/hooks/useValue";

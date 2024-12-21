@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { memo } from "react";
-import api from "~/api";
+import { api } from "~/api";
 import { Alert } from "~/components/Alert";
 import useHandleError from "~/hooks/useHandleError";
 import { CrossIcon } from "~/icons/CrossIcon";

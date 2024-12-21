@@ -1,6 +1,6 @@
 import { Box, Wrap, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import api from "~/api";
+import { api } from "~/api";
 import { ChallengeCard as BaseChallengeCard } from "~/components/ChallengeCard";
 import ChallengeWindow from "~/components/ChallengeWindow";
 import useHandleError from "~/hooks/useHandleError";

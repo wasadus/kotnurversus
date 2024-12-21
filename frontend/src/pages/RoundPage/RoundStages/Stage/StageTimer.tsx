@@ -1,6 +1,6 @@
 import { BoxProps, Center, Text, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import api from "~/api";
+import { api } from "~/api";
 import { Alert } from "~/components/Alert";
 import { IconButtonWithTooltip } from "~/components/IconButtonWithTooltip";
 import useHandleError from "~/hooks/useHandleError";

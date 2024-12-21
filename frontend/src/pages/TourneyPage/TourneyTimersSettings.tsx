@@ -5,7 +5,7 @@ import { compare } from "fast-json-patch";
 import { ReactNode, memo, useId, useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import api from "~/api";
+import { api } from "~/api";
 import { CollapsibleSection } from "~/components/CollapsibleSection";
 import { NumberInput } from "~/components/NumberInput";
 import { TimeInput } from "~/components/TimeInput";

@@ -4,7 +4,7 @@ import { ChallengesController } from "./ChallengesController";
 import { RoundsController } from "./RoundsController";
 import { TourneysController } from "./TourneysController";
 
-export default {
+export const api = {
   auth: new AuthController(),
   categories: new CategoriesController(),
   challenges: new ChallengesController(),

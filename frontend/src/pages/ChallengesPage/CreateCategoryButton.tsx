@@ -1,6 +1,6 @@
 import { Button, ButtonProps, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import api from "~/api";
+import { api } from "~/api";
 import CategoryWindow from "~/components/CategoryWindow";
 import useHandleError from "~/hooks/useHandleError";
 import { CreateCategory } from "~/types/category";

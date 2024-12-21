@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import { memo, useState } from "react";
-import api from "~/api";
+import { api } from "~/api";
 import { User } from "~/types/auth";
 import { getUser } from "~/utils/auth";
 

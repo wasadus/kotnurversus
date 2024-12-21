@@ -1,6 +1,6 @@
 import { Circle, forwardRef } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import api from "~/api";
+import { api } from "~/api";
 import { Select } from "~/components/Select";
 import { SingleSelectProps } from "~/components/Select/SingleSelect";
 import { queryKeys } from "~/utils/query-keys";

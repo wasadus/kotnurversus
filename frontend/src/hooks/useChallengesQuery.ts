@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "~/api";
+import { api } from "~/api";
 import { Challenge } from "~/types/challenge";
 import { queryKeys } from "~/utils/query-keys";
 

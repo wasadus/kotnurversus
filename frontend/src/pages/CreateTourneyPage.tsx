@@ -2,7 +2,7 @@ import { Button, Heading, Stack } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useId } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "~/api";
+import { api } from "~/api";
 import { Loading } from "~/components/Loading";
 import { TourneyForm } from "~/components/TourneyForm";
 import {

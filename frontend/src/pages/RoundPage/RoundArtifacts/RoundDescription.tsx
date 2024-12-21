@@ -2,7 +2,7 @@ import { Text } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { compare } from "fast-json-patch";
 import { ChangeEvent, useMemo, useRef } from "react";
-import api from "~/api";
+import { api } from "~/api";
 import { AutoLinkWrapper } from "~/components/AutoLinkWrapper";
 import { AutoSizeTextarea } from "~/components/AutoSizeTextarea";
 import useDebounce from "~/hooks/useDebounce";

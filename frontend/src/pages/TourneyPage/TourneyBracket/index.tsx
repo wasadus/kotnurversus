@@ -3,7 +3,7 @@ import { SingleEliminationBracket } from "@g-loot/react-tournament-brackets";
 import { CommonTreeProps } from "@g-loot/react-tournament-brackets/dist/src/types";
 import { useQuery } from "@tanstack/react-query";
 import { memo, useEffect, useState } from "react";
-import api from "~/api";
+import { api } from "~/api";
 import {
   TourneySpecification,
   TourneyState,

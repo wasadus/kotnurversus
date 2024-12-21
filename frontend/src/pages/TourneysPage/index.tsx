@@ -9,7 +9,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { ChangeEvent, useState } from "react";
 import { Link } from "react-router-dom";
-import api from "~/api";
+import { api } from "~/api";
 import { Input } from "~/components/Input";
 import { Loading } from "~/components/Loading";
 import useDebounce from "~/hooks/useDebounce";
