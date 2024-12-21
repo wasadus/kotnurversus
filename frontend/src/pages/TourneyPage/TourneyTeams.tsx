@@ -1,7 +1,7 @@
 import { Wrap } from "@chakra-ui/react";
 import { memo, useRef } from "react";
 import { v4 as uuid } from "uuid";
-import CollapsibleSection from "~/components/CollapsibleSection";
+import { CollapsibleSection } from "~/components/CollapsibleSection";
 import TeamCard from "~/components/TeamCard";
 import useForceUpdate from "~/hooks/useForceUpdate";
 import { TourneyTeam } from "~/types/tourney";

@@ -18,7 +18,7 @@ type Props = {
   headerProps?: BoxProps;
 } & BoxProps;
 
-const CollapsibleSection = ({
+export const CollapsibleSection = ({
   label,
   storageKey,
   defaultIsOpen = true,
@@ -97,5 +97,3 @@ const CollapsibleHeader = ({
     </HStack>
   );
 };
-
-export default CollapsibleSection;

@@ -4,7 +4,7 @@ import { compare } from "fast-json-patch";
 import { memo, useState } from "react";
 import { v4 as uuid } from "uuid";
 import api from "~/api";
-import CollapsibleSection from "~/components/CollapsibleSection";
+import { CollapsibleSection } from "~/components/CollapsibleSection";
 import { SpecificationWindow } from "~/components/SpecificationWindow";
 import useDebounce from "~/hooks/useDebounce";
 import {

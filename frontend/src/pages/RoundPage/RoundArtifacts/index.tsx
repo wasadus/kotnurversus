@@ -1,6 +1,6 @@
 import { BoxProps, Stack } from "@chakra-ui/react";
 import { memo } from "react";
-import CollapsibleSection from "~/components/CollapsibleSection";
+import { CollapsibleSection } from "~/components/CollapsibleSection";
 import { useRoundContext } from "../round-context";
 import RoundDescription from "./RoundDescription";
 import RoundGallery from "./RoundGallery";
