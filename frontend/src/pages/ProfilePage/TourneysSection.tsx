@@ -15,7 +15,7 @@ import { OutlinePlusIcon } from "~/icons/OutlinePlusIcon";
 import paths from "~/pages/paths";
 import queryKeys from "~/utils/query-keys";
 
-const TourneysSection = (props: BoxProps) => {
+export const TourneysSection = (props: BoxProps) => {
   const tourneysQuery = useQuery({
     queryKey: queryKeys.tourneys,
     queryFn: api.tourneys.find,
@@ -55,5 +55,3 @@ const CreateTourneyButton = () => (
     children="Создать турнир"
   />
 );
-
-export default TourneysSection;

@@ -7,7 +7,7 @@ import { PasswordInput } from "~/components/PasswordInput";
 import { passwordChangeFormSchema } from "~/utils/auth-schemas";
 import { SettingsFormProps } from "./SettingsLayout";
 
-const PasswordSettings = ({
+export const PasswordSettings = ({
   formId,
   defaultValue,
   onLoading,
@@ -54,5 +54,3 @@ const PasswordSettings = ({
     </Stack>
   );
 };
-
-export default PasswordSettings;

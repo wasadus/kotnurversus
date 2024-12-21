@@ -11,7 +11,7 @@ const nameSchema = z.object({
     .min(1, "Заполните поле"),
 });
 
-const NameSettings = ({
+export const NameSettings = ({
   formId,
   defaultValue,
   onLoading,
@@ -47,5 +47,3 @@ const NameSettings = ({
     </form>
   );
 };
-
-export default NameSettings;

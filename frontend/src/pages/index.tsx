@@ -9,7 +9,7 @@ const CreateTourneyPage = lazy(() => import("./CreateTourneyPage"));
 const EditTourneyPage = lazy(() => import("./EditTourneyPage"));
 const TourneyPage = lazy(() => import("./TourneyPage"));
 const RoundPage = lazy(() => import("./RoundPage"));
-const ProfilePage = lazy(() => import("./ProfilePage"));
+const ProfilePage = lazy(() => import("./ProfilePage").then(module => ({ default: module.ProfilePage })));
 
 export default {
   admin: {

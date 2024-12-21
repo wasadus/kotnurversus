@@ -8,7 +8,7 @@ import { SettingsFormProps } from "./SettingsLayout";
 
 const loginSchema = z.object({ value: loginField });
 
-const LoginSettings = ({
+export const LoginSettings = ({
   formId,
   defaultValue,
   onLoading,
@@ -45,4 +45,3 @@ const LoginSettings = ({
   );
 };
 
-export default LoginSettings;

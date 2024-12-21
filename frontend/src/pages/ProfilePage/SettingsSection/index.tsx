@@ -1,9 +1,9 @@
 import { BoxProps, Button, ButtonProps, Grid } from "@chakra-ui/react";
 import { getUser } from "~/utils/auth";
 import { useAuthContext } from "~/utils/auth-context";
-import LoginSettings from "./LoginSettings";
-import PasswordSettings from "./PasswordSettings";
-import SettingsLayout from "./SettingsLayout";
+import { LoginSettings } from "./LoginSettings";
+import { PasswordSettings } from "./PasswordSettings";
+import { SettingsLayout } from "./SettingsLayout";
 
 const SettingsSection = (props: BoxProps) => {
   const user = getUser();
