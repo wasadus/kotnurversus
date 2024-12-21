@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { format } from "date-fns";
 import { memo } from "react";
-import Link from "~/components/Link";
+import { Link } from "~/components/Link";
 import paths from "~/pages/paths";
 import { Tourney } from "~/types/tourney";
 import { TOURNEY_TYPE_NAMES } from "~/utils/tourney";
