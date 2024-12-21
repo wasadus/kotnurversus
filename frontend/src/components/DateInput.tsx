@@ -13,7 +13,7 @@ import "react-day-picker/dist/style.css";
 import { Input, InputProps } from "~/components/Input";
 import { Popper } from "~/components/Popper";
 import useOutsideAction from "~/hooks/useOutsideAction";
-import CalendarIcon from "~/icons/CalendarIcon";
+import { CalendarIcon } from "~/icons/CalendarIcon";
 
 export type DateInputProps = {
   value?: Date;
