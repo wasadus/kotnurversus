@@ -13,7 +13,7 @@ type Props = {
   onClear?: () => void;
 } & InputProps;
 
-const SingleSelectInput = forwardRef<HTMLInputElement, Props>(
+export const SingleSelectInput = forwardRef<HTMLInputElement, Props>(
   (
     {
       isDropdownOpen,
@@ -57,5 +57,3 @@ const SingleSelectInput = forwardRef<HTMLInputElement, Props>(
     />
   )
 );
-
-export default SingleSelectInput;
