@@ -1,5 +1,5 @@
 import { useId } from "react";
-import ButtonWithAlert from "~/components/ButtonWithAlert";
+import { ButtonWithAlert } from "~/components/ButtonWithAlert";
 import Window, { WindowProps } from "~/components/Window";
 import { TourneySpecificationWithId } from "~/types/tourney";
 import { SpecificationForm, SpecificationFormSchema } from "./SpecificationForm";

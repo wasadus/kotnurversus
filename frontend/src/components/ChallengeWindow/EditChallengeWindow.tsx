@@ -1,5 +1,5 @@
 import { useId } from "react";
-import ButtonWithAlert from "~/components/ButtonWithAlert";
+import { ButtonWithAlert } from "~/components/ButtonWithAlert";
 import Window, { WindowProps } from "~/components/Window";
 import { Challenge, CreateChallenge } from "~/types/challenge";
 import { ChallengeForm, ChallengeFormSchema } from "./ChallengeForm";

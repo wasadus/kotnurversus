@@ -9,7 +9,7 @@ type Props = {
   onSubmit?: () => void;
 } & Omit<ButtonProps, "onSubmit">;
 
-const ButtonWithAlert = ({
+export const ButtonWithAlert = ({
   buttonText,
   alertText,
   isLoading,
@@ -46,5 +46,3 @@ const ButtonWithAlert = ({
     </>
   );
 };
-
-export default ButtonWithAlert;

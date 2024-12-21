@@ -10,7 +10,7 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import api from "~/api";
-import ButtonWithAlert from "~/components/ButtonWithAlert";
+import { ButtonWithAlert } from "~/components/ButtonWithAlert";
 import useCustomToast from "~/hooks/useCustomToast";
 import useHandleError from "~/hooks/useHandleError";
 import MinusIcon from "~/icons/MinusIcon";
