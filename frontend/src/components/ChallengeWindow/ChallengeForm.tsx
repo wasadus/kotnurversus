@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "~/components/Input";
 import { Textarea } from "~/components/Textarea";
-import SelectCategory from "./SelectCategory";
+import { SelectCategory } from "./SelectCategory";
 
 type Props = {
   id: string;

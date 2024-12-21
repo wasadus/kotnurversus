@@ -8,7 +8,7 @@ type Props = {
   onSubmit?: (data: CreateChallenge) => void;
 };
 
-const CreateChallengeWindow = ({
+export const CreateChallengeWindow = ({
   defaultCategoryId,
   onSubmit,
   ...props
@@ -40,5 +40,3 @@ const CreateChallengeWindow = ({
     </Window>
   );
 };
-
-export default CreateChallengeWindow;

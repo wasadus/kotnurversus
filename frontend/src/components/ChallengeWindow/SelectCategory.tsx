@@ -5,7 +5,7 @@ import { Select } from "~/components/Select";
 import { SingleSelectProps } from "~/components/Select/SingleSelect";
 import { queryKeys } from "~/utils/query-keys";
 
-const SelectCategory = forwardRef<
+export const SelectCategory = forwardRef<
   Omit<SingleSelectProps<string>, "options">,
   "input"
 >((props, ref) => {
@@ -40,5 +40,3 @@ const SelectCategory = forwardRef<
     />
   );
 });
-
-export default SelectCategory;

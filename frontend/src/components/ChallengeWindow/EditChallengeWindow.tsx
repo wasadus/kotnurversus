@@ -10,7 +10,7 @@ type Props = {
   onRemove?: () => void;
 };
 
-const EditChallengeWindow = ({
+export const EditChallengeWindow = ({
   challenge,
   onSubmit,
   onRemove,
@@ -52,5 +52,3 @@ const EditChallengeWindow = ({
     </Window>
   );
 };
-
-export default EditChallengeWindow;

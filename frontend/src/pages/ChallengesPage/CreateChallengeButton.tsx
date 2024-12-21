@@ -1,7 +1,7 @@
 import { Button, ButtonProps, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "~/api";
-import ChallengeWindow from "~/components/ChallengeWindow";
+import { ChallengeWindow } from "~/components/ChallengeWindow";
 import { useHandleError } from "~/hooks/useHandleError";
 import { CreateChallenge } from "~/types/challenge";
 import { queryKeys } from "~/utils/query-keys";

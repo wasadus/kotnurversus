@@ -1,7 +1,7 @@
-import Create from "./CreateChallengeWindow";
-import Edit from "./EditChallengeWindow";
+import { CreateChallengeWindow } from "./CreateChallengeWindow";
+import { EditChallengeWindow } from "./EditChallengeWindow";
 
-export default {
-  Create,
-  Edit,
+export const ChallengeWindow = {
+  Create: CreateChallengeWindow,
+  Edit : EditChallengeWindow,
 };
