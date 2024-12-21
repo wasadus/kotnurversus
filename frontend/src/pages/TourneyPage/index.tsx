@@ -10,7 +10,7 @@ import { TourneyHeader } from "./TourneyHeader";
 import { TourneySpecificationsSettings } from "./TourneySpecificationsSettings";
 import { TourneyTeams } from "./TourneyTeams";
 import { TourneyTimersSettings } from "./TourneyTimersSettings";
-import { TourneyProvider } from "./tourney-context";
+import { TourneyProvider } from "~/pages/TourneyPage/TourneyProvider";
 
 type PageParams = {
   tourneyId: string;
