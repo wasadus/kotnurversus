@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { useRef, ClipboardEvent } from "react";
 import { HexColorPicker } from "react-colorful";
-import Input, { InputProps } from "~/components/Input";
+import { Input, InputProps } from "~/components/Input";
 import Popper from "~/components/Popper";
 import useOutsideAction from "~/hooks/useOutsideAction";
 

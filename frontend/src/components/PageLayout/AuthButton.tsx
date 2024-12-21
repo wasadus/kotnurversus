@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import api from "~/api";
-import Input from "~/components/Input";
+import { Input } from "~/components/Input";
 import PasswordInput from "~/components/PasswordInput";
 import Window, { WindowProps } from "~/components/Window";
 import useBreakpoint from "~/hooks/useBreakpoint";

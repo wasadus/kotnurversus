@@ -10,7 +10,7 @@ import { ru } from "date-fns/locale";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { DayPicker, SelectSingleEventHandler } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import Input, { InputProps } from "~/components/Input";
+import { Input, InputProps } from "~/components/Input";
 import Popper from "~/components/Popper";
 import useOutsideAction from "~/hooks/useOutsideAction";
 import CalendarIcon from "~/icons/CalendarIcon";

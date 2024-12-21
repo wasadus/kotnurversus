@@ -2,7 +2,7 @@ import { Stack, Switch } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import Input from "~/components/Input";
+import { Input } from "~/components/Input";
 import Textarea from "~/components/Textarea";
 import SelectCategory from "./SelectCategory";
 

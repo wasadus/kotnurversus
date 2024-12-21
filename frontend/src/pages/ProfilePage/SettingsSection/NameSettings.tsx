@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Input from "~/components/Input";
+import { Input } from "~/components/Input";
 import { SettingsFormProps } from "./SettingsLayout";
 import { useEffect } from "react";
 

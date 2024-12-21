@@ -22,7 +22,7 @@ export type InputProps = {
   containerProps?: Omit<BoxProps, "children">;
 } & ChakraInputProps;
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       size,
@@ -58,5 +58,3 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     </FormControl>
   )
 );
-
-export default Input;

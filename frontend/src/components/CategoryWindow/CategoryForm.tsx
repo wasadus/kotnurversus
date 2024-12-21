@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { ColorInput } from "~/components/ColorInput";
-import Input from "~/components/Input";
+import { Input } from "~/components/Input";
 
 type Props = {
   id: string;
