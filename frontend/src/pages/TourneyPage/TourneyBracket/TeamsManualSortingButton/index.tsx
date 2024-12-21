@@ -1,16 +1,16 @@
 import { Button, useDisclosure } from "@chakra-ui/react";
-import { useRef } from "react";
-import { Window, WindowProps } from "~/components/Window";
 import { MoveIcon } from "~/icons/MoveIcon";
 import { TourneyTeam } from "~/types/tourney";
-import { TeamsManualSorting } from "./TeamsManualSorting";
+import {
+  TeamsManualSortingWindow
+} from "~/pages/TourneyPage/TourneyBracket/TeamsManualSortingButton/TeamsManualSortingWindow";
 
-type Props = {
+export type TeamsManualSortingButtonProps = {
   teams: TourneyTeam[];
   onSubmit: (sortedTeams: TourneyTeam[]) => void;
 };
 
-export const TeamsManualSortingButton = ({ teams, onSubmit }: Props) => {
+export const TeamsManualSortingButton = ({ teams, onSubmit }: TeamsManualSortingButtonProps) => {
   const window = useDisclosure();
 
   return (
@@ -29,32 +29,5 @@ export const TeamsManualSortingButton = ({ teams, onSubmit }: Props) => {
         onSubmit={onSubmit}
       />
     </>
-  );
-};
-
-const TeamsManualSortingWindow = ({
-  teams,
-  onSubmit,
-  ...props
-}: WindowProps<Props>) => {
-  const sortedTeams = useRef(teams);
-
-  const handleChange = (teams: TourneyTeam[]) => {
-    sortedTeams.current = teams;
-  };
-
-  const handleSubmit = async () => {
-    onSubmit(sortedTeams.current.map((t, i) => ({ ...t, order: i })));
-    props.onClose();
-  };
-
-  return (
-    <Window
-      heading="Сопоставление участников"
-      submitProps={{ onClick: handleSubmit }}
-      {...props}
-    >
-      <TeamsManualSorting teams={teams} onChange={handleChange} />
-    </Window>
   );
 };
