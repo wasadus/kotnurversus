@@ -4,7 +4,7 @@ type Props = {
   name: string;
 } & BoxProps;
 
-const StateCard = ({ name, ...props }: Props) => (
+export const StateCard = ({ name, ...props }: Props) => (
   <Box
     px={4}
     py={2}
@@ -24,5 +24,3 @@ const StateCard = ({ name, ...props }: Props) => (
     {...props}
   />
 );
-
-export default StateCard;
