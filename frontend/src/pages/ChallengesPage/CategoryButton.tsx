@@ -5,7 +5,7 @@ import api from "~/api";
 import CategoryWindow from "~/components/CategoryWindow";
 import useHandleError from "~/hooks/useHandleError";
 import { Category, CreateCategory } from "~/types/category";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 type Props = {
   category: Category;

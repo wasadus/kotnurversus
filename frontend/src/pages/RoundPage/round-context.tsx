@@ -7,7 +7,7 @@ import { Loading } from "~/components/Loading";
 import { Round, RoundState } from "~/types/round";
 import { Tourney } from "~/types/tourney";
 import { useAuthContext } from "~/utils/auth-context";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 type RoundContext = {
   tourney: Tourney;

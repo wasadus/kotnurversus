@@ -7,7 +7,7 @@ import useHandleError from "~/hooks/useHandleError";
 import useTimer from "~/hooks/useTimer";
 import { ResetIcon } from "~/icons/ResetIcon";
 import { useRoundContext } from "~/pages/RoundPage/round-context";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 type Props = {
   endDate: Date;

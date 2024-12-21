@@ -18,7 +18,7 @@ import { SearchIcon } from "~/icons/SearchIcon";
 import { paths } from "~/pages/paths";
 import { TourneyState } from "~/types/tourney";
 import { useAuthContext } from "~/utils/auth-context";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 import { TourneysTable } from "./TourneysTable";
 
 export const TourneysPage = () => (

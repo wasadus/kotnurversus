@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "~/api";
 import { Select } from "~/components/Select";
 import { SingleSelectProps } from "~/components/Select/SingleSelect";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 const SelectCategory = forwardRef<
   Omit<SingleSelectProps<string>, "options">,

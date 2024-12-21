@@ -6,7 +6,7 @@ import ChallengeWindow from "~/components/ChallengeWindow";
 import useHandleError from "~/hooks/useHandleError";
 import { Category } from "~/types/category";
 import { Challenge, CreateChallenge } from "~/types/challenge";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 import { CategoryButton } from "./CategoryButton";
 import { CreateChallengeButton } from "./CreateChallengeButton";
 

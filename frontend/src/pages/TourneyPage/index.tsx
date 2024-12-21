@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import api from "~/api";
 import { Loading } from "~/components/Loading";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 import { TourneyActionButtons } from "./TourneyActionButtons";
 import { TourneyBracket } from "./TourneyBracket";
 import { TourneyHeader } from "./TourneyHeader";

@@ -4,7 +4,7 @@ import api from "~/api";
 import CategoryWindow from "~/components/CategoryWindow";
 import useHandleError from "~/hooks/useHandleError";
 import { CreateCategory } from "~/types/category";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 export const CreateCategoryButton = (props: ButtonProps) => {
   const window = useDisclosure();

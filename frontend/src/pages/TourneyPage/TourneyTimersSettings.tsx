@@ -11,7 +11,7 @@ import { NumberInput } from "~/components/NumberInput";
 import { TimeInput } from "~/components/TimeInput";
 import useDebounce from "~/hooks/useDebounce";
 import { TourneySettings } from "~/types/tourney";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 import time from "~/utils/time";
 import { useTourneyContext } from "./tourney-context";
 

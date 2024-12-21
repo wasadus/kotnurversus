@@ -8,7 +8,7 @@ import useSubscriptions from "~/hooks/useSubscriptions";
 import useValue, { ValueRef } from "~/hooks/useValue";
 import { Tourney, TourneyState, TourneyTeam } from "~/types/tourney";
 import { useAuthContext } from "~/utils/auth-context";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 type SubscribeKey = "teams";
 

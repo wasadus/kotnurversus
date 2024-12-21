@@ -16,7 +16,7 @@ import useHandleError from "~/hooks/useHandleError";
 import { CrossIcon } from "~/icons/CrossIcon";
 import { NotAllowedIcon } from "~/icons/NotAllowedIcon";
 import { RoundArtifact } from "~/types/round";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 type Props = {
   roundId: string;

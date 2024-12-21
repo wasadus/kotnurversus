@@ -9,7 +9,7 @@ import {
   TourneyState,
   TourneyTeam,
 } from "~/types/tourney";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 import { castToTourneyRound } from "~/utils/round";
 import {
   addSpecificationToRound,

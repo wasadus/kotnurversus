@@ -5,7 +5,7 @@ import api from "~/api";
 import { ButtonWithAlert } from "~/components/ButtonWithAlert";
 import useHandleError from "~/hooks/useHandleError";
 import { RoundState } from "~/types/round";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
 import { Stage } from "./Stage";
 

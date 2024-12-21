@@ -21,7 +21,7 @@ import { Challenge } from "~/types/challenge";
 import { Round } from "~/types/round";
 import { TourneyTeam } from "~/types/tourney";
 import { isDefined } from "~/utils";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 import { ChallengeWindow } from "./ChallengeWindow";
 
 type Props = {
