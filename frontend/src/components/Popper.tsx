@@ -1,7 +1,7 @@
 import { Box, BoxProps, Collapse, Placement, Portal } from "@chakra-ui/react";
 import { RefObject, useEffect, useMemo, useState } from "react";
 import { Modifier, usePopper } from "react-popper";
-import useDebounce from "~/hooks/useDebounce";
+import { useDebounce } from "~/hooks/useDebounce";
 
 type PopperProps = {
   isOpen: boolean;

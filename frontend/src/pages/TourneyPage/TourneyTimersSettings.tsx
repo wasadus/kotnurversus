@@ -9,7 +9,7 @@ import { api } from "~/api";
 import { CollapsibleSection } from "~/components/CollapsibleSection";
 import { NumberInput } from "~/components/NumberInput";
 import { TimeInput } from "~/components/TimeInput";
-import useDebounce from "~/hooks/useDebounce";
+import { useDebounce } from "~/hooks/useDebounce";
 import { TourneySettings } from "~/types/tourney";
 import { queryKeys } from "~/utils/query-keys";
 import { timeHelpers as time } from "~/utils/time";

@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 import { api } from "~/api";
 import { CollapsibleSection } from "~/components/CollapsibleSection";
 import { SpecificationWindow } from "~/components/SpecificationWindow";
-import useDebounce from "~/hooks/useDebounce";
+import { useDebounce } from "~/hooks/useDebounce";
 import {
   TourneySpecification,
   TourneySpecificationWithId,
