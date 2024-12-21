@@ -25,7 +25,7 @@ type Props = {
   onSubmit: (data: TourneyFormSchema) => void;
 };
 
-const TourneyForm = ({ id, defaultValue, onSubmit }: Props) => {
+export const TourneyForm = ({ id, defaultValue, onSubmit }: Props) => {
   const {
     control,
     register,
@@ -184,5 +184,3 @@ const FormLabel = ({ label, isRequired, children }: FormLabelProps) => {
     </>
   );
 };
-
-export default TourneyForm;
