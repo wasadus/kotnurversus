@@ -6,7 +6,7 @@ import useHandleError from "~/hooks/useHandleError";
 import { CreateCategory } from "~/types/category";
 import queryKeys from "~/utils/query-keys";
 
-const CreateCategoryButton = (props: ButtonProps) => {
+export const CreateCategoryButton = (props: ButtonProps) => {
   const window = useDisclosure();
   const queryClient = useQueryClient();
   const handleError = useHandleError();
@@ -43,5 +43,3 @@ const CreateCategoryButton = (props: ButtonProps) => {
     </>
   );
 };
-
-export default CreateCategoryButton;

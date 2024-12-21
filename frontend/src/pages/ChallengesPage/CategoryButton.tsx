@@ -11,7 +11,7 @@ type Props = {
   category: Category;
 } & ButtonProps;
 
-const CategoryButton = ({ category, ...props }: Props) => {
+export const CategoryButton = ({ category, ...props }: Props) => {
   const handleError = useHandleError();
   const queryClient = useQueryClient();
   const window = useDisclosure();
@@ -81,5 +81,3 @@ const CategoryButton = ({ category, ...props }: Props) => {
     </>
   );
 };
-
-export default CategoryButton;

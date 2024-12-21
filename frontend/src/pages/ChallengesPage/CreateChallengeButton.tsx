@@ -10,7 +10,7 @@ type Props = {
   defaultCategoryId?: string;
 } & ButtonProps;
 
-const CreateChallengeButton = ({ defaultCategoryId, ...props }: Props) => {
+export const CreateChallengeButton = ({ defaultCategoryId, ...props }: Props) => {
   const window = useDisclosure();
   const queryClient = useQueryClient();
   const handleError = useHandleError();
@@ -48,5 +48,3 @@ const CreateChallengeButton = ({ defaultCategoryId, ...props }: Props) => {
     </>
   );
 };
-
-export default CreateChallengeButton;

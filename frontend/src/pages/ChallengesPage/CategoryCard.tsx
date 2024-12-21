@@ -7,15 +7,15 @@ import useHandleError from "~/hooks/useHandleError";
 import { Category } from "~/types/category";
 import { Challenge, CreateChallenge } from "~/types/challenge";
 import queryKeys from "~/utils/query-keys";
-import CategoryButton from "./CategoryButton";
-import CreateChallengeButton from "./CreateChallengeButton";
+import { CategoryButton } from "./CategoryButton";
+import { CreateChallengeButton } from "./CreateChallengeButton";
 
 type Props = {
   category: Category;
   challenges: Challenge[];
 };
 
-const CategoryCard = ({ category, challenges }: Props) => (
+export const CategoryCard = ({ category, challenges }: Props) => (
   <Box>
     <CategoryButton category={category} />
     <Wrap mt={6} spacing={8} align="flex-start">
@@ -86,5 +86,3 @@ const ChallengeCard = ({ category, challenge }: ChallengeCardProps) => {
     </>
   );
 };
-
-export default CategoryCard;

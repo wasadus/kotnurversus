@@ -4,10 +4,10 @@ import useAutoRedirect from "~/hooks/useAutoRedirect";
 import useChallengesQuery from "~/hooks/useChallengesQuery";
 import paths from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
-import CategoryCard from "./CategoryCard";
-import CreateCategoryButton from "./CreateCategoryButton";
+import { CategoryCard } from "./CategoryCard";
+import { CreateCategoryButton } from "./CreateCategoryButton";
 
-const ChallengesPage = () => {
+export const ChallengesPage = () => {
   const { isAuthenticated } = useAuthContext();
 
   useAutoRedirect({ isEnabled: !isAuthenticated, path: paths.main.path });
@@ -64,5 +64,3 @@ const ChallengeSection = () => {
     </Stack>
   );
 };
-
-export default ChallengesPage;

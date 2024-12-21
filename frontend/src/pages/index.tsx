@@ -3,7 +3,7 @@ import MainPage from "./MainPage";
 import paths from "./paths";
 
 const AdminPage = lazy(() => import("./AdminPage").then(module => ({ default: module.AdminPage })));
-const ChallengesPage = lazy(() => import("./ChallengesPage"));
+const ChallengesPage = lazy(() => import("./ChallengesPage").then(module => ({ default: module.ChallengesPage })));
 const TourneysPage = lazy(() => import("./TourneysPage"));
 const CreateTourneyPage = lazy(() => import("./CreateTourneyPage"));
 const EditTourneyPage = lazy(() => import("./EditTourneyPage"));
