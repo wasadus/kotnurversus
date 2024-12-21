@@ -1,6 +1,6 @@
 import { BoxProps, Button, Center, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import paths from "~/pages/paths";
+import { paths } from "~/pages/paths";
 import { useRoundContext } from "../round-context";
 import { Stage } from "./Stage";
 

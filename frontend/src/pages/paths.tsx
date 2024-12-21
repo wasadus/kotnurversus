@@ -1,4 +1,4 @@
-export default {
+export const paths = {
   admin: {
     pathTemplate: "/admin",
     path: "/admin",

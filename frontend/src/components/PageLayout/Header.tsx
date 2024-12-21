@@ -10,7 +10,7 @@ import {
 import { ColorModeButton } from "~/components/ColorModeButton";
 import { Link as BaseLink } from "~/components/Link";
 import useBreakpoint from "~/hooks/useBreakpoint";
-import paths from "~/pages/paths";
+import { paths } from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
 import { AuthButton } from "./AuthButton";
 

@@ -1,6 +1,6 @@
 import { Box, HStack, Text, useBreakpointValue } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import paths from "~/pages/paths";
+import { paths } from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
 import { QrCodeButton } from "./QrCodeButton";
 

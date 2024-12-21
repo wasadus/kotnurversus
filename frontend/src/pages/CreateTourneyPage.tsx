@@ -11,7 +11,7 @@ import {
 } from "~/components/TourneyForm/schema";
 import useAutoRedirect from "~/hooks/useAutoRedirect";
 import useHandleError from "~/hooks/useHandleError";
-import paths from "~/pages/paths";
+import { paths } from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
 import queryKeys from "~/utils/query-keys";
 

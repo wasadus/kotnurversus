@@ -1,5 +1,5 @@
 import { Button, Center, Heading, Stack, Text } from "@chakra-ui/react";
-import paths from "~/pages/paths";
+import { paths } from "~/pages/paths";
 
 export const ErrorPage = () => (
   <Center

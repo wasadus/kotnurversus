@@ -19,7 +19,7 @@ import { PasswordInput } from "~/components/PasswordInput";
 import { Window, WindowProps } from "~/components/Window";
 import useBreakpoint from "~/hooks/useBreakpoint";
 import useCustomToast from "~/hooks/useCustomToast";
-import paths from "~/pages/paths";
+import { paths } from "~/pages/paths";
 import { AuthRequest } from "~/types/auth";
 import { useAuthContext } from "~/utils/auth-context";
 import { loginFormSchema, registerFormSchema } from "~/utils/auth-schemas";

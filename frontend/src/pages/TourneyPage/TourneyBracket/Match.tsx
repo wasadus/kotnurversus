@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { MatchComponentProps } from "@g-loot/react-tournament-brackets/dist/src/types";
 import { Link } from "react-router-dom";
-import paths from "~/pages/paths";
+import { paths } from "~/pages/paths";
 import { TourneyRoundState } from "~/types/tourney";
 
 export const Match = ({
