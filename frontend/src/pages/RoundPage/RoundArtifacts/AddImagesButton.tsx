@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "~/api";
 import useCustomToast from "~/hooks/useCustomToast";
 import useHandleError from "~/hooks/useHandleError";
-import OutlinePlusIcon from "~/icons/OutlinePlusIcon";
+import { OutlinePlusIcon } from "~/icons/OutlinePlusIcon";
 import declination from "~/utils/declination";
 import queryKeys from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";

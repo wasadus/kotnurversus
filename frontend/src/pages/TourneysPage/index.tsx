@@ -13,7 +13,7 @@ import api from "~/api";
 import { Input } from "~/components/Input";
 import { Loading } from "~/components/Loading";
 import useDebounce from "~/hooks/useDebounce";
-import OutlinePlusIcon from "~/icons/OutlinePlusIcon";
+import { OutlinePlusIcon } from "~/icons/OutlinePlusIcon";
 import SearchIcon from "~/icons/SearchIcon";
 import paths from "~/pages/paths";
 import { TourneyState } from "~/types/tourney";
