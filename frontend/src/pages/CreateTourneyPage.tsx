@@ -15,7 +15,7 @@ import paths from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
 import queryKeys from "~/utils/query-keys";
 
-const CreateTourneyPage = () => {
+export const CreateTourneyPage = () => {
   const formId = useId();
   const navigate = useNavigate();
   const handleError = useHandleError();
@@ -57,5 +57,3 @@ const CreateTourneyPage = () => {
     </Stack>
   );
 };
-
-export default CreateTourneyPage;

@@ -5,7 +5,7 @@ import paths from "./paths";
 const AdminPage = lazy(() => import("./AdminPage").then(module => ({ default: module.AdminPage })));
 const ChallengesPage = lazy(() => import("./ChallengesPage").then(module => ({ default: module.ChallengesPage })));
 const TourneysPage = lazy(() => import("./TourneysPage").then(module => ({ default: module.TourneysPage })));
-const CreateTourneyPage = lazy(() => import("./CreateTourneyPage"));
+const CreateTourneyPage = lazy(() => import("./CreateTourneyPage").then(module => ({ default: module.CreateTourneyPage })));
 const EditTourneyPage = lazy(() => import("./EditTourneyPage"));
 const TourneyPage = lazy(() => import("./TourneyPage").then(module => ({ default: module.TourneyPage })));
 const RoundPage = lazy(() => import("./RoundPage").then(module => ({ default: module.RoundPage })));
