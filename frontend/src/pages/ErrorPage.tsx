@@ -1,7 +1,7 @@
 import { Button, Center, Heading, Stack, Text } from "@chakra-ui/react";
 import paths from "~/pages/paths";
 
-const ErrorPage = () => (
+export const ErrorPage = () => (
   <Center
     px={4}
     mx="auto"
@@ -38,5 +38,3 @@ const ErrorPage = () => (
     </Stack>
   </Center>
 );
-
-export default ErrorPage;
