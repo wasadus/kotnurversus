@@ -7,7 +7,7 @@ type Props = {
   tourneys: Tourney[];
 };
 
-const TourneysTable = ({ title, tourneys }: Props) => {
+export const TourneysTable = ({ title, tourneys }: Props) => {
   if (tourneys.length < 1) return null;
 
   return (
@@ -23,5 +23,3 @@ const TourneysTable = ({ title, tourneys }: Props) => {
     </Stack>
   );
 };
-
-export default TourneysTable;

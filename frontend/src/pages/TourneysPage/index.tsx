@@ -19,9 +19,9 @@ import paths from "~/pages/paths";
 import { TourneyState } from "~/types/tourney";
 import { useAuthContext } from "~/utils/auth-context";
 import queryKeys from "~/utils/query-keys";
-import TourneysTable from "./TourneysTable";
+import { TourneysTable } from "./TourneysTable";
 
-const TourneysPage = () => (
+export const TourneysPage = () => (
   <Stack
     mx="auto"
     px={2}
@@ -118,5 +118,3 @@ const CreateTourneyButton = () => {
     />
   );
 };
-
-export default TourneysPage;
