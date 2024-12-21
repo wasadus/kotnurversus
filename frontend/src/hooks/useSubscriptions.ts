@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import useForceUpdate from "~/hooks/useForceUpdate";
 
-const useSubscriptions = <TKey = string>(): UseSubscriptions<TKey> => {
+export const useSubscriptions = <TKey = string>(): UseSubscriptions<TKey> => {
   const generateId = useRef(0);
   const subscriptions = useRef(new Map<TKey, Map<number, () => void>>());
 
@@ -41,5 +41,3 @@ export type UseSubscriptions<TKey = string> = {
   useSubscribe: (key: TKey) => void;
   ping: (key: TKey, delay?: number) => void;
 };
-
-export default useSubscriptions;
