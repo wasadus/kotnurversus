@@ -1,5 +1,5 @@
 import { Heading, Text } from "@chakra-ui/react";
-import Breadcrumb from "~/components/Breadcrumb";
+import { Breadcrumb } from "~/components/Breadcrumb";
 import paths from "~/pages/paths";
 import { Tourney } from "~/types/tourney";
 import { calcRoundName } from "~/utils/round";

@@ -14,7 +14,7 @@ type Props = {
   }>;
 };
 
-const Breadcrumb = ({ items }: Props) => (
+export const Breadcrumb = ({ items }: Props) => (
   <BaseBreadcrumb
     spacing={2}
     fontSize={{ base: "xs", md: "sm" }}
@@ -33,5 +33,3 @@ const Breadcrumb = ({ items }: Props) => (
     ))}
   </BaseBreadcrumb>
 );
-
-export default Breadcrumb;
