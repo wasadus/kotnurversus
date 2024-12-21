@@ -11,7 +11,7 @@ type Props = {
   onSubmit: (data: CategoryFormSchema) => void;
 };
 
-const CategoryForm = ({ id, defaultValue, onSubmit }: Props) => {
+export const CategoryForm = ({ id, defaultValue, onSubmit }: Props) => {
   const {
     register,
     control,
@@ -55,5 +55,3 @@ const categoryFormSchema = z.object({
 });
 
 export type CategoryFormSchema = z.infer<typeof categoryFormSchema>;
-
-export default CategoryForm;
