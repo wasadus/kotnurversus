@@ -1,5 +1,5 @@
 import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system";
-import inputTheme from "./input";
+import { inputTheme } from "./input";
 
 const baseStyle = defineStyle({
   ...inputTheme.baseStyle?.field,
@@ -22,7 +22,7 @@ const sizes = {
   lg: inputTheme.sizes?.lg.field ?? {},
 };
 
-export default defineStyleConfig({
+export const textareaTheme = defineStyleConfig({
   baseStyle,
   sizes,
   variants,

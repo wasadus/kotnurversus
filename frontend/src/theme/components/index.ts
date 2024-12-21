@@ -1,7 +1,7 @@
-export { default as Input } from "./input";
-export { default as Link } from "./link";
-export { default as NumberInput } from "./number-input";
-export { default as Switch } from "./switch";
-export { default as Text } from "./text";
-export { default as Textarea } from "./textarea";
-export { default as Tooltip } from "./tooltip";
+export { inputTheme } from "./input";
+export { linkTheme } from "./link";
+export { numberInputTheme } from "./number-input";
+export { switchTheme } from "./switch";
+export { textTheme } from "./text";
+export { textareaTheme } from "./textarea";
+export { tooltipTheme } from "./tooltip";

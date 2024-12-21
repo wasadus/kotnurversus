@@ -132,7 +132,7 @@ const variants = {
   primary: variantPrimary,
 };
 
-export default defineMultiStyleConfig({
+export const inputTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
   variants,
