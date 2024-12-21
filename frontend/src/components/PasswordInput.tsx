@@ -1,7 +1,7 @@
 import { forwardRef, useBoolean } from "@chakra-ui/react";
 import EyeClose from "~/icons/EyeClose";
 import EyeOpen from "~/icons/EyeOpen";
-import IconButtonWithTooltip from "./IconButtonWithTooltip";
+import { IconButtonWithTooltip } from "./IconButtonWithTooltip";
 import Input, { InputProps } from "./Input";
 
 const PasswordInput = forwardRef<InputProps, "input">((props, ref) => {

@@ -1,5 +1,5 @@
 import { useColorMode } from "@chakra-ui/react";
-import IconButtonWithTooltip from "./IconButtonWithTooltip";
+import { IconButtonWithTooltip } from "./IconButtonWithTooltip";
 import LightIcon from "~/icons/LightIcon";
 import DarkIcon from "~/icons/DarkIcon";
 
