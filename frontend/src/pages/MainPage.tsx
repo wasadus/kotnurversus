@@ -1,7 +1,7 @@
 import { Flex, Heading, Image } from "@chakra-ui/react";
 import laptopLink from "assets/laptop.png";
 
-const MainPage = () => {
+export const MainPage = () => {
   return (
     <Flex
       mx="auto"
@@ -33,5 +33,3 @@ const MainPage = () => {
     </Flex>
   );
 };
-
-export default MainPage;

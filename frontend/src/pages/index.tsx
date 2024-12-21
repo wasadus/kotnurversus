@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import MainPage from "./MainPage";
+import { MainPage } from "./MainPage";
 import paths from "./paths";
 
 const AdminPage = lazy(() => import("./AdminPage").then(module => ({ default: module.AdminPage })));
