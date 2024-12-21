@@ -6,7 +6,7 @@ import axiosStatic, {
 import { isDev } from "~/utils";
 import { TOKEN_STORAGE_KEY } from "~/utils/auth-context";
 import storage from "~/utils/storage";
-import handleDates from "./handle-dates";
+import { handleDates } from "./handle-dates";
 
 const axios = axiosStatic.create({
   baseURL: import.meta.env.VITE_API_URL,
