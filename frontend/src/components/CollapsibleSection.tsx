@@ -8,7 +8,7 @@ import {
   useBoolean,
 } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
-import ArrowDownIcon from "~/icons/ArrowDownIcon";
+import { ArrowDownIcon } from "~/icons/ArrowDownIcon";
 import storage from "~/utils/storage";
 
 type Props = {
