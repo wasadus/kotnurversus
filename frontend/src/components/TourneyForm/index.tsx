@@ -4,12 +4,9 @@ import {
   Radio,
   RadioGroup,
   Switch,
-  Text,
   Tooltip,
-  useId,
 } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ReactNode } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { DateInput } from "~/components/DateInput";
 import { Input } from "~/components/Input";
@@ -18,6 +15,7 @@ import { TimeInput } from "~/components/TimeInput";
 import { TourneyType } from "~/types/tourney";
 import { TOURNEY_TYPE_NAMES } from "~/utils/tourney";
 import { TourneyFormSchema, tourneyFormSchema } from "./schema";
+import { FormLabel } from "./FormLabel";
 
 type Props = {
   id?: string;
@@ -150,37 +148,5 @@ export const TourneyForm = ({ id, defaultValue, onSubmit }: Props) => {
         )}
       </FormLabel>
     </Grid>
-  );
-};
-
-type FormLabelProps = {
-  label: string;
-  isRequired?: boolean;
-  children: ReactNode | ((id: string) => ReactNode);
-};
-
-const FormLabel = ({ label, isRequired, children }: FormLabelProps) => {
-  const id = useId();
-
-  const needId = typeof children === "function";
-
-  return (
-    <>
-      <Text
-        mt={2}
-        h="fit-content"
-        fontSize="lg"
-        fontWeight="medium"
-        justifySelf="flex-end"
-        textAlign="right"
-        {...(needId ? { as: "label", htmlFor: id } : {})}
-      >
-        {label}
-        {isRequired && (
-          <Text pos="absolute" as="span" ml={2} color="red.500" children="*" />
-        )}
-      </Text>
-      {needId ? children(id) : children}
-    </>
   );
 };
