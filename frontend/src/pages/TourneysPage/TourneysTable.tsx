@@ -1,5 +1,5 @@
 import { Heading, Stack } from "@chakra-ui/react";
-import BaseTourneysTable from "~/components/TourneysTable";
+import { TourneysTable as BaseTourneysTable } from "~/components/TourneysTable";
 import { Tourney } from "~/types/tourney";
 
 type Props = {

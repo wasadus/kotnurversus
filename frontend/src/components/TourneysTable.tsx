@@ -17,7 +17,7 @@ type Props = {
   tourneys: Tourney[];
 } & BoxProps;
 
-const TourneysTable = ({ tourneys, ...props }: Props) => (
+export const TourneysTable = ({ tourneys, ...props }: Props) => (
   <Stack {...props} spacing={0.5}>
     <HeaderRow mb={2} />
     {tourneys.map((t) => (
@@ -78,5 +78,3 @@ const BodyCell = (props: TextProps) => (
     {...props}
   />
 );
-
-export default TourneysTable;
