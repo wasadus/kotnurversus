@@ -4,7 +4,7 @@ import { api } from "~/api";
 import { Alert } from "~/components/Alert";
 import { IconButtonWithTooltip } from "~/components/IconButtonWithTooltip";
 import { useHandleError } from "~/hooks/useHandleError";
-import useTimer from "~/hooks/useTimer";
+import { useTimer } from "~/hooks/useTimer";
 import { ResetIcon } from "~/icons/ResetIcon";
 import { useRoundContext } from "~/pages/RoundPage/round-context";
 import { queryKeys } from "~/utils/query-keys";
