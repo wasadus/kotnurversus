@@ -20,7 +20,7 @@ import { v4 as uuid } from "uuid";
 import { z } from "zod";
 import { Alert } from "~/components/Alert";
 import { IconButtonWithTooltip } from "~/components/IconButtonWithTooltip";
-import CrossIcon from "~/icons/CrossIcon";
+import { CrossIcon } from "~/icons/CrossIcon";
 import { TourneyTeam } from "~/types/tourney";
 
 type BaseTeamCardProps = {

@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { IconButtonWithTooltip } from "~/components/IconButtonWithTooltip";
 import { Input, InputProps } from "~/components/Input";
 import { ArrowDownIcon } from "~/icons/ArrowDownIcon";
-import CrossIcon from "~/icons/CrossIcon";
+import { CrossIcon } from "~/icons/CrossIcon";
 
 type Props = {
   isDropdownOpen?: boolean;

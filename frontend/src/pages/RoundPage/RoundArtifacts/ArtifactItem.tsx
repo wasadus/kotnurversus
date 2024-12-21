@@ -13,7 +13,7 @@ import { memo } from "react";
 import api from "~/api";
 import { Alert } from "~/components/Alert";
 import useHandleError from "~/hooks/useHandleError";
-import CrossIcon from "~/icons/CrossIcon";
+import { CrossIcon } from "~/icons/CrossIcon";
 import NotAllowedIcon from "~/icons/NotAllowedIcon";
 import { RoundArtifact } from "~/types/round";
 import queryKeys from "~/utils/query-keys";

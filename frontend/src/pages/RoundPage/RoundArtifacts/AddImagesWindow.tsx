@@ -11,7 +11,7 @@ import { memo, useEffect, useRef, useState } from "react";
 import { Dropzone } from "~/components/Dropzone";
 import { Window, WindowProps } from "~/components/Window";
 import useCustomToast from "~/hooks/useCustomToast";
-import CrossIcon from "~/icons/CrossIcon";
+import { CrossIcon } from "~/icons/CrossIcon";
 
 const MAX_IMAGES = 10;
 
