@@ -21,7 +21,7 @@ type PageParams = {
   tourneyId: string;
 };
 
-const EditTourneyPage = () => {
+export const EditTourneyPage = () => {
   const formId = useId();
   const navigate = useNavigate();
   const handleError = useHandleError();
@@ -117,5 +117,3 @@ const EditTourneyPage = () => {
     </Stack>
   );
 };
-
-export default EditTourneyPage;
