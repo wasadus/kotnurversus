@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "~/components/Input";
-import Textarea from "~/components/Textarea";
+import { Textarea } from "~/components/Textarea";
 
 type Props = {
   id: string;

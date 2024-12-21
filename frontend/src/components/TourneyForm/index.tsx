@@ -13,7 +13,7 @@ import { ReactNode } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { DateInput } from "~/components/DateInput";
 import { Input } from "~/components/Input";
-import Textarea from "~/components/Textarea";
+import { Textarea } from "~/components/Textarea";
 import TimeInput from "~/components/TimeInput";
 import { TourneyType } from "~/types/tourney";
 import { TOURNEY_TYPE_NAMES } from "~/utils/tourney";

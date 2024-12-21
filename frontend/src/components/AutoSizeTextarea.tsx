@@ -4,7 +4,7 @@ import {
   useMergeRefs,
 } from "@chakra-ui/react";
 import { ChangeEvent, forwardRef, useEffect, useRef, useState } from "react";
-import Textarea, { TextareaProps } from "./Textarea";
+import { Textarea, TextareaProps } from "./Textarea";
 
 type Props = {
   minHeight?: number;

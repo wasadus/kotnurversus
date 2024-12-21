@@ -11,12 +11,10 @@ export type TextareaProps = {
   containerProps?: FormControlProps;
 } & ChakraTextareaProps;
 
-const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ label, errorMessage, containerProps, ...props }, ref) => (
     <FormControl label={label} errorMessage={errorMessage} {...containerProps}>
       <ChakraTextArea ref={ref} resize="none" required={false} {...props} />
     </FormControl>
   )
 );
-
-export default Textarea;
