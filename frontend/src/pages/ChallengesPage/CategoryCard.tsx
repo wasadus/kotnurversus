@@ -1,14 +1,9 @@
-import { Box, Wrap, useDisclosure } from "@chakra-ui/react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { api } from "~/api";
-import { ChallengeCard as BaseChallengeCard } from "~/components/ChallengeCard";
-import { ChallengeWindow } from "~/components/ChallengeWindow";
-import { useHandleError } from "~/hooks/useHandleError";
+import { Box, Wrap } from "@chakra-ui/react";
 import { Category } from "~/types/category";
-import { Challenge, CreateChallenge } from "~/types/challenge";
-import { queryKeys } from "~/utils/query-keys";
+import { Challenge } from "~/types/challenge";
 import { CategoryButton } from "./CategoryButton";
 import { CreateChallengeButton } from "./CreateChallengeButton";
+import { ChallengeCard } from "~/pages/ChallengesPage/ChallengeCard.tsx";
 
 type Props = {
   category: Category;
@@ -32,57 +27,3 @@ export const CategoryCard = ({ category, challenges }: Props) => (
     </Wrap>
   </Box>
 );
-
-type ChallengeCardProps = {
-  category: Category;
-  challenge: Challenge;
-};
-
-const ChallengeCard = ({ category, challenge }: ChallengeCardProps) => {
-  const handleError = useHandleError();
-  const queryClient = useQueryClient();
-  const window = useDisclosure();
-
-  const editChallenge = useMutation({
-    mutationFn: async (data: CreateChallenge) => {
-      return await api.challenges.update(challenge, data);
-    },
-    onSuccess: async () => {
-      window.onClose();
-      await queryClient.refetchQueries({ queryKey: queryKeys.challenges() });
-    },
-    onError: handleError,
-  });
-
-  const deleteChallenge = useMutation({
-    mutationFn: async () => {
-      await api.challenges.delete(challenge.id);
-    },
-    onSuccess: async () => {
-      window.onClose();
-      await queryClient.refetchQueries({ queryKey: queryKeys.challenges() });
-    },
-    onError: handleError,
-  });
-
-  return (
-    <>
-      <BaseChallengeCard
-        {...window.getButtonProps()}
-        w="160px"
-        category={category}
-        challenge={challenge}
-        onClick={window.onOpen}
-      />
-      <ChallengeWindow.Edit
-        {...window.getDisclosureProps()}
-        isOpen={window.isOpen}
-        onClose={window.onClose}
-        isLoading={editChallenge.isPending || deleteChallenge.isPending}
-        onSubmit={editChallenge.mutateAsync}
-        onRemove={deleteChallenge.mutateAsync}
-        challenge={challenge}
-      />
-    </>
-  );
-};
