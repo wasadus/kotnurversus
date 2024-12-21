@@ -4,7 +4,7 @@ import { AxiosError } from "axios";
 import { Link } from "react-router-dom";
 import { api } from "~/api";
 import { ButtonWithAlert } from "~/components/ButtonWithAlert";
-import useCustomToast from "~/hooks/useCustomToast";
+import { useCustomToast } from "~/hooks/useCustomToast";
 import { PenIcon } from "~/icons/PenIcon";
 import { UnlockIcon } from "~/icons/UnlockIcon";
 import { paths } from "~/pages/paths";

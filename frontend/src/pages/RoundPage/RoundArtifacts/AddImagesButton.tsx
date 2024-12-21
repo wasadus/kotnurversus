@@ -1,7 +1,7 @@
 import { Stack, Text, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "~/api";
-import useCustomToast from "~/hooks/useCustomToast";
+import { useCustomToast } from "~/hooks/useCustomToast";
 import useHandleError from "~/hooks/useHandleError";
 import { OutlinePlusIcon } from "~/icons/OutlinePlusIcon";
 import { declination } from "~/utils/declination";

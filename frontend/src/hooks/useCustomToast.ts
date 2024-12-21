@@ -22,7 +22,7 @@ const defaultParams: UseCustomToastParams = {
   onlyOne: true,
 };
 
-const useCustomToast = (params = defaultParams): UseCustomToastReturn => {
+export const useCustomToast = (params = defaultParams): UseCustomToastReturn => {
   const toast = useToast(baseOptions);
   const lastToastId = useRef<ToastId>();
 
@@ -83,5 +83,3 @@ const unknownOptions: UseToastOptions = {
   ...errorOptions,
   description: "Упс! Что-то пошло не так...",
 };
-
-export default useCustomToast;
