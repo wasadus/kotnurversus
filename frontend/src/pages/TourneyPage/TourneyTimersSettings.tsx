@@ -7,7 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import api from "~/api";
 import { CollapsibleSection } from "~/components/CollapsibleSection";
-import NumberInput from "~/components/NumberInput";
+import { NumberInput } from "~/components/NumberInput";
 import TimeInput from "~/components/TimeInput";
 import useDebounce from "~/hooks/useDebounce";
 import { TourneySettings } from "~/types/tourney";
