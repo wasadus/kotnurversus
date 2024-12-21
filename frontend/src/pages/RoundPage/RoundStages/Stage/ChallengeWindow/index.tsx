@@ -1,7 +1,8 @@
-import { BoxProps, Stack, Text } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import { Window, WindowProps } from "~/components/Window";
 import { Category } from "~/types/category";
 import { Challenge } from "~/types/challenge";
+import { InfoRow } from "~/pages/RoundPage/RoundStages/Stage/ChallengeWindow/InfoRow";
 
 type Props = {
   category?: Category;
@@ -40,24 +41,4 @@ export const ChallengeWindow = ({
       />
     </Stack>
   </Window>
-);
-
-type InfoRowProps = {
-  name: string;
-} & BoxProps;
-
-const InfoRow = ({ name, children, ...props }: InfoRowProps) => (
-  <Stack {...props}>
-    <Text
-      opacity={0.75}
-      fontSize={{ base: "xs", md: "sm" }}
-      fontWeight="medium"
-      children={name}
-    />
-    <Text
-      fontSize={{ base: "md", md: "lg" }}
-      whiteSpace="pre-line"
-      children={children}
-    />
-  </Stack>
 );
