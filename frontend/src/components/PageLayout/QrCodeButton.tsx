@@ -1,14 +1,11 @@
 import {
-  BoxProps,
   Button,
-  Center,
   SlideFade,
   useBoolean,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { QRCodeSVG } from "qrcode.react";
-import { useLocation } from "react-router-dom";
 import { Window } from "~/components/Window";
+import { QrCode } from "~/components/PageLayout/QrCode";
 
 export const QrCodeButton = () => {
   const [isShow, setIsShow] = useBoolean(false);
@@ -51,19 +48,5 @@ export const QrCodeButton = () => {
         </Window>
       )}
     </>
-  );
-};
-
-type QrCodeProps = {
-  size: number;
-} & BoxProps;
-
-const QrCode = ({ size, ...props }: QrCodeProps) => {
-  const location = useLocation();
-
-  return (
-    <Center p={2} bg="white" borderRadius={8} {...props}>
-      <QRCodeSVG size={size} value={`${window.origin}${location.pathname}`} />
-    </Center>
   );
 };
