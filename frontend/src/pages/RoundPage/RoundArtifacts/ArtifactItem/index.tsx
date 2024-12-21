@@ -1,24 +1,17 @@
 import {
   Box,
-  IconButton,
   Image,
   Skeleton,
   Stack,
   Text,
   useBoolean,
-  useDisclosure,
 } from "@chakra-ui/react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { memo } from "react";
-import { api } from "~/api";
-import { Alert } from "~/components/Alert";
-import { useHandleError } from "~/hooks/useHandleError";
-import { CrossIcon } from "~/icons/CrossIcon";
 import { NotAllowedIcon } from "~/icons/NotAllowedIcon";
 import { RoundArtifact } from "~/types/round";
-import { queryKeys } from "~/utils/query-keys";
+import { DeleteButton } from "~/pages/RoundPage/RoundArtifacts/ArtifactItem/DeleteButton";
 
-type Props = {
+export type ArtifactItemProps = {
   roundId: string;
   artifact: RoundArtifact;
   onClick: (artifactId: string) => void;
@@ -26,7 +19,7 @@ type Props = {
 };
 
 export const ArtifactItem = memo(
-  ({ roundId, artifact, onClick, isOrganizer }: Props) => {
+  ({ roundId, artifact, onClick, isOrganizer }: ArtifactItemProps) => {
     const [isLoading, setIsLoading] = useBoolean(true);
     const [isError, setIsError] = useBoolean(false);
 
@@ -96,52 +89,3 @@ export const ArtifactItem = memo(
     );
   }
 );
-
-const DeleteButton = ({
-  roundId,
-  artifact,
-}: Pick<Props, "roundId" | "artifact">) => {
-  const alert = useDisclosure();
-  const queryClient = useQueryClient();
-  const handleError = useHandleError();
-
-  const deleteArtifact = useMutation({
-    mutationFn: async () => {
-      await api.rounds.deleteArtifact(roundId, artifact.id);
-    },
-    onSuccess: async () => {
-      alert.onClose();
-      await queryClient.refetchQueries({
-        queryKey: queryKeys.round(roundId),
-      });
-    },
-    onError: handleError,
-  });
-
-  return (
-    <>
-      <IconButton
-        pos="absolute"
-        top={-2}
-        right={-2}
-        size="xs"
-        variant="solid"
-        colorScheme="red"
-        opacity={0}
-        borderRadius="full"
-        aria-label="Удалить изображение"
-        icon={<CrossIcon boxSize={5} />}
-        _focusVisible={{ opacity: 1, boxShadow: "outline" }}
-        isDisabled={deleteArtifact.isPending}
-        onClick={alert.onOpen}
-      />
-      <Alert
-        isOpen={alert.isOpen}
-        isLoading={deleteArtifact.isPending}
-        onClose={alert.onClose}
-        onSubmit={deleteArtifact.mutateAsync}
-        children="Вы уверены, что хотите безвозвратно удалить данное изображение?"
-      />
-    </>
-  );
-};
