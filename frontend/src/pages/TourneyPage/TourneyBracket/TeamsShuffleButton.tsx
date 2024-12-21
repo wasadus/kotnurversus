@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from "@chakra-ui/react";
-import ShuffleIcon from "~/icons/ShuffleIcon";
+import { ShuffleIcon } from "~/icons/ShuffleIcon";
 import { TourneyTeam } from "~/types/tourney";
 
 type Props = {
