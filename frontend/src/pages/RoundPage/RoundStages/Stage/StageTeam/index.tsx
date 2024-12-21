@@ -1,7 +1,8 @@
-import { Box, BoxProps, Text, forwardRef } from "@chakra-ui/react";
+import { BoxProps } from "@chakra-ui/react";
 import { MouseEvent } from "react";
-import { useRoundContext } from "~/pages/RoundPage/round-context";
-import { TourneyTeam } from "~/types/tourney";
+import { useRoundContext } from "~/pages/RoundPage/round-context.tsx";
+import { TourneyTeam } from "~/types/tourney.ts";
+import { BaseTeam } from "~/pages/RoundPage/RoundStages/Stage/StageTeam/BaseTeam.tsx";
 
 type Props = {
   isChosen?: boolean;
@@ -77,46 +78,3 @@ export const StageTeam = ({
     />
   );
 };
-
-type BaseTeamProps = {
-  team: TourneyTeam;
-  bodyProps?: BoxProps;
-} & BoxProps;
-
-const BaseTeam = forwardRef<BaseTeamProps, "div">(
-  ({ team, bodyProps, _dark, ...props }, ref) => (
-    <Box ref={ref} textAlign="center" {...props}>
-      <Text
-        my={1}
-        opacity={0.75}
-        fontSize={{ base: "xs", sm: "sm" }}
-        children="Команда"
-      />
-      <Box
-        id="team-body"
-        px={4}
-        py={2}
-        w="full"
-        h="fit-content"
-        border="1px solid"
-        bg="blackAlpha.50"
-        borderColor="blackAlpha.50"
-        borderRadius={8}
-        {...bodyProps}
-        _dark={{
-          bg: "whiteAlpha.50",
-          borderColor: "whiteAlpha.50",
-          ...bodyProps?._dark,
-        }}
-      >
-        <Text
-          fontSize={{ base: "sm", sm: "lg" }}
-          fontWeight="medium"
-          noOfLines={1}
-          wordBreak="break-all"
-          children={team.title}
-        />
-      </Box>
-    </Box>
-  )
-);
