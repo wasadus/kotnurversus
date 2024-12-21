@@ -1,6 +1,6 @@
 import { BoxProps, Stack, Text } from "@chakra-ui/react";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
-import ImageIcon from "~/icons/ImageIcon";
+import { ImageIcon } from "~/icons/ImageIcon";
 
 type Props = Omit<BoxProps, "onDrop"> &
   Pick<DropzoneOptions, "onDrop" | "accept">;
