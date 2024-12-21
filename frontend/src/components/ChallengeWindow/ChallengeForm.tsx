@@ -12,7 +12,7 @@ type Props = {
   onSubmit: (data: ChallengeFormSchema) => void;
 };
 
-const ChallengeForm = ({ id, defaultValue, onSubmit }: Props) => {
+export const ChallengeForm = ({ id, defaultValue, onSubmit }: Props) => {
   const {
     control,
     register,
@@ -71,5 +71,3 @@ const challengeFormSchema = z.object({
 });
 
 export type ChallengeFormSchema = z.infer<typeof challengeFormSchema>;
-
-export default ChallengeForm;
