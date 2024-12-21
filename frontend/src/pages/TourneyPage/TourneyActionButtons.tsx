@@ -6,7 +6,7 @@ import api from "~/api";
 import { ButtonWithAlert } from "~/components/ButtonWithAlert";
 import useCustomToast from "~/hooks/useCustomToast";
 import { PenIcon } from "~/icons/PenIcon";
-import UnlockIcon from "~/icons/UnlockIcon";
+import { UnlockIcon } from "~/icons/UnlockIcon";
 import paths from "~/pages/paths";
 import { Tourney } from "~/types/tourney";
 import queryKeys from "~/utils/query-keys";
