@@ -10,7 +10,7 @@ import { DraggableSyntheticListeners } from "@dnd-kit/core";
 import { Transform } from "@dnd-kit/utilities";
 import React, { forwardRef, memo } from "react";
 import IconButtonWithTooltip from "~/components/IconButtonWithTooltip";
-import SpecificationWindow from "~/components/SpecificationWindow";
+import { SpecificationWindow } from "~/components/SpecificationWindow";
 import DragHandleIcon from "~/icons/DragHandleIcon";
 import DuplicateIcon from "~/icons/DuplicateIcon";
 import { TourneySpecificationWithId } from "~/types/tourney";

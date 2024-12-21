@@ -11,7 +11,7 @@ type Props = {
   onSubmit: (data: SpecificationFormSchema) => void;
 };
 
-const SpecificationForm = ({ id, defaultValue, onSubmit }: Props) => {
+export const SpecificationForm = ({ id, defaultValue, onSubmit }: Props) => {
   const {
     register,
     handleSubmit,
@@ -49,5 +49,3 @@ const specificationFormSchema = z.object({
 });
 
 export type SpecificationFormSchema = z.infer<typeof specificationFormSchema>;
-
-export default SpecificationForm;
