@@ -14,7 +14,7 @@ type Props = {
   activeColor: string;
 } & BoxProps;
 
-const StageTimer = ({ endDate, activeColor, ...props }: Props) => {
+export const StageTimer = ({ endDate, activeColor, ...props }: Props) => {
   const { isOrganizer } = useRoundContext();
   const { isRunning, totalSeconds } = useTimer({
     autoStart: true,
@@ -102,5 +102,3 @@ const ResetTimerButton = () => {
     </>
   );
 };
-
-export default StageTimer;

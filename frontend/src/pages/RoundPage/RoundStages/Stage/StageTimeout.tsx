@@ -10,7 +10,7 @@ type Props = {
   teamId: string;
 } & BoxProps;
 
-const StageTimeout = ({ teamId, ...props }: Props) => {
+export const StageTimeout = ({ teamId, ...props }: Props) => {
   const handleError = useHandleError();
   const queryClient = useQueryClient();
   const { isOrganizer, round } = useRoundContext();
@@ -73,5 +73,3 @@ const StageTimeout = ({ teamId, ...props }: Props) => {
     </Flex>
   );
 };
-
-export default StageTimeout;

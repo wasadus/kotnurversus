@@ -10,7 +10,7 @@ type Props = {
   artifacts: RoundArtifact[];
 };
 
-const ArtifactsWindow = ({
+export const ArtifactsWindow = ({
   defaultArtifactId,
   artifacts,
   ...props
@@ -77,5 +77,3 @@ const ArtifactItem = ({ artifact }: ArtifactItemProps) => {
     />
   );
 };
-
-export default ArtifactsWindow;

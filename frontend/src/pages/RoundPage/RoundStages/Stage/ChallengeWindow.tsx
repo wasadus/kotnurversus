@@ -8,7 +8,7 @@ type Props = {
   challenge?: Challenge;
 };
 
-const ChallengeWindow = ({
+export const ChallengeWindow = ({
   category,
   challenge,
   ...props
@@ -61,5 +61,3 @@ const InfoRow = ({ name, children, ...props }: InfoRowProps) => (
     />
   </Stack>
 );
-
-export default ChallengeWindow;

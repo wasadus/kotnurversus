@@ -1,16 +1,16 @@
 import { Flex } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import RoundArtifacts from "./RoundArtifacts";
-import RoundHeader from "./RoundHeader";
-import RoundSpecificationSection from "./RoundSpecificationSection";
-import RoundStages from "./RoundStages";
+import { RoundArtifacts } from "./RoundArtifacts";
+import { RoundHeader } from "./RoundHeader";
+import { RoundSpecificationSection } from "./RoundSpecificationSection";
+import { RoundStages } from "./RoundStages";
 import { RoundProvider } from "./round-context";
 
 type PageParams = {
   roundId: string;
 };
 
-const RoundPage = () => {
+export const RoundPage = () => {
   const { roundId = "" } = useParams<PageParams>();
 
   return (
@@ -32,5 +32,3 @@ const RoundPage = () => {
     </RoundProvider>
   );
 };
-
-export default RoundPage;

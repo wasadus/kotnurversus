@@ -2,9 +2,9 @@ import { BoxProps, Button, Center, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import paths from "~/pages/paths";
 import { useRoundContext } from "../round-context";
-import Stage from "./Stage";
+import { Stage } from "./Stage";
 
-const CompleteStage = () => {
+export const CompleteStage = () => {
   const { round, getTeams } = useRoundContext();
 
   const teams = getTeams();
@@ -68,5 +68,3 @@ const Mark = ({ value, isWinner, ...props }: MarkProps) => (
     children={value}
   />
 );
-
-export default CompleteStage;

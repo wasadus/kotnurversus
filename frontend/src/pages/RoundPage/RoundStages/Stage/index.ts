@@ -1,15 +1,15 @@
-import Challenges from "./StageChallenges";
-import MainInfo from "./StageMainInfo";
-import State from "./StageState";
-import Team from "./StageTeam";
-import Timeout from "./StageTimeout";
-import Timer from "./StageTimer";
+import { StageChallenges } from "./StageChallenges";
+import { StageMainInfo } from "./StageMainInfo";
+import { StageState } from "./StageState";
+import { StageTeam } from "./StageTeam";
+import { StageTimeout } from "./StageTimeout";
+import { StageTimer } from "./StageTimer";
 
-export default {
-  Challenges,
-  MainInfo,
-  State,
-  Team,
-  Timeout,
-  Timer,
+export const Stage = {
+  Challenges: StageChallenges,
+  MainInfo: StageMainInfo,
+  State: StageState,
+  Team: StageTeam,
+  Timeout: StageTimeout,
+  Timer: StageTimer,
 };

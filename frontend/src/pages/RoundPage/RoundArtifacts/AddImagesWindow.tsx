@@ -19,7 +19,7 @@ type Props = {
   onSubmit: (images: File[]) => Promise<void>;
 };
 
-const AddImagesWindow = ({ onSubmit, ...props }: WindowProps<Props>) => {
+export const AddImagesWindow = ({ onSubmit, ...props }: WindowProps<Props>) => {
   const toast = useCustomToast();
   const [chosenImages, setChosenImages] = useState<File[]>([]);
 
@@ -155,5 +155,3 @@ const getBase64 = (file: File): Promise<string> =>
     reader.onload = () => resolve(reader.result as string);
     reader.onerror = (error) => reject(error);
   });
-
-export default AddImagesWindow;

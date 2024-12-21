@@ -22,13 +22,13 @@ import { Round } from "~/types/round";
 import { TourneyTeam } from "~/types/tourney";
 import { isDefined } from "~/utils";
 import queryKeys from "~/utils/query-keys";
-import ChallengeWindow from "./ChallengeWindow";
+import { ChallengeWindow } from "./ChallengeWindow";
 
 type Props = {
   team?: TourneyTeam;
 };
 
-const ChallengeSelectionWindow = ({
+export const ChallengeSelectionWindow = ({
   team,
   onClose,
   ...props
@@ -218,5 +218,3 @@ const CategoryCard = ({
 const calcAvailableChallenges = (round: Round, challenges: Challenge[]) => {
   return challenges.filter((c) => round.settings.catsInTheBag || !c.isCatInBag);
 };
-
-export default ChallengeSelectionWindow;

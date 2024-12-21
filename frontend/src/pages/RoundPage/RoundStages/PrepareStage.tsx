@@ -8,13 +8,13 @@ import { RoundState } from "~/types/round";
 import { TourneyTeam } from "~/types/tourney";
 import queryKeys from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
-import Stage from "./Stage";
-import ChallengeSelectionWindow from "./Stage/ChallengeSelectionWindow";
+import { Stage } from "./Stage";
+import { ChallengeSelectionWindow } from "./Stage/ChallengeSelectionWindow";
 
 const STAGE_COLOR = "#D83161";
 const STAGE_STATE = RoundState.Prepare;
 
-const PrepareStage = () => {
+export const PrepareStage = () => {
   const { getTimerEnd } = useRoundContext();
   const timerEnd = getTimerEnd();
 
@@ -140,5 +140,3 @@ const PrepareEndStage = ({ timerEnd }: PrepareEndStageProps) => {
     </>
   );
 };
-
-export default PrepareStage;

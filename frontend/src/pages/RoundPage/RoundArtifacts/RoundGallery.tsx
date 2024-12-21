@@ -1,11 +1,11 @@
 import { Grid } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRoundContext } from "../round-context";
-import AddImagesButton from "./AddImagesButton";
-import ArtifactItem from "./ArtifactItem";
-import ArtifactsWindow from "./ArtifactsWindow";
+import { AddImagesButton } from "./AddImagesButton";
+import { ArtifactItem } from "./ArtifactItem";
+import { ArtifactsWindow } from "./ArtifactsWindow";
 
-const RoundGallery = () => {
+export const RoundGallery = () => {
   const { isOrganizer, round } = useRoundContext();
   const [activeId, setActiveId] = useState<string>();
 
@@ -42,5 +42,3 @@ const RoundGallery = () => {
     </Grid>
   );
 };
-
-export default RoundGallery;

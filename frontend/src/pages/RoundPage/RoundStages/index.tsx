@@ -1,16 +1,16 @@
 import { Box, BoxProps, Grid } from "@chakra-ui/react";
 import { RoundState } from "~/types/round";
 import { useRoundContext } from "../round-context";
-import CompleteStage from "./CompleteStage";
-import DefenseStage from "./DefenseStage";
-import InitStage from "./InitStage";
-import MarkStage from "./MarkStage";
-import PauseStage from "./PauseStage";
-import PrepareStage from "./PrepareStage";
-import PresentationStage from "./PresentationStage";
-import Stage from "./Stage";
+import { CompleteStage } from "./CompleteStage";
+import { DefenseStage } from "./DefenseStage";
+import { InitStage } from "./InitStage";
+import { MarkStage } from "./MarkStage";
+import { PauseStage } from "./PauseStage";
+import { PrepareStage } from "./PrepareStage";
+import { PresentationStage } from "./PresentationStage";
+import { Stage } from "./Stage";
 
-const RoundStages = (props: BoxProps) => {
+export const RoundStages = (props: BoxProps) => {
   const { round, state } = useRoundContext();
 
   const StageByState = (state && STAGES[state]) || InitStage;
@@ -82,5 +82,3 @@ const STAGES: Record<RoundState, () => JSX.Element> = {
   [RoundState.Complete]: CompleteStage,
   [RoundState.Pause]: PauseStage,
 };
-
-export default RoundStages;

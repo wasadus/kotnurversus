@@ -2,10 +2,10 @@ import { BoxProps, Stack } from "@chakra-ui/react";
 import { memo } from "react";
 import { CollapsibleSection } from "~/components/CollapsibleSection";
 import { useRoundContext } from "../round-context";
-import RoundDescription from "./RoundDescription";
-import RoundGallery from "./RoundGallery";
+import { RoundDescription } from "./RoundDescription";
+import { RoundGallery } from "./RoundGallery";
 
-const RoundArtifacts = (props: BoxProps) => {
+export const RoundArtifacts = memo((props: BoxProps) => {
   const { isOrganizer, round } = useRoundContext();
 
   if (
@@ -26,6 +26,4 @@ const RoundArtifacts = (props: BoxProps) => {
       </Stack>
     </CollapsibleSection>
   );
-};
-
-export default memo(RoundArtifacts);
+});

@@ -18,9 +18,9 @@ import { PlusIcon } from "~/icons/PlusIcon";
 import { getErrorApiStatus } from "~/utils/error";
 import queryKeys from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
-import Stage from "./Stage";
+import { Stage } from "./Stage";
 
-const MarkStage = () => {
+export const MarkStage = () => {
   const toast = useCustomToast();
   const handleError = useHandleError();
   const queryClient = useQueryClient();
@@ -150,5 +150,3 @@ const MarkInput = ({ onChange, ...props }: MarkInputProps) => {
     </HStack>
   );
 };
-
-export default MarkStage;

@@ -10,7 +10,7 @@ import useHandleError from "~/hooks/useHandleError";
 import queryKeys from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
 
-const RoundDescription = () => {
+export const RoundDescription = () => {
   const { isOrganizer, round } = useRoundContext();
 
   const component = useMemo(() => {
@@ -69,5 +69,3 @@ const EditableDescription = ({ roundId, description }: Props) => {
     />
   );
 };
-
-export default RoundDescription;

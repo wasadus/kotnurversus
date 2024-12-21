@@ -5,7 +5,7 @@ import { Tourney } from "~/types/tourney";
 import { calcRoundName } from "~/utils/round";
 import { useRoundContext } from "./round-context";
 
-const RoundHeader = () => {
+export const RoundHeader = () => {
   const { isPublic, tourney, round } = useRoundContext();
 
   return (
@@ -40,5 +40,3 @@ const createBreadcrumbItems = (tourney: Tourney) => [
   { name: "Турниры", link: paths.tourneys.path },
   { name: tourney.title, link: paths.tourney.path(tourney.id) },
 ];
-
-export default RoundHeader;

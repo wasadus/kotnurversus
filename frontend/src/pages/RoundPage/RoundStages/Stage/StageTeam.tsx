@@ -12,7 +12,7 @@ type Props = {
   onClick?: () => void;
 } & BoxProps;
 
-const StageTeam = ({
+export const StageTeam = ({
   isChosen,
   isDisabled,
   activeColor,
@@ -120,5 +120,3 @@ const BaseTeam = forwardRef<BaseTeamProps, "div">(
     </Box>
   )
 );
-
-export default StageTeam;

@@ -5,13 +5,13 @@ import useChallengesQuery from "~/hooks/useChallengesQuery";
 import { useRoundContext } from "~/pages/RoundPage/round-context";
 import { Category } from "~/types/category";
 import { Challenge } from "~/types/challenge";
-import ChallengeWindow from "./ChallengeWindow";
+import { ChallengeWindow } from "./ChallengeWindow";
 
 type Props = {
   teamId: string;
 } & WrapProps;
 
-const StageChallenges = ({ teamId, ...props }: Props) => {
+export const StageChallenges = ({ teamId, ...props }: Props) => {
   const { round } = useRoundContext();
 
   const chosenChallengeIds =
@@ -79,5 +79,3 @@ const ChallengeCard = memo(
   },
   (prev, next) => prev.challenge.id === next.challenge.id
 );
-
-export default StageChallenges;

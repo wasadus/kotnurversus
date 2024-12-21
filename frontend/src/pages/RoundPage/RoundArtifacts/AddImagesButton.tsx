@@ -7,9 +7,9 @@ import { OutlinePlusIcon } from "~/icons/OutlinePlusIcon";
 import declination from "~/utils/declination";
 import queryKeys from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
-import AddImagesWindow from "./AddImagesWindow";
+import { AddImagesWindow } from "./AddImagesWindow";
 
-const AddImagesButton = () => {
+export const AddImagesButton = () => {
   const window = useDisclosure();
   const queryClient = useQueryClient();
   const handleError = useHandleError();
@@ -67,5 +67,3 @@ const AddImagesButton = () => {
     </>
   );
 };
-
-export default AddImagesButton;

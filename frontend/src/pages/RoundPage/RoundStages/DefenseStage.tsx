@@ -6,12 +6,12 @@ import useHandleError from "~/hooks/useHandleError";
 import { RoundState } from "~/types/round";
 import queryKeys from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
-import Stage from "./Stage";
+import { Stage } from "./Stage";
 
 const STAGE_COLOR = "#F03B36";
 const STAGE_STATE = RoundState.Defense;
 
-const DefenseStage = () => {
+export const DefenseStage = () => {
   const { getTimerEnd } = useRoundContext();
   const timerEnd = getTimerEnd();
 
@@ -146,5 +146,3 @@ const DefenseEndStage = ({ timerEnd }: DefenseEndStageProps) => {
     </>
   );
 };
-
-export default DefenseStage;
