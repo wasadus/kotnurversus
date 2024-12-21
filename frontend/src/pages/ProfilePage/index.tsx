@@ -3,7 +3,7 @@ import { Loading } from "~/components/Loading";
 import { useAutoRedirect } from "~/hooks/useAutoRedirect";
 import { paths } from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
-import SettingsSection from "./SettingsSection";
+import { SettingsSection } from "./SettingsSection";
 import { TourneysSection } from "./TourneysSection";
 
 export const ProfilePage = () => {

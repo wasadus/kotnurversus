@@ -5,7 +5,7 @@ import { LoginSettings } from "./LoginSettings";
 import { PasswordSettings } from "./PasswordSettings";
 import { SettingsLayout } from "./SettingsLayout";
 
-const SettingsSection = (props: BoxProps) => {
+export const SettingsSection = (props: BoxProps) => {
   const user = getUser();
 
   if (!user) return null;
@@ -56,5 +56,3 @@ const LogoutButton = (props: ButtonProps) => {
     />
   );
 };
-
-export default SettingsSection;
