@@ -13,7 +13,7 @@ type PopperProps = {
   popperGap?: number;
 } & BoxProps;
 
-const Popper = ({
+export const Popper = ({
   isOpen,
   anchorRef,
   placement = "bottom",
@@ -110,5 +110,3 @@ const makeOffset = (gap: number) => ({
   name: "offset",
   options: { offset: [0, gap] },
 });
-
-export default Popper;
