@@ -5,7 +5,7 @@ import {
 } from "@chakra-ui/react";
 import * as components from "./components";
 import styles from "./styles";
-import foundations from "./foundations";
+import { foundations } from "./foundations";
 
 const config: ThemeConfig = {
   initialColorMode: "dark",
