@@ -1,8 +1,8 @@
-import { BoxProps, Stack, Text, Wrap } from "@chakra-ui/react";
+import { Wrap } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { compare } from "fast-json-patch";
-import { ReactNode, memo, useId, useRef } from "react";
+import { memo, useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { api } from "~/api";
@@ -13,7 +13,8 @@ import { useDebounce } from "~/hooks/useDebounce";
 import { TourneySettings } from "~/types/tourney";
 import { queryKeys } from "~/utils/query-keys";
 import { timeHelpers as time } from "~/utils/time";
-import { useTourneyContext } from "./tourney-context";
+import { useTourneyContext } from "../tourney-context";
+import { FormLabel } from "~/pages/TourneyPage/TourneyTimersSettings/FormLabel";
 
 type Props = {
   id: string;
@@ -185,30 +186,6 @@ export const TourneyTimersSettings = memo(({ id, settings: defaultSettings }: Pr
     </CollapsibleSection>
   );
 }, () => true);
-
-type FormLabelProps = {
-  label: string;
-  isRequired?: boolean;
-  children: ReactNode | ((id: string) => ReactNode);
-} & Omit<BoxProps, "children">;
-
-const FormLabel = ({ label, children, ...props }: FormLabelProps) => {
-  const id = useId();
-  const needId = typeof children === "function";
-
-  return (
-    <Stack w="fit-content" align="center" spacing={4} {...props}>
-      <Text
-        w="fit-content"
-        fontSize="md"
-        fontWeight="medium"
-        {...(needId ? { as: "label", htmlFor: id } : {})}
-        children={label}
-      />
-      {needId ? children(id) : children}
-    </Stack>
-  );
-};
 
 const timeSchema = z
   .string()
