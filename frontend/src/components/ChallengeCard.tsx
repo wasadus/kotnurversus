@@ -9,7 +9,7 @@ type ChallengeCardProps = {
   challenge: Challenge;
 } & ButtonProps;
 
-const ChallengeCard = ({
+export const ChallengeCard = ({
   challenge,
   category,
   ...props
@@ -71,5 +71,3 @@ const ChallengeCard = ({
     </Box>
   );
 };
-
-export default ChallengeCard;
