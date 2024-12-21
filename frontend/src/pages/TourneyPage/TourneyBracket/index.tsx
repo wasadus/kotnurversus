@@ -1,4 +1,4 @@
-import { HStack, Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import { SingleEliminationBracket } from "@g-loot/react-tournament-brackets";
 import { CommonTreeProps } from "@g-loot/react-tournament-brackets/dist/src/types";
 import { useQuery } from "@tanstack/react-query";
@@ -17,9 +17,8 @@ import {
 } from "~/utils/tourney";
 import { useTourneyContext } from "../tourney-context";
 import { Match } from "./Match";
-import { TeamsManualSortingButton } from "./TeamsManualSortingButton";
-import { TeamsShuffleButton } from "./TeamsShuffleButton";
 import { TourneyBracketContainer } from "./TourneyBracketContainer";
+import { ActionsButton } from "~/pages/TourneyPage/TourneyBracket/ActionsButton";
 
 type Props = {
   id: string;
@@ -135,18 +134,6 @@ const desktopOptions: CommonTreeProps["options"] = {
     boxHeight: 132,
   },
 };
-
-type ActionsButtonProps = {
-  teams: TourneyTeam[];
-  onTeamsChange: (teams: TourneyTeam[]) => void;
-};
-
-const ActionsButton = ({ teams, onTeamsChange }: ActionsButtonProps) => (
-  <HStack>
-    <TeamsShuffleButton teams={teams} onTeamsChange={onTeamsChange} />
-    <TeamsManualSortingButton teams={teams} onSubmit={onTeamsChange} />
-  </HStack>
-);
 
 const calcRounds = (
   teams: TourneyTeam[],
