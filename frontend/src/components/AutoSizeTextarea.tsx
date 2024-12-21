@@ -10,7 +10,7 @@ type Props = {
   minHeight?: number;
 } & Omit<TextareaProps, "minHeight">;
 
-const AutoSizeTextarea = forwardRef<HTMLTextAreaElement, Props>(
+export const AutoSizeTextarea = forwardRef<HTMLTextAreaElement, Props>(
   (
     {
       minHeight = 86,
@@ -77,5 +77,3 @@ const AutoSizeTextarea = forwardRef<HTMLTextAreaElement, Props>(
     );
   }
 );
-
-export default AutoSizeTextarea;
