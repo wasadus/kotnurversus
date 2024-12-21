@@ -17,7 +17,7 @@ type Props = {
   users: User[];
 } & BoxProps;
 
-const UsersTable = ({ users, ...props }: Props) => (
+export const UsersTable = ({ users, ...props }: Props) => (
   <Stack {...props} spacing={0.5}>
     <HeaderRow mb={2} />
     {users.map((u) => (
@@ -103,5 +103,3 @@ const OrganizerSwitch = ({ user, isSelf }: OrganizerSwitchProps) => {
     </BodyCell>
   );
 };
-
-export default UsersTable;

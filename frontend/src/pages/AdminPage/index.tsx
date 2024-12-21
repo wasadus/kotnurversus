@@ -3,12 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import api from "~/api";
 import { Loading } from "~/components/Loading";
 import useAutoRedirect from "~/hooks/useAutoRedirect";
-import UsersTable from "~/pages/AdminPage/UsersTable";
+import { UsersTable } from "~/pages/AdminPage/UsersTable";
 import paths from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
 import queryKeys from "~/utils/query-keys";
 
-const AdminPage = () => {
+export const AdminPage = () => {
   const { isAuthenticated } = useAuthContext();
 
   useAutoRedirect({ isEnabled: !isAuthenticated, path: paths.main.path });
@@ -45,5 +45,3 @@ const AdminPage = () => {
     </Stack>
   );
 };
-
-export default AdminPage;

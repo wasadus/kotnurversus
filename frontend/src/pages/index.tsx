@@ -2,7 +2,7 @@ import { lazy } from "react";
 import MainPage from "./MainPage";
 import paths from "./paths";
 
-const AdminPage = lazy(() => import("./AdminPage"));
+const AdminPage = lazy(() => import("./AdminPage").then(module => ({ default: module.AdminPage })));
 const ChallengesPage = lazy(() => import("./ChallengesPage"));
 const TourneysPage = lazy(() => import("./TourneysPage"));
 const CreateTourneyPage = lazy(() => import("./CreateTourneyPage"));
