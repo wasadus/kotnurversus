@@ -1,11 +1,10 @@
 import {
-  Button as BaseButton,
-  ButtonProps,
   HStack,
   Text,
   useBoolean,
 } from "@chakra-ui/react";
 import { ReactNode, useId, useRef } from "react";
+import {Button} from "~/pages/ProfilePage/SettingsSection/Button.tsx";
 
 type Props = {
   name: string;
@@ -91,7 +90,3 @@ export const SettingsLayout = ({ name, value, Form }: Props) => {
     </>
   );
 };
-
-const Button = (props: ButtonProps) => (
-  <BaseButton p={2} variant="link" {...props} />
-);
