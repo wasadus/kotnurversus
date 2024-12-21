@@ -1,11 +1,9 @@
-import { Button, ButtonProps, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { compare } from "fast-json-patch";
 import { memo, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { api } from "~/api";
 import { CollapsibleSection } from "~/components/CollapsibleSection";
-import { SpecificationWindow } from "~/components/SpecificationWindow";
 import { useDebounce } from "~/hooks/useDebounce";
 import {
   TourneySpecification,
@@ -14,6 +12,9 @@ import {
 import { queryKeys } from "~/utils/query-keys";
 import { useTourneyContext } from "../tourney-context";
 import { SpecificationsList } from "./SpecificationsList";
+import {
+    CreateSpecificationButton
+} from "~/pages/TourneyPage/TourneySpecificationsSettings/CreateSpecificationButton";
 
 type Props = {
   id: string;
@@ -79,39 +80,3 @@ export const TourneySpecificationsSettings = memo(
   },
   () => true
 );
-
-type CreateSpecificationButtonProps = {
-  onCreate: (specification: TourneySpecificationWithId) => void;
-} & ButtonProps;
-
-const CreateSpecificationButton = ({
-  onCreate,
-  ...props
-}: CreateSpecificationButtonProps) => {
-  const window = useDisclosure();
-
-  const handleSubmit = (specification: TourneySpecificationWithId) => {
-    onCreate(specification);
-    window.onClose();
-  };
-
-  return (
-    <>
-      <Button
-        {...props}
-        {...window.getButtonProps()}
-        w="fit-content"
-        variant="link"
-        colorScheme="blue"
-        onClick={window.onOpen}
-        children="Добавить"
-      />
-      <SpecificationWindow.Create
-        {...window.getDisclosureProps()}
-        isOpen={window.isOpen}
-        onClose={window.onClose}
-        onSubmit={handleSubmit}
-      />
-    </>
-  );
-};
