@@ -5,7 +5,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import BreadcrumbIcon from "~/icons/BreadcrumbIcon";
+import { BreadcrumbIcon } from "~/icons/BreadcrumbIcon";
 
 type Props = {
   items: Array<{
