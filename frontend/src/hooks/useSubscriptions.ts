@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import useForceUpdate from "~/hooks/useForceUpdate";
+import { useForceUpdate } from "~/hooks/useForceUpdate";
 
 export const useSubscriptions = <TKey = string>(): UseSubscriptions<TKey> => {
   const generateId = useRef(0);

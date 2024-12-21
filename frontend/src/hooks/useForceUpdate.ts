@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const useForceUpdate = () => {
+export const useForceUpdate = () => {
   const isUnmount = useRef(false);
   const [key, setCount] = useState(0);
 
@@ -18,5 +18,3 @@ const useForceUpdate = () => {
 
   return { key, forceUpdate };
 };
-
-export default useForceUpdate;
