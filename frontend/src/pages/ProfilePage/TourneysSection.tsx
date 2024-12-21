@@ -9,7 +9,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import api from "~/api";
-import Loading from "~/components/Loading";
+import { Loading } from "~/components/Loading";
 import TourneysTable from "~/components/TourneysTable";
 import OutlinePlusIcon from "~/icons/OutlinePlusIcon";
 import paths from "~/pages/paths";

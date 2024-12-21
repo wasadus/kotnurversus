@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { addSeconds } from "date-fns";
 import { ReactNode, createContext, useContext } from "react";
 import api from "~/api";
-import Loading from "~/components/Loading";
+import { Loading } from "~/components/Loading";
 import { Round, RoundState } from "~/types/round";
 import { Tourney } from "~/types/tourney";
 import { useAuthContext } from "~/utils/auth-context";

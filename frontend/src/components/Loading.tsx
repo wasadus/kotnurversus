@@ -4,10 +4,8 @@ type Props = {
   spinnerProps?: SpinnerProps;
 } & FlexProps;
 
-const Loading = ({ spinnerProps, ...props }: Props) => (
+export const Loading = ({ spinnerProps, ...props }: Props) => (
   <Center {...props}>
     <Spinner size="lg" {...spinnerProps} />
   </Center>
 );
-
-export default Loading;

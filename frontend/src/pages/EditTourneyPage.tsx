@@ -4,7 +4,7 @@ import { useId } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "~/api";
 import { ButtonWithAlert } from "~/components/ButtonWithAlert";
-import Loading from "~/components/Loading";
+import { Loading } from "~/components/Loading";
 import { TourneyForm } from "~/components/TourneyForm";
 import {
   TourneyFormSchema,

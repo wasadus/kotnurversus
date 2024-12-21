@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import { ReactNode, Suspense } from "react";
-import Loading from "~/components/Loading";
+import { Loading } from "~/components/Loading";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
