@@ -1,9 +1,8 @@
-import { Image, Stack, Text, useBoolean } from "@chakra-ui/react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Window, WindowProps } from "~/components/Window";
-import { NotAllowedIcon } from "~/icons/NotAllowedIcon";
 import { RoundArtifact } from "~/types/round";
+import { ArtifactItem } from "~/pages/RoundPage/RoundArtifacts/ArtifactsWindow/ArtifactItem";
 
 type Props = {
   defaultArtifactId?: string;
@@ -37,43 +36,5 @@ export const ArtifactsWindow = ({
         ))}
       </Carousel>
     </Window>
-  );
-};
-
-type ArtifactItemProps = {
-  artifact: RoundArtifact;
-};
-
-const ArtifactItem = ({ artifact }: ArtifactItemProps) => {
-  const [isError, setIsError] = useBoolean(false);
-
-  if (isError) {
-    return (
-      <Stack
-        h="75vh"
-        align="center"
-        justify="center"
-        spacing={10}
-        userSelect="none"
-      >
-        <NotAllowedIcon boxSize={20} />
-        <Text fontSize="2xl" lineHeight="150%">
-          Не удалось загрузить изображение
-        </Text>
-      </Stack>
-    );
-  }
-
-  return (
-    <Image
-      px={0.5}
-      h="75vh"
-      loading="lazy"
-      key={artifact.id}
-      objectFit="contain"
-      userSelect="none"
-      onError={setIsError.on}
-      src={`${import.meta.env.VITE_API_URL}${artifact.content}`}
-    />
   );
 };
