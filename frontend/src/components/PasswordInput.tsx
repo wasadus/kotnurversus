@@ -4,7 +4,7 @@ import EyeOpen from "~/icons/EyeOpen";
 import { IconButtonWithTooltip } from "./IconButtonWithTooltip";
 import { Input, InputProps } from "./Input";
 
-const PasswordInput = forwardRef<InputProps, "input">((props, ref) => {
+export const PasswordInput = forwardRef<InputProps, "input">((props, ref) => {
   const [isShowPassword, setIsShowPassword] = useBoolean(false);
 
   const label = isShowPassword ? "Скрыть пароль" : "Показать пароль";
@@ -30,5 +30,3 @@ const PasswordInput = forwardRef<InputProps, "input">((props, ref) => {
     />
   );
 });
-
-export default PasswordInput;

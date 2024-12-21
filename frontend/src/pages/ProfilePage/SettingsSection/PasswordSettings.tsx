@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import PasswordInput from "~/components/PasswordInput";
+import { PasswordInput } from "~/components/PasswordInput";
 import { passwordChangeFormSchema } from "~/utils/auth-schemas";
 import { SettingsFormProps } from "./SettingsLayout";
 
