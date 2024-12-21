@@ -1,24 +1,18 @@
 import {
-  BoxProps,
-  HStack,
-  IconButton,
-  Input,
   Stack,
   Text,
-  useNumberInput,
 } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { api } from "~/api";
 import { ButtonWithAlert } from "~/components/ButtonWithAlert";
 import { useCustomToast } from "~/hooks/useCustomToast";
 import { useHandleError } from "~/hooks/useHandleError";
-import { MinusIcon } from "~/icons/MinusIcon";
-import { PlusIcon } from "~/icons/PlusIcon";
 import { getErrorApiStatus } from "~/utils/error";
 import { queryKeys } from "~/utils/query-keys";
-import { useRoundContext } from "../round-context";
-import { Stage } from "./Stage";
+import { useRoundContext } from "../../round-context";
+import { Stage } from "../Stage";
+import { MarkInput } from "~/pages/RoundPage/RoundStages/MarkStage/MarkInput";
 
 export const MarkStage = () => {
   const toast = useCustomToast();
@@ -92,61 +86,5 @@ export const MarkStage = () => {
         </Stack>
       )}
     </>
-  );
-};
-
-type MarkInputProps = {
-  onChange?: (value: number) => void;
-} & Omit<BoxProps, "onChange">;
-
-const MarkInput = ({ onChange, ...props }: MarkInputProps) => {
-  const {
-    value,
-    getInputProps,
-    getIncrementButtonProps,
-    getDecrementButtonProps,
-  } = useNumberInput({
-    step: 1,
-    defaultValue: 0,
-    min: 0,
-    max: 99,
-  });
-
-  useEffect(() => {
-    onChange?.(parseInt(value.trim()) || 0);
-  }, [value]);
-
-  return (
-    <HStack {...props}>
-      <IconButton
-        {...getDecrementButtonProps()}
-        px={0}
-        size="sm"
-        variant="ghost"
-        colorScheme="red"
-        borderRadius="full"
-        icon={<MinusIcon boxSize={4} />}
-        aria-label="Уменьшить"
-      />
-      <Input
-        {...getInputProps()}
-        maxLength={2}
-        boxSize={16}
-        borderRadius="full"
-        fontSize="xl"
-        fontWeight="bold"
-        textAlign="center"
-      />
-      <IconButton
-        {...getIncrementButtonProps()}
-        px={0}
-        size="sm"
-        variant="ghost"
-        colorScheme="green"
-        borderRadius="full"
-        icon={<PlusIcon boxSize={4} />}
-        aria-label="Увеличить"
-      />
-    </HStack>
   );
 };
