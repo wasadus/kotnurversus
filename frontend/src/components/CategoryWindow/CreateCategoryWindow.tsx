@@ -7,7 +7,7 @@ type Props = {
   onSubmit?: (category: CreateCategory) => void;
 };
 
-const CreateCategoryWindow = ({ onSubmit, ...props }: WindowProps<Props>) => {
+export const CreateCategoryWindow = ({ onSubmit, ...props }: WindowProps<Props>) => {
   const formId = useId();
 
   const handleSubmit = (data: CategoryFormSchema) => {
@@ -25,5 +25,3 @@ const CreateCategoryWindow = ({ onSubmit, ...props }: WindowProps<Props>) => {
     </Window>
   );
 };
-
-export default CreateCategoryWindow;

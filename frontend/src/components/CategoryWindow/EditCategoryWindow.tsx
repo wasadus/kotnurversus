@@ -10,7 +10,7 @@ type Props = {
   onRemove?: () => void;
 };
 
-const EditCategoryWindow = ({
+export const EditCategoryWindow = ({
   category,
   onSubmit,
   onRemove,
@@ -46,5 +46,3 @@ const EditCategoryWindow = ({
     </Window>
   );
 };
-
-export default EditCategoryWindow;

@@ -2,7 +2,7 @@ import { Button, ButtonProps, Text, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import chroma from "chroma-js";
 import { api } from "~/api";
-import CategoryWindow from "~/components/CategoryWindow";
+import { CategoryWindow } from "~/components/CategoryWindow";
 import { useHandleError } from "~/hooks/useHandleError";
 import { Category, CreateCategory } from "~/types/category";
 import { queryKeys } from "~/utils/query-keys";
