@@ -2,7 +2,7 @@ import { Operation, compare } from "fast-json-patch";
 import { PaginationResponse } from "~/types/pagination";
 import { CreateRound } from "~/types/round";
 import { CreateTourney, Tourney } from "~/types/tourney";
-import axiosClient from "~/utils/axios-client";
+import { axiosClient } from "~/utils/axios-client";
 
 export class TourneysController {
   async create(data: CreateTourney): Promise<Tourney> {

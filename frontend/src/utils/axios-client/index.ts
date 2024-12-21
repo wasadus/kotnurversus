@@ -26,7 +26,7 @@ axios.interceptors.response.use((response) => {
   return response;
 });
 
-export default {
+export const axiosClient = {
   get: async <T>(url: string, params?: object): Promise<T> => {
     try {
       const res = await axios.get<T>(url, { params });

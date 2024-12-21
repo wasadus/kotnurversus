@@ -1,5 +1,5 @@
 import { AuthRequest, AuthResponse, User } from "~/types/auth";
-import axiosClient from "~/utils/axios-client";
+import { axiosClient } from "~/utils/axios-client";
 
 export class AuthController {
   async register(data: AuthRequest): Promise<AuthResponse> {

@@ -1,7 +1,7 @@
 import { compare } from "fast-json-patch";
 import { Category, CreateCategory } from "~/types/category";
 import { PaginationResponse } from "~/types/pagination";
-import axiosClient from "~/utils/axios-client";
+import { axiosClient } from "~/utils/axios-client";
 
 export class CategoriesController {
   async create(data: CreateCategory): Promise<Category> {

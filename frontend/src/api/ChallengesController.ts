@@ -1,7 +1,7 @@
 import { compare } from "fast-json-patch";
 import { Challenge, CreateChallenge } from "~/types/challenge";
 import { PaginationResponse } from "~/types/pagination";
-import axiosClient from "~/utils/axios-client";
+import { axiosClient } from "~/utils/axios-client";
 
 export class ChallengesController {
   async create(data: CreateChallenge): Promise<Challenge> {
