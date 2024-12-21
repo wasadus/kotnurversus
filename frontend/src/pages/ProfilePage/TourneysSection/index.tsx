@@ -1,19 +1,16 @@
 import {
   BoxProps,
-  Button,
   Center,
   HStack,
   Heading,
   Stack,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import { api } from "~/api";
-import { Loading } from "~/components/Loading";
+import { Loading } from "~/components/Loading.tsx";
 import { TourneysTable } from "~/components/TourneysTable";
-import { OutlinePlusIcon } from "~/icons/OutlinePlusIcon";
-import { paths } from "~/pages/paths";
-import { queryKeys } from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys.ts";
+import { CreateTourneyButton } from "~/pages/ProfilePage/TourneysSection/CreateTourneyButton.tsx";
 
 export const TourneysSection = (props: BoxProps) => {
   const tourneysQuery = useQuery({
@@ -44,14 +41,3 @@ export const TourneysSection = (props: BoxProps) => {
     </Stack>
   );
 };
-
-const CreateTourneyButton = () => (
-  <Button
-    as={Link}
-    size="lg"
-    colorScheme="teal"
-    to={paths.createTourney.path}
-    leftIcon={<OutlinePlusIcon boxSize={6} />}
-    children="Создать турнир"
-  />
-);
