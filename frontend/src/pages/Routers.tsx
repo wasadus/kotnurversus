@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PageLayout from "~/components/PageLayout";
+import { PageLayout } from "~/components/PageLayout";
 import pages from "~/pages";
 
 const Routers = () => (

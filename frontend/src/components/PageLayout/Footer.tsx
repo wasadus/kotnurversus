@@ -2,9 +2,9 @@ import { Box, HStack, Text, useBreakpointValue } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import paths from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
-import QrCodeButton from "./QrCodeButton";
+import { QrCodeButton } from "./QrCodeButton";
 
-const Footer = () => {
+export const Footer = () => {
   const { isAuthenticated } = useAuthContext();
   const isDesktop = useBreakpointValue(
     { base: false, md: true },
@@ -34,5 +34,3 @@ const Footer = () => {
     </Box>
   );
 };
-
-export default Footer;

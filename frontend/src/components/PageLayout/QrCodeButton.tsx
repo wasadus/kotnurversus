@@ -10,7 +10,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { useLocation } from "react-router-dom";
 import Window from "~/components/Window";
 
-const QrCodeButton = () => {
+export const QrCodeButton = () => {
   const [isShow, setIsShow] = useBoolean(false);
   const isLarge = useBreakpointValue(
     { base: false, "2xl": true },
@@ -67,5 +67,3 @@ const QrCode = ({ size, ...props }: QrCodeProps) => {
     </Center>
   );
 };
-
-export default QrCodeButton;

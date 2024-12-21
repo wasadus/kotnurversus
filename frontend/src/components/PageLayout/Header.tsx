@@ -12,9 +12,9 @@ import BaseLink from "~/components/Link";
 import useBreakpoint from "~/hooks/useBreakpoint";
 import paths from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
-import AuthButton from "./AuthButton";
+import { AuthButton } from "./AuthButton";
 
-const Header = (props: BoxProps) => (
+export const Header = (props: BoxProps) => (
   <Box
     {...props}
     minH={{ base: "55px", md: "80px" }}
@@ -99,5 +99,3 @@ const Link = (props: LinkProps) => (
     _hover={{ color: "secondary", borderColor: "secondary" }}
   />
 );
-
-export default Header;

@@ -24,7 +24,7 @@ import { AuthRequest } from "~/types/auth";
 import { useAuthContext } from "~/utils/auth-context";
 import { loginFormSchema, registerFormSchema } from "~/utils/auth-schemas";
 
-const AuthButton = () => {
+export const AuthButton = () => {
   const window = useDisclosure();
   const { isAuthenticated } = useAuthContext();
   const breakpoint = useBreakpoint(["base", "md", "xl"]);
@@ -226,5 +226,3 @@ const RegisterForm = ({ id, onSubmit }: AuthFormProps) => {
     </Stack>
   );
 };
-
-export default AuthButton;
