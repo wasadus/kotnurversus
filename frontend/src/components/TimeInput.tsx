@@ -8,7 +8,7 @@ export type TimeInputProps = {
   onChange?: (newValue?: string) => void;
 } & Omit<InputProps, "value" | "onChange">;
 
-const TimeInput = forwardRef<TimeInputProps, "input">(
+export const TimeInput = forwardRef<TimeInputProps, "input">(
   ({ value, onChange, ...props }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const inputRefs = useMergeRefs(inputRef, ref);
@@ -46,5 +46,3 @@ const maskDate = (e: FormEvent<HTMLInputElement>) => {
   }
   e.currentTarget.value = value;
 };
-
-export default TimeInput;
