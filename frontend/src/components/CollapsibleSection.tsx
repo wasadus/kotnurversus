@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 import { ArrowDownIcon } from "~/icons/ArrowDownIcon";
-import storage from "~/utils/storage";
+import { storageClient as storage } from "~/utils/storage";
 
 type Props = {
   label: string;

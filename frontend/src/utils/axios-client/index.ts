@@ -5,7 +5,7 @@ import axiosStatic, {
 } from "axios";
 import { isDev } from "~/utils";
 import { TOKEN_STORAGE_KEY } from "~/utils/auth-context";
-import storage from "~/utils/storage";
+import { storageClient as storage } from "~/utils/storage";
 import { handleDates } from "./handle-dates";
 
 const axios = axiosStatic.create({

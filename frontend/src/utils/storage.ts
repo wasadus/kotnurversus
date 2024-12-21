@@ -50,7 +50,7 @@ const remove = (key: string, params?: StorageParams): void => {
   storage(params).removeItem(key);
 };
 
-export default {
+export const storageClient = {
   has,
   get,
   getBoolean,
