@@ -11,7 +11,7 @@ const breakpoints = {
 
 type Breakpoint = keyof typeof breakpoints;
 
-const useBreakpoint = <T extends Breakpoint>(
+export const useBreakpoint = <T extends Breakpoint>(
   enabled: T[],
   options: UseBreakpointOptions = {}
 ) => {
@@ -22,5 +22,3 @@ const useBreakpoint = <T extends Breakpoint>(
 
   return breakpoint;
 };
-
-export default useBreakpoint;

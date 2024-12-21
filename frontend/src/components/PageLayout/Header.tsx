@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { ColorModeButton } from "~/components/ColorModeButton";
 import { Link as BaseLink } from "~/components/Link";
-import useBreakpoint from "~/hooks/useBreakpoint";
+import { useBreakpoint } from "~/hooks/useBreakpoint";
 import { paths } from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
 import { AuthButton } from "./AuthButton";
