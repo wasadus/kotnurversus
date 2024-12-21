@@ -7,7 +7,7 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import ColorModeButton from "~/components/ColorModeButton";
+import { ColorModeButton } from "~/components/ColorModeButton";
 import BaseLink from "~/components/Link";
 import useBreakpoint from "~/hooks/useBreakpoint";
 import paths from "~/pages/paths";

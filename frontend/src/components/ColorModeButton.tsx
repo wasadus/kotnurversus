@@ -3,7 +3,7 @@ import IconButtonWithTooltip from "./IconButtonWithTooltip";
 import LightIcon from "~/icons/LightIcon";
 import DarkIcon from "~/icons/DarkIcon";
 
-const ColorModeButton = () => {
+export const ColorModeButton = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const Icon = colorMode === "light" ? DarkIcon : LightIcon;
@@ -19,5 +19,3 @@ const ColorModeButton = () => {
     />
   );
 };
-
-export default ColorModeButton;
