@@ -8,7 +8,7 @@ type UseOutsideActionParams = {
   isActive?: boolean;
 };
 
-const useOutsideAction = ({
+export const useOutsideAction = ({
   boxRef,
   portalRef,
   callBackOnExit,
@@ -39,5 +39,3 @@ const useOutsideAction = ({
     }
   }, [isActive]);
 };
-
-export default useOutsideAction;

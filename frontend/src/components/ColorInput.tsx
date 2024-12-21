@@ -9,7 +9,7 @@ import { useRef, ClipboardEvent } from "react";
 import { HexColorPicker } from "react-colorful";
 import { Input, InputProps } from "~/components/Input";
 import { Popper } from "~/components/Popper";
-import useOutsideAction from "~/hooks/useOutsideAction";
+import { useOutsideAction } from "~/hooks/useOutsideAction";
 
 type Props = {
   value?: string;

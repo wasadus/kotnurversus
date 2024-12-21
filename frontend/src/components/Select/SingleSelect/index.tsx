@@ -10,7 +10,7 @@ import React, {
 } from "react";
 import { InputProps } from "~/components/Input";
 import { Popper } from "~/components/Popper";
-import useOutsideAction from "~/hooks/useOutsideAction";
+import { useOutsideAction } from "~/hooks/useOutsideAction";
 import { isDefined } from "~/utils";
 import { BaseSelect } from "../BaseSelect";
 import { SelectOption, SelectValue } from "../types";
