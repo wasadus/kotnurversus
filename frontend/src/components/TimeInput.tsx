@@ -1,7 +1,7 @@
 import { forwardRef, useMergeRefs } from "@chakra-ui/react";
 import { ChangeEvent, FormEvent, useEffect, useRef } from "react";
 import { Input, InputProps } from "~/components/Input";
-import TimeIcon from "~/icons/TimeIcon";
+import { TimeIcon } from "~/icons/TimeIcon";
 
 export type TimeInputProps = {
   value?: string;
