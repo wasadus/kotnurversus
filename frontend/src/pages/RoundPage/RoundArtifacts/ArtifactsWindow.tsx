@@ -1,7 +1,7 @@
 import { Image, Stack, Text, useBoolean } from "@chakra-ui/react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Window, { WindowProps } from "~/components/Window";
+import { Window, WindowProps } from "~/components/Window";
 import NotAllowedIcon from "~/icons/NotAllowedIcon";
 import { RoundArtifact } from "~/types/round";
 

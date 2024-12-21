@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { ButtonWithAlert } from "~/components/ButtonWithAlert";
-import Window, { WindowProps } from "~/components/Window";
+import { Window, WindowProps } from "~/components/Window";
 import { Category, CreateCategory } from "~/types/category";
 import { CategoryForm, CategoryFormSchema } from "./CategoryForm";
 

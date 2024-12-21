@@ -1,5 +1,5 @@
 import { BoxProps, Stack, Text } from "@chakra-ui/react";
-import Window, { WindowProps } from "~/components/Window";
+import { Window, WindowProps } from "~/components/Window";
 import { Category } from "~/types/category";
 import { Challenge } from "~/types/challenge";
 

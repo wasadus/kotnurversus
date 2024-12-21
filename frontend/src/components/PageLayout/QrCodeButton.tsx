@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { QRCodeSVG } from "qrcode.react";
 import { useLocation } from "react-router-dom";
-import Window from "~/components/Window";
+import { Window } from "~/components/Window";
 
 export const QrCodeButton = () => {
   const [isShow, setIsShow] = useBoolean(false);

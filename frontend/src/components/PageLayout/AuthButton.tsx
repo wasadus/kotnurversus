@@ -16,7 +16,7 @@ import { z } from "zod";
 import api from "~/api";
 import { Input } from "~/components/Input";
 import { PasswordInput } from "~/components/PasswordInput";
-import Window, { WindowProps } from "~/components/Window";
+import { Window, WindowProps } from "~/components/Window";
 import useBreakpoint from "~/hooks/useBreakpoint";
 import useCustomToast from "~/hooks/useCustomToast";
 import paths from "~/pages/paths";

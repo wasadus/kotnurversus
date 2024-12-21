@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { memo, useEffect, useRef, useState } from "react";
 import { Dropzone } from "~/components/Dropzone";
-import Window, { WindowProps } from "~/components/Window";
+import { Window, WindowProps } from "~/components/Window";
 import useCustomToast from "~/hooks/useCustomToast";
 import CrossIcon from "~/icons/CrossIcon";
 

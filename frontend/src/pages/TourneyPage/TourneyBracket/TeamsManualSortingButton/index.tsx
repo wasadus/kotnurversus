@@ -1,6 +1,6 @@
 import { Button, useDisclosure } from "@chakra-ui/react";
 import { useRef } from "react";
-import Window, { WindowProps } from "~/components/Window";
+import { Window, WindowProps } from "~/components/Window";
 import MoveIcon from "~/icons/MoveIcon";
 import { TourneyTeam } from "~/types/tourney";
 import TeamsManualSorting from "./TeamsManualSorting";

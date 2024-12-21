@@ -1,5 +1,5 @@
 import { useId } from "react";
-import Window, { WindowProps } from "~/components/Window";
+import { Window, WindowProps } from "~/components/Window";
 import { ChallengeForm, ChallengeFormSchema } from "./ChallengeForm";
 import { CreateChallenge } from "~/types/challenge";
 

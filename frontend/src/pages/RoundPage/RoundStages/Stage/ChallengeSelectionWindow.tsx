@@ -12,7 +12,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { compare } from "fast-json-patch";
 import { useMemo, useState } from "react";
 import api from "~/api";
-import Window, { WindowProps } from "~/components/Window";
+import { Window, WindowProps } from "~/components/Window";
 import useChallengesQuery from "~/hooks/useChallengesQuery";
 import useHandleError from "~/hooks/useHandleError";
 import { useRoundContext } from "~/pages/RoundPage/round-context";
