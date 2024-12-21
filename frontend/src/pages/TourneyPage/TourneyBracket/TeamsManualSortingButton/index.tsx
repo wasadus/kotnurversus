@@ -3,14 +3,14 @@ import { useRef } from "react";
 import { Window, WindowProps } from "~/components/Window";
 import { MoveIcon } from "~/icons/MoveIcon";
 import { TourneyTeam } from "~/types/tourney";
-import TeamsManualSorting from "./TeamsManualSorting";
+import { TeamsManualSorting } from "./TeamsManualSorting";
 
 type Props = {
   teams: TourneyTeam[];
   onSubmit: (sortedTeams: TourneyTeam[]) => void;
 };
 
-const TeamsManualSortingButton = ({ teams, onSubmit }: Props) => {
+export const TeamsManualSortingButton = ({ teams, onSubmit }: Props) => {
   const window = useDisclosure();
 
   return (
@@ -58,5 +58,3 @@ const TeamsManualSortingWindow = ({
     </Window>
   );
 };
-
-export default TeamsManualSortingButton;

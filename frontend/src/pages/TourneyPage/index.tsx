@@ -4,19 +4,19 @@ import { useParams } from "react-router";
 import api from "~/api";
 import { Loading } from "~/components/Loading";
 import queryKeys from "~/utils/query-keys";
-import TourneyActionButtons from "./TourneyActionButtons";
-import TourneyBracket from "./TourneyBracket";
-import TourneyHeader from "./TourneyHeader";
-import TourneySpecificationsSettings from "./TourneySpecificationsSettings";
-import TourneyTeams from "./TourneyTeams";
-import TourneyTimersSettings from "./TourneyTimersSettings";
+import { TourneyActionButtons } from "./TourneyActionButtons";
+import { TourneyBracket } from "./TourneyBracket";
+import { TourneyHeader } from "./TourneyHeader";
+import { TourneySpecificationsSettings } from "./TourneySpecificationsSettings";
+import { TourneyTeams } from "./TourneyTeams";
+import { TourneyTimersSettings } from "./TourneyTimersSettings";
 import { TourneyProvider } from "./tourney-context";
 
 type PageParams = {
   tourneyId: string;
 };
 
-const TourneyPage = () => {
+export const TourneyPage = () => {
   const { tourneyId = "" } = useParams<PageParams>();
 
   const tourneyQuery = useQuery({
@@ -67,5 +67,3 @@ const TourneyPage = () => {
     </TourneyProvider>
   );
 };
-
-export default TourneyPage;

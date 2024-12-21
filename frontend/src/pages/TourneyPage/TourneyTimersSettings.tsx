@@ -20,7 +20,7 @@ type Props = {
   settings: TourneySettings;
 };
 
-const TourneyTimersSettings = ({ id, settings: defaultSettings }: Props) => {
+export const TourneyTimersSettings = memo(({ id, settings: defaultSettings }: Props) => {
   const debounce = useDebounce(500);
   const queryClient = useQueryClient();
   const settings = useRef(defaultSettings);
@@ -184,7 +184,7 @@ const TourneyTimersSettings = ({ id, settings: defaultSettings }: Props) => {
       </Wrap>
     </CollapsibleSection>
   );
-};
+}, () => true);
 
 type FormLabelProps = {
   label: string;
@@ -224,5 +224,3 @@ const settingsSchema = z.object({
 });
 
 type SettingsSchema = z.infer<typeof settingsSchema>;
-
-export default memo(TourneyTimersSettings, () => true);

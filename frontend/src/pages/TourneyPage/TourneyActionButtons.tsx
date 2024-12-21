@@ -21,7 +21,7 @@ type Props = {
   tourney: Tourney;
 };
 
-const TourneyActionButtons = ({ tourney }: Props) => {
+export const TourneyActionButtons = ({ tourney }: Props) => {
   const toast = useCustomToast();
   const queryClient = useQueryClient();
 
@@ -80,5 +80,3 @@ const TourneyActionButtons = ({ tourney }: Props) => {
     </HStack>
   );
 };
-
-export default TourneyActionButtons;

@@ -28,7 +28,7 @@ type Props = {
   transition?: string | null;
 };
 
-const SpecificationsListItem = forwardRef<HTMLDivElement, Props>(
+export const SpecificationsListItem = memo(forwardRef<HTMLDivElement, Props>(
   (
     {
       isDragging,
@@ -98,7 +98,7 @@ const SpecificationsListItem = forwardRef<HTMLDivElement, Props>(
       </HStack>
     );
   }
-);
+));
 
 const HandleButton = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => (
@@ -133,5 +133,3 @@ const transformProperty = [
   "scaleX(var(--scale-x, 1))",
   "scaleY(var(--scale-y, 1))",
 ].join(" ");
-
-export default memo(SpecificationsListItem);

@@ -32,7 +32,7 @@ type Props = {
   onChange?: (sortedTeams: TourneyTeam[]) => void;
 };
 
-const TeamsManualSorting = ({ teams, onChange }: Props) => {
+export const TeamsManualSorting = ({ teams, onChange }: Props) => {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [sortedTeamIds, setSortedTeamIds] = useState<UniqueIdentifier[]>(
     teams.map((t) => t.id)
@@ -180,5 +180,3 @@ export const Draggable = forwardRef<HTMLButtonElement, DraggableProps>(
     );
   }
 );
-
-export default TeamsManualSorting;

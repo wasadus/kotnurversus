@@ -11,7 +11,7 @@ type Props = {
   id: string;
 };
 
-const TourneyTeams = ({ id }: Props) => {
+export const TourneyTeams = memo(({ id }: Props) => {
   const { isEditable, teams, useSubscribe } = useTourneyContext();
   const { forceUpdate } = useForceUpdate();
   const defaultTeam = useRef(createDefaultTeam());
@@ -69,11 +69,9 @@ const TourneyTeams = ({ id }: Props) => {
       </Wrap>
     </CollapsibleSection>
   );
-};
+});
 
 const createDefaultTeam = (): Partial<TourneyTeam> => ({
   id: uuid(),
   mates: [""],
 });
-
-export default memo(TourneyTeams);

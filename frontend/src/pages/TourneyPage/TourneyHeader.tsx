@@ -17,7 +17,7 @@ type Props = {
   tourney: Tourney;
 } & BoxProps;
 
-const TourneyHeader = ({ tourney, ...props }: Props) => (
+export const TourneyHeader = ({ tourney, ...props }: Props) => (
   <Grid
     gridTemplateColumns={{ base: "1fr", md: "1.5fr 1fr" }}
     gridGap={{ base: 6, md: 8 }}
@@ -71,5 +71,3 @@ const TourneyInfoRow = ({ name, children }: TourneyInfoRowProps) => {
     </Text>
   );
 };
-
-export default TourneyHeader;

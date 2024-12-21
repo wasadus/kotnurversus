@@ -22,7 +22,7 @@ import {
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { TourneySpecificationWithId } from "~/types/tourney";
-import SpecificationsListBaseItem from "./SpecificationsListItem";
+import { SpecificationsListItem as SpecificationsListBaseItem } from "./SpecificationsListItem";
 
 type Props = {
   specifications: TourneySpecificationWithId[];
@@ -33,7 +33,7 @@ type Props = {
   ) => void;
 } & ListProps;
 
-const SpecificationsList = ({ specifications, onUpdate, ...props }: Props) => {
+export const SpecificationsList = ({ specifications, onUpdate, ...props }: Props) => {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const sensors = useSensors(
     useSensor(MouseSensor),
@@ -176,5 +176,3 @@ const SpecificationsListItem = ({
     />
   );
 };
-
-export default SpecificationsList;

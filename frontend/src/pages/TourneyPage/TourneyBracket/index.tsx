@@ -16,10 +16,10 @@ import {
   createMatchesFromTeams,
 } from "~/utils/tourney";
 import { useTourneyContext } from "../tourney-context";
-import Match from "./Match";
-import TeamsManualSortingButton from "./TeamsManualSortingButton";
-import TeamsShuffleButton from "./TeamsShuffleButton";
-import TourneyBracketContainer from "./TourneyBracketContainer";
+import { Match } from "./Match";
+import { TeamsManualSortingButton } from "./TeamsManualSortingButton";
+import { TeamsShuffleButton } from "./TeamsShuffleButton";
+import { TourneyBracketContainer } from "./TourneyBracketContainer";
 
 type Props = {
   id: string;
@@ -27,80 +27,90 @@ type Props = {
   specifications: TourneySpecification[];
 };
 
-const TourneyBracket = ({ id, state, specifications }: Props) => {
-  const { isDesktop, isEditable, teams, useSubscribe } = useTourneyContext();
+export const TourneyBracket = memo(
+  ({ id, state, specifications }: Props) => {
+    const { isDesktop, isEditable, teams, useSubscribe } = useTourneyContext();
 
-  useSubscribe("teams");
+    useSubscribe("teams");
 
-  const isPrepare = state === TourneyState.Prepare;
+    const isPrepare = state === TourneyState.Prepare;
 
-  const roundsQuery = useQuery({
-    queryKey: queryKeys.rounds(id),
-    queryFn: () => api.rounds.findByTourneyId(id),
-    enabled: !isPrepare,
-  });
+    const roundsQuery = useQuery({
+      queryKey: queryKeys.rounds(id),
+      queryFn: () => api.rounds.findByTourneyId(id),
+      enabled: !isPrepare,
+    });
 
-  const [previewRounds, setPreviewRounds] = useState(() =>
-    calcRounds(teams.get, isEditable ? specifications : undefined)
-  );
-
-  useEffect(() => {
-    if (!isPrepare) return;
-    setPreviewRounds(
+    const [previewRounds, setPreviewRounds] = useState(() =>
       calcRounds(teams.get, isEditable ? specifications : undefined)
     );
-  }, [calcTeamsKey(teams.get), specifications, isEditable]);
 
-  const rounds =
-    isPrepare || roundsQuery.isLoading
-      ? roundsQuery.isLoading
-        ? previewRounds.map((r) => ({ ...r, isLoading: true }))
-        : previewRounds
-      : (roundsQuery.data?.items || []).map(castToTourneyRound(teams.get));
+    useEffect(() => {
+      if (!isPrepare) return;
+      setPreviewRounds(
+        calcRounds(teams.get, isEditable ? specifications : undefined)
+      );
+    }, [calcTeamsKey(teams.get), specifications, isEditable]);
 
-  if (teams.get.length < 4 || rounds.length < 2 || roundsQuery.isError) {
-    const message = roundsQuery.isError
-      ? "Не удалось загрузить турнирную сетку"
-      : isEditable
-      ? "Создайте минимум 4 команды для построения турнирной сетки"
-      : "Турнирная сетка не построена";
+    const rounds =
+      isPrepare || roundsQuery.isLoading
+        ? roundsQuery.isLoading
+          ? previewRounds.map((r) => ({ ...r, isLoading: true }))
+          : previewRounds
+        : (roundsQuery.data?.items || []).map(castToTourneyRound(teams.get));
 
-    return (
-      <Heading
-        my="100px"
-        mx="auto"
-        fontSize={{ base: "md", md: "lg" }}
-        children={message}
+    if (teams.get.length < 4 || rounds.length < 2 || roundsQuery.isError) {
+      const message = roundsQuery.isError
+        ? "Не удалось загрузить турнирную сетку"
+        : isEditable
+        ? "Создайте минимум 4 команды для построения турнирной сетки"
+        : "Турнирная сетка не построена";
+
+      return (
+        <Heading
+          my="100px"
+          mx="auto"
+          fontSize={{ base: "md", md: "lg" }}
+          children={message}
+        />
+      );
+    }
+
+    const bracket = (
+      <SingleEliminationBracket
+        options={isDesktop ? desktopOptions : mobileOptions}
+        matches={rounds}
+        matchComponent={Match}
+        svgWrapper={({ children, bracketWidth }) => (
+          <TourneyBracketContainer
+            mt={4}
+            bracketWidth={bracketWidth}
+            children={children}
+          />
+        )}
       />
     );
-  }
 
-  const bracket = (
-    <SingleEliminationBracket
-      options={isDesktop ? desktopOptions : mobileOptions}
-      matches={rounds}
-      matchComponent={Match}
-      svgWrapper={({ children, bracketWidth }) => (
-        <TourneyBracketContainer
-          mt={4}
-          bracketWidth={bracketWidth}
-          children={children}
-        />
-      )}
-    />
-  );
+    if (isEditable) {
+      return (
+        <>
+          {bracket}
+          <ActionsButton teams={teams.get} onTeamsChange={teams.set} />
+        </>
+      );
+    }
 
-  if (isEditable) {
+    return bracket;
+  },
+  (prev, next) => {
     return (
-      <>
-        {bracket}
-        <ActionsButton teams={teams.get} onTeamsChange={teams.set} />
-      </>
+        prev.id === next.id &&
+        prev.state === next.state &&
+        calcSpecificationsKey(prev.specifications) ===
+        calcSpecificationsKey(next.specifications)
     );
   }
-
-  return bracket;
-};
+);
 
 const mobileOptions: CommonTreeProps["options"] = {
   style: {
@@ -153,12 +163,3 @@ const calcTeamsKey = (teams: TourneyTeam[]) =>
 
 const calcSpecificationsKey = (specifications: TourneySpecification[]) =>
   specifications.map((s) => s.title).join("|");
-
-export default memo(TourneyBracket, (prev, next) => {
-  return (
-    prev.id === next.id &&
-    prev.state === next.state &&
-    calcSpecificationsKey(prev.specifications) ===
-      calcSpecificationsKey(next.specifications)
-  );
-});

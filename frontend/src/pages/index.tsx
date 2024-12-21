@@ -7,7 +7,7 @@ const ChallengesPage = lazy(() => import("./ChallengesPage").then(module => ({ d
 const TourneysPage = lazy(() => import("./TourneysPage"));
 const CreateTourneyPage = lazy(() => import("./CreateTourneyPage"));
 const EditTourneyPage = lazy(() => import("./EditTourneyPage"));
-const TourneyPage = lazy(() => import("./TourneyPage"));
+const TourneyPage = lazy(() => import("./TourneyPage").then(module => ({ default: module.TourneyPage })));
 const RoundPage = lazy(() => import("./RoundPage").then(module => ({ default: module.RoundPage })));
 const ProfilePage = lazy(() => import("./ProfilePage").then(module => ({ default: module.ProfilePage })));
 

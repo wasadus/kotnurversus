@@ -5,7 +5,7 @@ type Props = {
   bracketWidth: number;
 } & BoxProps;
 
-const TourneyBracketContainer = ({ bracketWidth, ...props }: Props) => {
+export const TourneyBracketContainer = ({ bracketWidth, ...props }: Props) => {
   const boxRef = useRef<HTMLDivElement>(null);
   const scrollBarColor = useColorModeValue("#00000029", "#ffffff29");
 
@@ -68,5 +68,3 @@ const TourneyBracketContainer = ({ bracketWidth, ...props }: Props) => {
     />
   );
 };
-
-export default TourneyBracketContainer;

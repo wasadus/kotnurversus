@@ -13,7 +13,7 @@ import {
 } from "~/types/tourney";
 import queryKeys from "~/utils/query-keys";
 import { useTourneyContext } from "../tourney-context";
-import SpecificationsList from "./SpecificationsList";
+import { SpecificationsList } from "./SpecificationsList";
 
 type Props = {
   id: string;

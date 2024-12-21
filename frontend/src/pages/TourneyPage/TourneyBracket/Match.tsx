@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import paths from "~/pages/paths";
 import { TourneyRoundState } from "~/types/tourney";
 
-const Match = ({
+export const Match = ({
   match,
   topWon,
   topParty,
@@ -178,5 +178,3 @@ const Badge = ({ value }: ExtensionsProps) => (
     children={value}
   />
 );
-
-export default Match;
