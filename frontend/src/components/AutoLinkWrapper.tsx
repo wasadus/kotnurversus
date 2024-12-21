@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 };
 
-const AutoLinkWrapper = ({ children }: Props) => (
+export const AutoLinkWrapper = ({ children }: Props) => (
   <Linkify
     children={children}
     componentDecorator={(href, decoratedText, key) => (
@@ -22,5 +22,3 @@ const AutoLinkWrapper = ({ children }: Props) => (
     )}
   />
 );
-
-export default AutoLinkWrapper;

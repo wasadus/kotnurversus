@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { format } from "date-fns";
 import { ReactNode } from "react";
-import AutoLinkWrapper from "~/components/AutoLinkWrapper";
+import { AutoLinkWrapper } from "~/components/AutoLinkWrapper";
 import StateCard from "~/components/StateCard";
 import { Tourney } from "~/types/tourney";
 import { TOURNEY_STATE_NAMES, TOURNEY_TYPE_NAMES } from "~/utils/tourney";
