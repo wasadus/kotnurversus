@@ -28,7 +28,7 @@ type Props = {
   transition?: string | null;
 };
 
-export const SpecificationsListItem = memo(forwardRef<HTMLDivElement, Props>(
+export const SpecificationsListBaseItem = memo(forwardRef<HTMLDivElement, Props>(
   (
     {
       isDragging,

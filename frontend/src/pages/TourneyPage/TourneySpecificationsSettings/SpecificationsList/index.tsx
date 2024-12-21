@@ -16,13 +16,15 @@ import {
   SortableContext,
   arrayMove,
   sortableKeyboardCoordinates,
-  useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
-import { TourneySpecificationWithId } from "~/types/tourney";
-import { SpecificationsListItem as SpecificationsListBaseItem } from "./SpecificationsListItem";
+import { TourneySpecificationWithId } from "~/types/tourney.ts";
+import { SpecificationsListBaseItem } from "./SpecificationsListBaseItem";
+import {
+  SpecificationsListItem
+} from "~/pages/TourneyPage/TourneySpecificationsSettings/SpecificationsList/SpecificationsListItem";
 
 type Props = {
   specifications: TourneySpecificationWithId[];
@@ -135,44 +137,4 @@ const dropAnimationConfig: DropAnimation = {
   sideEffects: defaultDropAnimationSideEffects({
     styles: { active: { opacity: "0.25" } },
   }),
-};
-
-type SpecificationsListItemProps = {
-  specification: TourneySpecificationWithId;
-  onUpdate: (specifications: TourneySpecificationWithId) => void;
-  onDuplicate: (id: string) => void;
-  onRemove: (id: UniqueIdentifier) => void;
-};
-
-const SpecificationsListItem = ({
-  specification,
-  onUpdate,
-  onDuplicate,
-  onRemove,
-}: SpecificationsListItemProps) => {
-  const {
-    isDragging,
-    attributes,
-    listeners,
-    setNodeRef,
-    setActivatorNodeRef,
-    transform,
-    transition,
-  } = useSortable({ id: specification.id });
-
-  return (
-    <SpecificationsListBaseItem
-      ref={setNodeRef}
-      handleRef={setActivatorNodeRef}
-      isDragging={isDragging}
-      specification={specification}
-      onUpdate={onUpdate}
-      onDuplicate={() => onDuplicate(specification.id)}
-      onRemove={() => onRemove(specification.id)}
-      transform={transform}
-      transition={transition}
-      listeners={listeners}
-      {...attributes}
-    />
-  );
 };
