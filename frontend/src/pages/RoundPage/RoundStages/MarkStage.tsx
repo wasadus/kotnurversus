@@ -14,7 +14,7 @@ import { ButtonWithAlert } from "~/components/ButtonWithAlert";
 import useCustomToast from "~/hooks/useCustomToast";
 import useHandleError from "~/hooks/useHandleError";
 import { MinusIcon } from "~/icons/MinusIcon";
-import PlusIcon from "~/icons/PlusIcon";
+import { PlusIcon } from "~/icons/PlusIcon";
 import { getErrorApiStatus } from "~/utils/error";
 import queryKeys from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
