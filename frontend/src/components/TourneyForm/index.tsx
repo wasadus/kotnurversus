@@ -11,7 +11,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReactNode } from "react";
 import { Controller, useForm } from "react-hook-form";
-import DateInput from "~/components/DateInput";
+import { DateInput } from "~/components/DateInput";
 import Input from "~/components/Input";
 import Textarea from "~/components/Textarea";
 import TimeInput from "~/components/TimeInput";

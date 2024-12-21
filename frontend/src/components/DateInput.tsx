@@ -21,7 +21,7 @@ export type DateInputProps = {
   minDate?: Date;
 } & Omit<InputProps, "value" | "onChange">;
 
-const DateInput = forwardRef<DateInputProps, "input">(
+export const DateInput = forwardRef<DateInputProps, "input">(
   ({ value, onChange, minDate, ...props }, ref) => {
     const boxRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -127,4 +127,3 @@ const dayPickerStyles: ChakraProps = {
 };
 
 DateInput.displayName = "Calendar";
-export default DateInput;
