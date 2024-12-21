@@ -25,7 +25,7 @@ type Props = {
   children?: ReactNode;
 };
 
-const Alert = ({
+export const Alert = ({
   isOpen,
   onClose,
   heading = "Подтвердите действие",
@@ -108,5 +108,3 @@ const Alert = ({
     </AlertDialog>
   );
 };
-
-export default Alert;

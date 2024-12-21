@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
-import Alert from "~/components/Alert";
+import { Alert } from "~/components/Alert";
 
 type Props = {
   buttonText: string;
