@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import chroma from "chroma-js";
 import { api } from "~/api";
 import CategoryWindow from "~/components/CategoryWindow";
-import useHandleError from "~/hooks/useHandleError";
+import { useHandleError } from "~/hooks/useHandleError";
 import { Category, CreateCategory } from "~/types/category";
 import { queryKeys } from "~/utils/query-keys";
 

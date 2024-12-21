@@ -2,7 +2,7 @@ import { Button, Stack, Text } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "~/api";
 import { ButtonWithAlert } from "~/components/ButtonWithAlert";
-import useHandleError from "~/hooks/useHandleError";
+import { useHandleError } from "~/hooks/useHandleError";
 import { RoundState } from "~/types/round";
 import { queryKeys } from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";

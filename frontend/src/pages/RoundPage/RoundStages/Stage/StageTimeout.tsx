@@ -1,7 +1,7 @@
 import { BoxProps, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "~/api";
-import useHandleError from "~/hooks/useHandleError";
+import { useHandleError } from "~/hooks/useHandleError";
 import { useRoundContext } from "~/pages/RoundPage/round-context";
 import { RoundState } from "~/types/round";
 import { queryKeys } from "~/utils/query-keys";

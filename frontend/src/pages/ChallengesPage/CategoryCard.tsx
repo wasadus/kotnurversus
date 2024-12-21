@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "~/api";
 import { ChallengeCard as BaseChallengeCard } from "~/components/ChallengeCard";
 import ChallengeWindow from "~/components/ChallengeWindow";
-import useHandleError from "~/hooks/useHandleError";
+import { useHandleError } from "~/hooks/useHandleError";
 import { Category } from "~/types/category";
 import { Challenge, CreateChallenge } from "~/types/challenge";
 import { queryKeys } from "~/utils/query-keys";

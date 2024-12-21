@@ -6,7 +6,7 @@ import { api } from "~/api";
 import { AutoLinkWrapper } from "~/components/AutoLinkWrapper";
 import { AutoSizeTextarea } from "~/components/AutoSizeTextarea";
 import { useDebounce } from "~/hooks/useDebounce";
-import useHandleError from "~/hooks/useHandleError";
+import { useHandleError } from "~/hooks/useHandleError";
 import { queryKeys } from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
 

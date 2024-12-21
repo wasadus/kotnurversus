@@ -12,7 +12,7 @@ import { useEffect, useRef } from "react";
 import { api } from "~/api";
 import { ButtonWithAlert } from "~/components/ButtonWithAlert";
 import { useCustomToast } from "~/hooks/useCustomToast";
-import useHandleError from "~/hooks/useHandleError";
+import { useHandleError } from "~/hooks/useHandleError";
 import { MinusIcon } from "~/icons/MinusIcon";
 import { PlusIcon } from "~/icons/PlusIcon";
 import { getErrorApiStatus } from "~/utils/error";

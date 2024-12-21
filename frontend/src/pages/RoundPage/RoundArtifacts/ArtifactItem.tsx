@@ -12,7 +12,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { memo } from "react";
 import { api } from "~/api";
 import { Alert } from "~/components/Alert";
-import useHandleError from "~/hooks/useHandleError";
+import { useHandleError } from "~/hooks/useHandleError";
 import { CrossIcon } from "~/icons/CrossIcon";
 import { NotAllowedIcon } from "~/icons/NotAllowedIcon";
 import { RoundArtifact } from "~/types/round";

@@ -14,7 +14,7 @@ import { useMemo, useState } from "react";
 import { api } from "~/api";
 import { Window, WindowProps } from "~/components/Window";
 import { useChallengesQuery } from "~/hooks/useChallengesQuery";
-import useHandleError from "~/hooks/useHandleError";
+import { useHandleError } from "~/hooks/useHandleError";
 import { useRoundContext } from "~/pages/RoundPage/round-context";
 import { Category } from "~/types/category";
 import { Challenge } from "~/types/challenge";
