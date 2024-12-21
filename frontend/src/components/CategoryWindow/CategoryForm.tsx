@@ -2,7 +2,7 @@ import { Stack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import ColorInput from "~/components/ColorInput";
+import { ColorInput } from "~/components/ColorInput";
 import Input from "~/components/Input";
 
 type Props = {
