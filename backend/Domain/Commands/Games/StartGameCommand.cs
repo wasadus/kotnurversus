@@ -61,6 +61,20 @@ public class StartGameCommand : IStartGameCommand
         return result;
     }
 
+    // todo Можно примерно таким образом организовать правила игры
+    private static readonly Dictionary<int, (int Participant1, int Participant2, int Specifcation)[]> Rules = new Dictionary<int, (int Participant1, int Participant2, int Specifcation)[]>()
+    {
+        [2] = new[] {(0, 1, 0)},
+        [3] = new[]
+        {
+            (0, 1, 0),
+            (1, 2, 1),
+            (0, 2, 2),
+        },
+        [2] = new[] {(0, 1, 0)},
+
+    };
+
     private async Task CreateRoundsForGame(Game game, StartGameRequest parameters)
     {
         var countOfRounds = GetCountOfRoundsByGroups(parameters.Groups);
@@ -69,6 +83,10 @@ public class StartGameCommand : IStartGameCommand
         var finalRoundId = (await CreateRound(game.Id, parameters, countOfRounds, parameters.Specifications[^1])).Id;
         var parentRoundId = finalRoundId;
 
+        // todo: а может разбить этот метод на два этапа?
+        // 1. Формирование раунда без учета порядка + следующего раунда
+        // 2. Установка правильного порядка и следующего раунда
+        // 3. Сохранение изменений
         for (var i = parameters.Specifications.Count - 2; i > 2; i--)
         {
             parentRoundId = (await CreateRound(game.Id, parameters, countOfRounds - offsetFromEnd, parameters.Specifications[i], parentRoundId)).Id;
@@ -210,6 +228,7 @@ public class StartGameCommand : IStartGameCommand
         
     }
 
+    // todo: метод нуждается в unit-тестировании. Хорошо бы его вынести в какой-нибудь хелпер
     private int GetCountOfRoundsByGroups(List<List<Participant>> groups)
     {
         var count = 0;
