@@ -64,14 +64,15 @@ public class StartGameCommand : IStartGameCommand
     private async Task CreateRoundsForGame(Game game, StartGameRequest parameters)
     {
         var countOfRounds = GetCountOfRoundsByGroups(parameters.Groups);
-        var counter = 1;
+        var offsetFromEnd = 1;
 
-        var parentRoundId = await CreateRound(game.Id, parameters, countOfRounds, parameters.Specifications[^1]);
+        var finalRoundId = (await CreateRound(game.Id, parameters, countOfRounds, parameters.Specifications[^1])).Id;
+        var parentRoundId = finalRoundId;
 
         for (var i = parameters.Specifications.Count - 2; i > 2; i--)
         {
-            parentRoundId = await CreateRound(game.Id, parameters, countOfRounds - counter, parameters.Specifications[i], parentRoundId);
-            counter++;
+            parentRoundId = (await CreateRound(game.Id, parameters, countOfRounds - offsetFromEnd, parameters.Specifications[i], parentRoundId)).Id;
+            offsetFromEnd++;
         }
 
         for (var i = parameters.Groups.Count - 1; i >= 0; i--)
@@ -82,105 +83,115 @@ public class StartGameCommand : IStartGameCommand
             {
                 case 2:
                 {
-                    parentRoundId = await CreateRound(game.Id, 
-                        parameters, 
-                        countOfRounds - counter, 
-                        parameters.Specifications[0], 
-                        parentRoundId, 
-                        (group[0], group[1]));
+                    parentRoundId = (await CreateRound(
+                        game.Id,
+                        parameters,
+                        countOfRounds - offsetFromEnd,
+                        parameters.Specifications[0],
+                        parentRoundId,
+                        (group[0], group[1]))).Id;
                     
-                    counter++;
+                    offsetFromEnd++;
                     break;
                 }
                 case 3:
                 {
-                    parentRoundId = await CreateRound(game.Id, 
-                        parameters, 
-                        countOfRounds - counter, 
-                        parameters.Specifications[0], 
-                        parentRoundId, 
-                        (group[0], group[1]));
-                    counter++;
+                    parentRoundId = (await CreateRound(
+                        game.Id,
+                        parameters,
+                        countOfRounds - offsetFromEnd,
+                        parameters.Specifications[0],
+                        parentRoundId,
+                        (group[0], group[1]))).Id;
+                    offsetFromEnd++;
                     
-                    parentRoundId = await CreateRound(game.Id, 
-                        parameters, 
-                        countOfRounds - counter, 
-                        parameters.Specifications[1], 
-                        parentRoundId, 
-                        (group[0], group[2]));;
-                    counter++;
+                    parentRoundId = (await CreateRound(
+                        game.Id,
+                        parameters,
+                        countOfRounds - offsetFromEnd,
+                        parameters.Specifications[1],
+                        parentRoundId,
+                        (group[0], group[2]))).Id;
+                    offsetFromEnd++;
 
                     
-                    parentRoundId = await CreateRound(game.Id, 
-                        parameters, 
-                        countOfRounds - counter, 
-                        parameters.Specifications[2], 
-                        parentRoundId, 
-                        (group[1], group[2]));;
-                    counter++;
+                    parentRoundId = (await CreateRound(
+                        game.Id,
+                        parameters,
+                        countOfRounds - offsetFromEnd,
+                        parameters.Specifications[2],
+                        parentRoundId,
+                        (group[1], group[2]))).Id;
+                    offsetFromEnd++;
                     break;
                 }
                 case 4:
                 {
-                   parentRoundId = await CreateRound(game.Id, 
-                        parameters, 
-                        countOfRounds - counter, 
-                        parameters.Specifications[0], 
-                        parentRoundId, 
-                        (group[0], group[1]));;
-                    counter++;
+                   parentRoundId = (await CreateRound(
+                       game.Id,
+                       parameters,
+                       countOfRounds - offsetFromEnd,
+                       parameters.Specifications[0],
+                       parentRoundId,
+                       (group[0], group[1]))).Id;
+                    offsetFromEnd++;
                     
-                    parentRoundId = await CreateRound(game.Id, 
-                        parameters, 
-                        countOfRounds - counter, 
-                        parameters.Specifications[0], 
-                        parentRoundId, 
-                        (group[2], group[3]));
-                    counter++;
-                    
-                    parentRoundId = await CreateRound(game.Id, 
-                        parameters, 
-                        countOfRounds - counter, 
-                        parameters.Specifications[1], 
-                        parentRoundId, 
-                        (group[0], group[2]));
-                    counter++;
-
-                    parentRoundId = await CreateRound(game.Id,
+                    parentRoundId = (await CreateRound(
+                        game.Id,
                         parameters,
-                        countOfRounds - counter,
+                        countOfRounds - offsetFromEnd,
+                        parameters.Specifications[0],
+                        parentRoundId,
+                        (group[2], group[3]))).Id;
+                    offsetFromEnd++;
+                    
+                    parentRoundId = (await CreateRound(
+                        game.Id,
+                        parameters,
+                        countOfRounds - offsetFromEnd,
                         parameters.Specifications[1],
                         parentRoundId,
-                        (group[1], group[3]));
-                    counter++;
+                        (group[0], group[2]))).Id;
+                    offsetFromEnd++;
 
-                    parentRoundId = await CreateRound(game.Id,
+                    parentRoundId = (await CreateRound(
+                        game.Id,
                         parameters,
-                        countOfRounds - counter,
+                        countOfRounds - offsetFromEnd,
+                        parameters.Specifications[1],
+                        parentRoundId,
+                        (group[1], group[3]))).Id;
+                    offsetFromEnd++;
+
+                    parentRoundId = (await CreateRound(
+                        game.Id,
+                        parameters,
+                        countOfRounds - offsetFromEnd,
                         parameters.Specifications[2],
                         parentRoundId,
-                        (group[0], group[3]));
-                    counter++;
+                        (group[0], group[3]))).Id;
+                    offsetFromEnd++;
 
-                    parentRoundId = await CreateRound(game.Id,
+                    parentRoundId = (await CreateRound(
+                        game.Id,
                         parameters,
-                        countOfRounds - counter,
+                        countOfRounds - offsetFromEnd,
                         parameters.Specifications[2],
                         parentRoundId,
-                        (group[1], group[2]));
-                    counter++;
+                        (group[1], group[2]))).Id;
+                    offsetFromEnd++;
                     break;
                 }
             }
         }
     }
 
-    private async Task<Guid> CreateRound(
+    private async Task<Round> CreateRound(
         Guid gameId, 
         StartGameRequest parameters, 
         int order, 
         Specification specification, 
-        Guid? parentId = null, 
+        Guid? nextRoundId = null, 
         (Participant first, Participant second)? participants = null)
     {
         var round = new Round
@@ -190,12 +201,12 @@ public class StartGameCommand : IStartGameCommand
             Specification = specification,
             Settings = parameters.Settings,
             Order = order,
-            NextRoundId = parentId,
+            NextRoundId = nextRoundId,
             Id = Guid.NewGuid(),
         };
         await roundsService.AddAsync(round);
         
-        return round.Id;
+        return round;
         
     }
 
@@ -228,6 +239,7 @@ public class StartGameCommand : IStartGameCommand
     {
         return IsNumberAPowOfTwo(parameters.Groups.Count)
             && parameters.Groups.All(x => x.Count >= 2)
+            && parameters.Groups.Count <= 4
             && parameters.Specifications.Count >= 4;
         
     }
