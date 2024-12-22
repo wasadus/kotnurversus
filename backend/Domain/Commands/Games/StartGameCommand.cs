@@ -84,23 +84,14 @@ public class StartGameCommand : IStartGameCommand
 
     private async Task CreateRoundsForGame(Game game, StartGameRequest parameters)
     {
-        var countOfRounds = GetCountOfRoundsByGroups(parameters.Groups);
-        var offsetFromEnd = 1;
+        var rounds = new List<Round>();
 
-        var finalRoundId = (await CreateRound(game.Id, parameters, countOfRounds, parameters.Specifications[^1])).Id;
-        var parentRoundId = finalRoundId;
-
-        // todo: а может разбить этот метод на два этапа?
-        // 1. Формирование раунда без учета порядка + следующего раунда
-        // 2. Установка правильного порядка и следующего раунда
-        // 3. Сохранение изменений
-        for (var i = parameters.Specifications.Count - 2; i > 2; i--)
+        for (var i = 3; i < parameters.Specifications.Count; i++)
         {
-            parentRoundId = (await CreateRound(game.Id, parameters, countOfRounds - offsetFromEnd, parameters.Specifications[i], parentRoundId)).Id;
-            offsetFromEnd++;
+            rounds.Add(CreateRound(game.Id, parameters, parameters.Specifications[i]));
         }
 
-        for (var i = parameters.Groups.Count - 1; i >= 0; i--)
+        for (var i = 0; i < parameters.Groups.Count; i++)
         {
             var group = parameters.Groups[i];
 
@@ -111,18 +102,12 @@ public class StartGameCommand : IStartGameCommand
                     var rules = GroupStageRules[2];
                     foreach (var rule in rules)
                     {
-                        parentRoundId = 
-                        (
-                            await CreateRound(
-                            game.Id,
-                            parameters,
-                            countOfRounds - offsetFromEnd,
-                            parameters.Specifications[rule.SpecificationIndex],
-                            parentRoundId,
-                            (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex]))
-                        ).Id;
-                    
-                        offsetFromEnd++;
+                        rounds.Add(
+                            CreateRound(
+                                game.Id,
+                                parameters,
+                                parameters.Specifications[rule.SpecificationIndex],
+                                (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex])));
                     }
                     break;
                 }
@@ -131,17 +116,12 @@ public class StartGameCommand : IStartGameCommand
                     var rules = GroupStageRules[3];
                     foreach (var rule in rules)
                     {
-                        parentRoundId = 
-                        (
-                            await CreateRound(
-                            game.Id,
-                            parameters,
-                            countOfRounds - offsetFromEnd,
-                            parameters.Specifications[rule.SpecificationIndex],
-                            parentRoundId,
-                            (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex]))
-                        ).Id;
-                        offsetFromEnd++;
+                        rounds.Add(
+                            CreateRound(
+                                game.Id,
+                                parameters,
+                                parameters.Specifications[rule.SpecificationIndex],
+                                (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex])));
                     }
                     break;
                 }
@@ -150,30 +130,38 @@ public class StartGameCommand : IStartGameCommand
                     var rules = GroupStageRules[4];
                     foreach (var rule in rules)
                     {
-                        parentRoundId = 
-                        (
-                            await CreateRound(
-                            game.Id,
-                            parameters,
-                            countOfRounds - offsetFromEnd,
-                            parameters.Specifications[rule.SpecificationIndex],
-                            parentRoundId,
-                            (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex]))
-                        ).Id;
-                        offsetFromEnd++;
+                        rounds.Add(
+                            CreateRound(
+                                game.Id,
+                                parameters,
+                                parameters.Specifications[rule.SpecificationIndex],
+                                (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex])));
                     }
                     break;
                 }
             }
         }
+
+        rounds.Reverse();
+
+        for (var i = 0; i < rounds.Count - 1; i++)
+        {
+            var round = rounds[i];
+            round.Order = i + 1;
+            round.Id = rounds[i + 1].Id;
+        }
+        rounds[^1].Order = rounds.Count;
+
+        foreach (var round in rounds)
+        {
+            await roundsService.AddAsync(round);
+        }
     }
 
-    private async Task<Round> CreateRound(
+    private Round CreateRound(
         Guid gameId, 
         StartGameRequest parameters, 
-        int order, 
-        Specification specification, 
-        Guid? nextRoundId = null, 
+        Specification specification,
         (Participant first, Participant second)? participants = null)
     {
         var round = new Round
@@ -182,39 +170,10 @@ public class StartGameCommand : IStartGameCommand
             Participants = participants.HasValue ? [participants.Value.first, participants.Value.second] : [],
             Specification = specification,
             Settings = parameters.Settings,
-            Order = order,
-            NextRoundId = nextRoundId,
             Id = Guid.NewGuid(),
         };
-        await roundsService.AddAsync(round);
-        
+
         return round;
-        
-    }
-
-    // todo: метод нуждается в unit-тестировании. Хорошо бы его вынести в какой-нибудь хелпер
-    private int GetCountOfRoundsByGroups(List<List<Participant>> groups)
-    {
-        var count = 0;
-        foreach (var group in groups)
-        {
-            switch (group.Count)
-            {
-                case 2:
-                    count += 1;
-                    break;
-                case 3:
-                    count += 3;
-                    break;
-                case 4:
-                    count += 6;
-                    break;
-            }
-        }
-
-        count += 2 * (groups.Count - 1) + 1; // 1 => 1 round, 2 => 3 rounds, 4 => 7 rounds
-        
-        return count;
         
     }
 
