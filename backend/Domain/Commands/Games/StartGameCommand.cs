@@ -61,18 +61,25 @@ public class StartGameCommand : IStartGameCommand
         return result;
     }
 
-    // todo Можно примерно таким образом организовать правила игры
-    private static readonly Dictionary<int, (int Participant1, int Participant2, int Specifcation)[]> Rules = new Dictionary<int, (int Participant1, int Participant2, int Specifcation)[]>()
+    private static readonly Dictionary<int, GroupStageRoundParameters[]> GroupStageRules = new()
     {
-        [2] = new[] {(0, 1, 0)},
-        [3] = new[]
-        {
-            (0, 1, 0),
-            (1, 2, 1),
-            (0, 2, 2),
-        },
-        [2] = new[] {(0, 1, 0)},
-
+        [2] =
+        [
+            new GroupStageRoundParameters(0, 1, 0)
+        ],
+        [3] =
+        [
+            new GroupStageRoundParameters(0, 1, 0),
+            new GroupStageRoundParameters(1, 2, 1),
+            new GroupStageRoundParameters(0, 2, 2)
+        ],
+        [4] =
+        [
+            new GroupStageRoundParameters(0, 1, 0),
+            new GroupStageRoundParameters(2, 3, 0),
+            new GroupStageRoundParameters(0, 2, 1),
+            new GroupStageRoundParameters(1, 3, 1)
+        ]
     };
 
     private async Task CreateRoundsForGame(Game game, StartGameRequest parameters)
@@ -101,103 +108,60 @@ public class StartGameCommand : IStartGameCommand
             {
                 case 2:
                 {
-                    parentRoundId = (await CreateRound(
-                        game.Id,
-                        parameters,
-                        countOfRounds - offsetFromEnd,
-                        parameters.Specifications[0],
-                        parentRoundId,
-                        (group[0], group[1]))).Id;
+                    var rules = GroupStageRules[2];
+                    foreach (var rule in rules)
+                    {
+                        parentRoundId = 
+                        (
+                            await CreateRound(
+                            game.Id,
+                            parameters,
+                            countOfRounds - offsetFromEnd,
+                            parameters.Specifications[rule.SpecificationIndex],
+                            parentRoundId,
+                            (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex]))
+                        ).Id;
                     
-                    offsetFromEnd++;
+                        offsetFromEnd++;
+                    }
                     break;
                 }
                 case 3:
                 {
-                    parentRoundId = (await CreateRound(
-                        game.Id,
-                        parameters,
-                        countOfRounds - offsetFromEnd,
-                        parameters.Specifications[0],
-                        parentRoundId,
-                        (group[0], group[1]))).Id;
-                    offsetFromEnd++;
-                    
-                    parentRoundId = (await CreateRound(
-                        game.Id,
-                        parameters,
-                        countOfRounds - offsetFromEnd,
-                        parameters.Specifications[1],
-                        parentRoundId,
-                        (group[0], group[2]))).Id;
-                    offsetFromEnd++;
-
-                    
-                    parentRoundId = (await CreateRound(
-                        game.Id,
-                        parameters,
-                        countOfRounds - offsetFromEnd,
-                        parameters.Specifications[2],
-                        parentRoundId,
-                        (group[1], group[2]))).Id;
-                    offsetFromEnd++;
+                    var rules = GroupStageRules[3];
+                    foreach (var rule in rules)
+                    {
+                        parentRoundId = 
+                        (
+                            await CreateRound(
+                            game.Id,
+                            parameters,
+                            countOfRounds - offsetFromEnd,
+                            parameters.Specifications[rule.SpecificationIndex],
+                            parentRoundId,
+                            (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex]))
+                        ).Id;
+                        offsetFromEnd++;
+                    }
                     break;
                 }
                 case 4:
                 {
-                   parentRoundId = (await CreateRound(
-                       game.Id,
-                       parameters,
-                       countOfRounds - offsetFromEnd,
-                       parameters.Specifications[0],
-                       parentRoundId,
-                       (group[0], group[1]))).Id;
-                    offsetFromEnd++;
-                    
-                    parentRoundId = (await CreateRound(
-                        game.Id,
-                        parameters,
-                        countOfRounds - offsetFromEnd,
-                        parameters.Specifications[0],
-                        parentRoundId,
-                        (group[2], group[3]))).Id;
-                    offsetFromEnd++;
-                    
-                    parentRoundId = (await CreateRound(
-                        game.Id,
-                        parameters,
-                        countOfRounds - offsetFromEnd,
-                        parameters.Specifications[1],
-                        parentRoundId,
-                        (group[0], group[2]))).Id;
-                    offsetFromEnd++;
-
-                    parentRoundId = (await CreateRound(
-                        game.Id,
-                        parameters,
-                        countOfRounds - offsetFromEnd,
-                        parameters.Specifications[1],
-                        parentRoundId,
-                        (group[1], group[3]))).Id;
-                    offsetFromEnd++;
-
-                    parentRoundId = (await CreateRound(
-                        game.Id,
-                        parameters,
-                        countOfRounds - offsetFromEnd,
-                        parameters.Specifications[2],
-                        parentRoundId,
-                        (group[0], group[3]))).Id;
-                    offsetFromEnd++;
-
-                    parentRoundId = (await CreateRound(
-                        game.Id,
-                        parameters,
-                        countOfRounds - offsetFromEnd,
-                        parameters.Specifications[2],
-                        parentRoundId,
-                        (group[1], group[2]))).Id;
-                    offsetFromEnd++;
+                    var rules = GroupStageRules[4];
+                    foreach (var rule in rules)
+                    {
+                        parentRoundId = 
+                        (
+                            await CreateRound(
+                            game.Id,
+                            parameters,
+                            countOfRounds - offsetFromEnd,
+                            parameters.Specifications[rule.SpecificationIndex],
+                            parentRoundId,
+                            (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex]))
+                        ).Id;
+                        offsetFromEnd++;
+                    }
                     break;
                 }
             }
