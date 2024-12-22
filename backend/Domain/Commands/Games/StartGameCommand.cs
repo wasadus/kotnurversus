@@ -112,7 +112,7 @@ public class StartGameCommand : IStartGameCommand
         {
             var round = rounds[i];
             round.Order = i + 1;
-            round.Id = rounds[i + 1].Id;
+            round.NextRoundId = rounds[i + 1].Id;
         }
         rounds[^1].Order = rounds.Count;
 
@@ -120,6 +120,8 @@ public class StartGameCommand : IStartGameCommand
         {
             await roundsService.AddAsync(round);
         }
+        //todo
+        //await roundsService.AddRange(rounds);
     }
 
     private Round CreateRound(
