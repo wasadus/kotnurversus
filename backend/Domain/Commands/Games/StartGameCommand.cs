@@ -94,51 +94,16 @@ public class StartGameCommand : IStartGameCommand
         for (var i = 0; i < parameters.Groups.Count; i++)
         {
             var group = parameters.Groups[i];
+            var rules = GroupStageRules[group.Count];
 
-            switch (group.Count)
+            foreach (var rule in rules)
             {
-                case 2:
-                {
-                    var rules = GroupStageRules[2];
-                    foreach (var rule in rules)
-                    {
-                        rounds.Add(
-                            CreateRound(
-                                game.Id,
-                                parameters,
-                                parameters.Specifications[rule.SpecificationIndex],
-                                (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex])));
-                    }
-                    break;
-                }
-                case 3:
-                {
-                    var rules = GroupStageRules[3];
-                    foreach (var rule in rules)
-                    {
-                        rounds.Add(
-                            CreateRound(
-                                game.Id,
-                                parameters,
-                                parameters.Specifications[rule.SpecificationIndex],
-                                (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex])));
-                    }
-                    break;
-                }
-                case 4:
-                {
-                    var rules = GroupStageRules[4];
-                    foreach (var rule in rules)
-                    {
-                        rounds.Add(
-                            CreateRound(
-                                game.Id,
-                                parameters,
-                                parameters.Specifications[rule.SpecificationIndex],
-                                (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex])));
-                    }
-                    break;
-                }
+                rounds.Add(
+                    CreateRound(
+                        game.Id,
+                        parameters,
+                        parameters.Specifications[rule.SpecificationIndex],
+                        (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex])));
             }
         }
 
