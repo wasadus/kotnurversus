@@ -91,9 +91,8 @@ public class StartGameCommand : IStartGameCommand
             rounds.Add(CreateRound(game.Id, parameters, parameters.Specifications[i]));
         }
 
-        for (var i = 0; i < parameters.Groups.Count; i++)
+        foreach (var group in parameters.Groups)
         {
-            var group = parameters.Groups[i];
             var rules = GroupStageRules[group.Count];
 
             foreach (var rule in rules)
