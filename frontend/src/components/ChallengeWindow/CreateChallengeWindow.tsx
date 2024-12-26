@@ -22,6 +22,7 @@ const CreateChallengeWindow = ({
       shortDescription: data.shortDescription,
       description: data.description,
       isCatInBag: data.isCatInBag,
+      difficulty: data.difficulty
     });
   };
 
