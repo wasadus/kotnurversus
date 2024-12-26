@@ -5,8 +5,8 @@ import axiosStatic, {
 } from "axios";
 import { isDev } from "~/utils";
 import { TOKEN_STORAGE_KEY } from "~/utils/auth-context";
-import storage from "~/utils/storage";
-import handleDates from "./handle-dates";
+import { storageClient as storage } from "~/utils/storage";
+import { handleDates } from "./handle-dates";
 
 const axios = axiosStatic.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -26,7 +26,7 @@ axios.interceptors.response.use((response) => {
   return response;
 });
 
-export default {
+export const axiosClient = {
   get: async <T>(url: string, params?: object): Promise<T> => {
     try {
       const res = await axios.get<T>(url, { params });

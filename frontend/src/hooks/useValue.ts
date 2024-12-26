@@ -9,7 +9,7 @@ type UseValueExtraParams<T> = {
   onUpdate?: (value: T) => void;
 };
 
-const useValue = <T>(
+export const useValue = <T>(
   defaultValue: T,
   params: UseValueExtraParams<T> = {}
 ): ValueRef<T> => {
@@ -30,5 +30,3 @@ const useValue = <T>(
 
   return valueRef;
 };
-
-export default useValue;

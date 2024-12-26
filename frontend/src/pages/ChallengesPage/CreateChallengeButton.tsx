@@ -1,16 +1,16 @@
 import { Button, ButtonProps, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import api from "~/api";
-import ChallengeWindow from "~/components/ChallengeWindow";
-import useHandleError from "~/hooks/useHandleError";
+import { api } from "~/api";
+import { ChallengeWindow } from "~/components/ChallengeWindow";
+import { useHandleError } from "~/hooks/useHandleError";
 import { CreateChallenge } from "~/types/challenge";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 type Props = {
   defaultCategoryId?: string;
 } & ButtonProps;
 
-const CreateChallengeButton = ({ defaultCategoryId, ...props }: Props) => {
+export const CreateChallengeButton = ({ defaultCategoryId, ...props }: Props) => {
   const window = useDisclosure();
   const queryClient = useQueryClient();
   const handleError = useHandleError();
@@ -48,5 +48,3 @@ const CreateChallengeButton = ({ defaultCategoryId, ...props }: Props) => {
     </>
   );
 };
-
-export default CreateChallengeButton;

@@ -1,7 +1,7 @@
 import { Box, BoxProps, Collapse, Placement, Portal } from "@chakra-ui/react";
 import { RefObject, useEffect, useMemo, useState } from "react";
 import { Modifier, usePopper } from "react-popper";
-import useDebounce from "~/hooks/useDebounce";
+import { useDebounce } from "~/hooks/useDebounce";
 
 type PopperProps = {
   isOpen: boolean;
@@ -13,7 +13,7 @@ type PopperProps = {
   popperGap?: number;
 } & BoxProps;
 
-const Popper = ({
+export const Popper = ({
   isOpen,
   anchorRef,
   placement = "bottom",
@@ -110,5 +110,3 @@ const makeOffset = (gap: number) => ({
   name: "offset",
   options: { offset: [0, gap] },
 });
-
-export default Popper;

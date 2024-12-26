@@ -1,3 +1,3 @@
-import Single from "./SingleSelect";
+import { SingleSelect } from "./SingleSelect";
 
-export default { Single };
+export const Select = { Single: SingleSelect };

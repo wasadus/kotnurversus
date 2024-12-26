@@ -5,7 +5,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import BreadcrumbIcon from "~/icons/BreadcrumbIcon";
+import { BreadcrumbIcon } from "~/icons/BreadcrumbIcon";
 
 type Props = {
   items: Array<{
@@ -14,7 +14,7 @@ type Props = {
   }>;
 };
 
-const Breadcrumb = ({ items }: Props) => (
+export const Breadcrumb = ({ items }: Props) => (
   <BaseBreadcrumb
     spacing={2}
     fontSize={{ base: "xs", md: "sm" }}
@@ -33,5 +33,3 @@ const Breadcrumb = ({ items }: Props) => (
     ))}
   </BaseBreadcrumb>
 );
-
-export default Breadcrumb;

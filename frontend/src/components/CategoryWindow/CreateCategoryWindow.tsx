@@ -1,13 +1,13 @@
 import { useId } from "react";
-import Window, { WindowProps } from "~/components/Window";
+import { Window, WindowProps } from "~/components/Window";
 import { CreateCategory } from "~/types/category";
-import CategoryForm, { CategoryFormSchema } from "./CategoryForm";
+import { CategoryForm, CategoryFormSchema } from "./CategoryForm";
 
 type Props = {
   onSubmit?: (category: CreateCategory) => void;
 };
 
-const CreateCategoryWindow = ({ onSubmit, ...props }: WindowProps<Props>) => {
+export const CreateCategoryWindow = ({ onSubmit, ...props }: WindowProps<Props>) => {
   const formId = useId();
 
   const handleSubmit = (data: CategoryFormSchema) => {
@@ -25,5 +25,3 @@ const CreateCategoryWindow = ({ onSubmit, ...props }: WindowProps<Props>) => {
     </Window>
   );
 };
-
-export default CreateCategoryWindow;

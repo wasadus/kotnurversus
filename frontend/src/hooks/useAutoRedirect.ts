@@ -6,7 +6,7 @@ type UseAutoRedirectParams = {
   path: string;
 };
 
-const useAutoRedirect = ({ isEnabled, path }: UseAutoRedirectParams) => {
+export const useAutoRedirect = ({ isEnabled, path }: UseAutoRedirectParams) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,5 +15,3 @@ const useAutoRedirect = ({ isEnabled, path }: UseAutoRedirectParams) => {
     }
   }, [isEnabled]);
 };
-
-export default useAutoRedirect;

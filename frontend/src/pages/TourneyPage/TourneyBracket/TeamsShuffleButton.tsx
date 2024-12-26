@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from "@chakra-ui/react";
-import ShuffleIcon from "~/icons/ShuffleIcon";
+import { ShuffleIcon } from "~/icons/ShuffleIcon";
 import { TourneyTeam } from "~/types/tourney";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   onTeamsChange: (teams: TourneyTeam[]) => void;
 } & ButtonProps;
 
-const TeamsShuffleButton = ({ teams, onTeamsChange, ...props }: Props) => {
+export const TeamsShuffleButton = ({ teams, onTeamsChange, ...props }: Props) => {
   const handleClick = async () => {
     const shuffledTeams = teams.toShuffle().map((t, i) => ({ ...t, order: i }));
     onTeamsChange(shuffledTeams);
@@ -22,4 +22,3 @@ const TeamsShuffleButton = ({ teams, onTeamsChange, ...props }: Props) => {
     />
   );
 };
-export default TeamsShuffleButton;

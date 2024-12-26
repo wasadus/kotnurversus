@@ -1,6 +1,6 @@
 import { useCallback, useRef } from "react";
 
-const useDebounce = (debounceTime: number) => {
+export const useDebounce = (debounceTime: number) => {
   const timeout = useRef<number | undefined>(undefined);
 
   const reset = useCallback(() => {
@@ -17,5 +17,3 @@ const useDebounce = (debounceTime: number) => {
 
   return { set, reset };
 };
-
-export default useDebounce;

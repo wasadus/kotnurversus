@@ -9,7 +9,7 @@ const isIsoDateString = (value: any): value is string => {
   return typeof value === "string" && ISODateFormat.test(value);
 };
 
-const handleDates = (data: any) => {
+export const handleDates = (data: any) => {
   if (isIsoDateString(data)) return parseISO(data);
 
   if (data === null || data === undefined || typeof data !== "object")
@@ -22,5 +22,3 @@ const handleDates = (data: any) => {
 
   return data;
 };
-
-export default handleDates;

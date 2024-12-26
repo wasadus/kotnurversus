@@ -7,16 +7,16 @@ import {
 } from "@chakra-ui/react";
 import { useRef, ClipboardEvent } from "react";
 import { HexColorPicker } from "react-colorful";
-import Input, { InputProps } from "~/components/Input";
-import Popper from "~/components/Popper";
-import useOutsideAction from "~/hooks/useOutsideAction";
+import { Input, InputProps } from "~/components/Input";
+import { Popper } from "~/components/Popper";
+import { useOutsideAction } from "~/hooks/useOutsideAction";
 
 type Props = {
   value?: string;
   onChange?: (newValue: string) => void;
 } & InputProps;
 
-const ColorInput = forwardRef<Props, "input">(
+export const ColorInput = forwardRef<Props, "input">(
   ({ value, onChange, ...props }, ref) => {
     const boxRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -62,5 +62,3 @@ const ColorInput = forwardRef<Props, "input">(
 );
 
 const hexRegexp = /^#(?:[0-9a-fA-F]{3}){1,2}$/;
-
-export default ColorInput;

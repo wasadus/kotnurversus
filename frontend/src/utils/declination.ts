@@ -6,7 +6,7 @@
  * @param      {string}  words   Слово и варианты окончаний для 1|2|1 (1 комментарий, 2 комментария, 100 комментариев)
  * @return     {string}  Слово с правильным окончанием
  */
-const declination = (number: number, words: string): string => {
+export const declination = (number: number, words: string): string => {
   const w = words.split("|");
   const n = Math.abs(number * 1);
 
@@ -16,5 +16,3 @@ const declination = (number: number, words: string): string => {
     ? w[0] + w[2]
     : w[0] + w[3];
 };
-
-export default declination;

@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export default (props: IconProps) => (
+export const OutlinePlusIcon = (props: IconProps) => (
   <Icon boxSize={4} fill="none" viewBox="0 0 24 24" {...props}>
     <path
       stroke="currentColor"

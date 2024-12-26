@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 } & BoxProps;
 
-const StageMainInfo = ({ isMinContent, children, ...props }: Props) => (
+export const StageMainInfo = ({ isMinContent, children, ...props }: Props) => (
   <Center gridArea="m" {...props}>
     <Text
       w={isMinContent ? "min-content" : "fit-content"}
@@ -18,5 +18,3 @@ const StageMainInfo = ({ isMinContent, children, ...props }: Props) => (
     />
   </Center>
 );
-
-export default StageMainInfo;

@@ -2,7 +2,7 @@ import { Box, BoxProps, Text } from "@chakra-ui/react";
 import { RoundState } from "~/types/round";
 import { useRoundContext } from "../../round-context";
 
-const StageState = (props: BoxProps) => {
+export const StageState = (props: BoxProps) => {
   const context = useRoundContext();
 
   const state =
@@ -83,5 +83,3 @@ const stateInfo: Record<RoundState, StateInfo | undefined> = {
   },
   [RoundState.Pause]: undefined,
 };
-
-export default StageState;

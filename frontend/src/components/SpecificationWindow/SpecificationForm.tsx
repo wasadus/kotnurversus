@@ -2,8 +2,8 @@ import { Stack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Input from "~/components/Input";
-import Textarea from "~/components/Textarea";
+import { Input } from "~/components/Input";
+import { Textarea } from "~/components/Textarea";
 
 type Props = {
   id: string;
@@ -11,7 +11,7 @@ type Props = {
   onSubmit: (data: SpecificationFormSchema) => void;
 };
 
-const SpecificationForm = ({ id, defaultValue, onSubmit }: Props) => {
+export const SpecificationForm = ({ id, defaultValue, onSubmit }: Props) => {
   const {
     register,
     handleSubmit,
@@ -49,5 +49,3 @@ const specificationFormSchema = z.object({
 });
 
 export type SpecificationFormSchema = z.infer<typeof specificationFormSchema>;
-
-export default SpecificationForm;

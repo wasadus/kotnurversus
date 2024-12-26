@@ -1,5 +1,5 @@
 import { Heading, Stack } from "@chakra-ui/react";
-import BaseTourneysTable from "~/components/TourneysTable";
+import { TourneysTable as BaseTourneysTable } from "~/components/TourneysTable";
 import { Tourney } from "~/types/tourney";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   tourneys: Tourney[];
 };
 
-const TourneysTable = ({ title, tourneys }: Props) => {
+export const TourneysTable = ({ title, tourneys }: Props) => {
   if (tourneys.length < 1) return null;
 
   return (
@@ -23,5 +23,3 @@ const TourneysTable = ({ title, tourneys }: Props) => {
     </Stack>
   );
 };
-
-export default TourneysTable;

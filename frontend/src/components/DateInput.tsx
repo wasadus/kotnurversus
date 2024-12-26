@@ -10,10 +10,10 @@ import { ru } from "date-fns/locale";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { DayPicker, SelectSingleEventHandler } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import Input, { InputProps } from "~/components/Input";
-import Popper from "~/components/Popper";
-import useOutsideAction from "~/hooks/useOutsideAction";
-import CalendarIcon from "~/icons/CalendarIcon";
+import { Input, InputProps } from "~/components/Input";
+import { Popper } from "~/components/Popper";
+import { useOutsideAction } from "~/hooks/useOutsideAction";
+import { CalendarIcon } from "~/icons/CalendarIcon";
 
 export type DateInputProps = {
   value?: Date;
@@ -21,7 +21,7 @@ export type DateInputProps = {
   minDate?: Date;
 } & Omit<InputProps, "value" | "onChange">;
 
-const DateInput = forwardRef<DateInputProps, "input">(
+export const DateInput = forwardRef<DateInputProps, "input">(
   ({ value, onChange, minDate, ...props }, ref) => {
     const boxRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -127,4 +127,3 @@ const dayPickerStyles: ChakraProps = {
 };
 
 DateInput.displayName = "Calendar";
-export default DateInput;

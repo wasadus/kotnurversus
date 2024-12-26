@@ -1,6 +1,6 @@
 import { getHours, getMinutes, isValid, set } from "date-fns";
 
-const timeHelpers = {
+export const timeHelpers = {
   "hh:mm": {
     regexp: /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/,
     castDateToTime: (date: Date): string => {
@@ -30,5 +30,3 @@ const timeHelpers = {
     },
   },
 };
-
-export default timeHelpers;

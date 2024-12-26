@@ -7,7 +7,7 @@ export type DropdownItemProps<T extends SelectValue> = {
   option: SelectOption<T>;
 } & FlexProps;
 
-const SelectDropdownItem = <T extends SelectValue>({
+export const SelectDropdownItem = <T extends SelectValue>({
   isChosen,
   option,
   ...props
@@ -33,5 +33,3 @@ const SelectDropdownItem = <T extends SelectValue>({
     {...props}
   />
 );
-
-export default SelectDropdownItem;

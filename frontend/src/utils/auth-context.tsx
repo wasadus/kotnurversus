@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useMemo, useState } from "react";
 import { getUser } from "~/utils/auth";
-import storage from "~/utils/storage";
+import { storageClient as storage } from "~/utils/storage";
 
 type AuthContent = {
   isAuthenticated: boolean;

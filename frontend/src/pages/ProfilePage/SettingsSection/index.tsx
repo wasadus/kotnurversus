@@ -1,11 +1,11 @@
-import { BoxProps, Button, ButtonProps, Grid } from "@chakra-ui/react";
+import { BoxProps, Grid } from "@chakra-ui/react";
 import { getUser } from "~/utils/auth";
-import { useAuthContext } from "~/utils/auth-context";
-import LoginSettings from "./LoginSettings";
-import PasswordSettings from "./PasswordSettings";
-import SettingsLayout from "./SettingsLayout";
+import { LoginSettings } from "./LoginSettings";
+import { PasswordSettings } from "./PasswordSettings";
+import { SettingsLayout } from "./SettingsLayout";
+import { LogoutButton } from "~/pages/ProfilePage/SettingsSection/LogoutButton.tsx";
 
-const SettingsSection = (props: BoxProps) => {
+export const SettingsSection = (props: BoxProps) => {
   const user = getUser();
 
   if (!user) return null;
@@ -41,20 +41,3 @@ const SettingsSection = (props: BoxProps) => {
     </Grid>
   );
 };
-
-const LogoutButton = (props: ButtonProps) => {
-  const { onLogout } = useAuthContext();
-
-  return (
-    <Button
-      {...props}
-      p={2}
-      variant="link"
-      colorScheme="red"
-      onClick={onLogout}
-      children="Выйти из аккаунта"
-    />
-  );
-};
-
-export default SettingsSection;

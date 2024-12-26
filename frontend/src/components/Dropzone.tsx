@@ -1,11 +1,11 @@
 import { BoxProps, Stack, Text } from "@chakra-ui/react";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
-import ImageIcon from "~/icons/ImageIcon";
+import { ImageIcon } from "~/icons/ImageIcon";
 
 type Props = Omit<BoxProps, "onDrop"> &
   Pick<DropzoneOptions, "onDrop" | "accept">;
 
-const Dropzone = ({ onDrop, accept, ...props }: Props) => {
+export const Dropzone = ({ onDrop, accept, ...props }: Props) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept,
     onDrop,
@@ -38,5 +38,3 @@ const Dropzone = ({ onDrop, accept, ...props }: Props) => {
     </Stack>
   );
 };
-
-export default Dropzone;

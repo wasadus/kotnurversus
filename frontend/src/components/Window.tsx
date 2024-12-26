@@ -40,7 +40,7 @@ type Props = {
   extraButton?: ReactNode;
 } & ModalProps;
 
-const Window = ({
+export const Window = ({
   isOpen,
   onClose,
   isLoading,
@@ -157,5 +157,3 @@ const Window = ({
     </Modal>
   );
 };
-
-export default Window;

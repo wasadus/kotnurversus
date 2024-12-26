@@ -8,7 +8,7 @@ type useSelectLogicParams = {
   optionsNumberInDropdown: number;
 };
 
-const useSelectLogic = ({
+export const useSelectLogic = ({
   inputRef,
   dropdownRef,
   optionsLength,
@@ -134,5 +134,3 @@ const useSelectLogic = ({
 
   return { focusIndex, onKey, scrollToOption };
 };
-
-export default useSelectLogic;

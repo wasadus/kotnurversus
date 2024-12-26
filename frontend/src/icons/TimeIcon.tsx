@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "@chakra-ui/react";
 
-export default (props: IconProps) => (
+export const TimeIcon = (props: IconProps) => (
   <Icon boxSize={4} fill="none" viewBox="0 0 24 24" {...props}>
     <g fill="currentColor" clipPath="url(#clip0_1923_10248)">
       <path d="M12 0a12 12 0 1 0 12 12A12.014 12.014 0 0 0 12 0Zm0 22a10 10 0 1 1 10-10 10.011 10.011 0 0 1-10 10Z" />

@@ -1,6 +1,6 @@
 import { Box, ButtonProps, Text, Tooltip } from "@chakra-ui/react";
 import chroma from "chroma-js";
-import CatIcon from "~/icons/CatIcon";
+import { CatIcon } from "~/icons/CatIcon";
 import { Category } from "~/types/category";
 import { Challenge } from "~/types/challenge";
 
@@ -9,7 +9,7 @@ type ChallengeCardProps = {
   challenge: Challenge;
 } & ButtonProps;
 
-const ChallengeCard = ({
+export const ChallengeCard = ({
   challenge,
   category,
   ...props
@@ -71,5 +71,3 @@ const ChallengeCard = ({
     </Box>
   );
 };
-
-export default ChallengeCard;

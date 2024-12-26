@@ -1,10 +1,10 @@
 import { Text } from "@chakra-ui/react";
 import { useMemo } from "react";
-import BaseSelect from "../BaseSelect";
+import { BaseSelect } from "../BaseSelect";
 import { DropdownItemProps } from "../BaseSelect/SelectDropdownItem";
 import { SelectValue } from "../types";
 
-const SingleSelectItem = <T extends SelectValue>(props: DropdownItemProps<T>) =>
+export const SingleSelectItem = <T extends SelectValue>(props: DropdownItemProps<T>) =>
   useMemo(() => {
     return (
       <BaseSelect.DropdownItem
@@ -21,5 +21,3 @@ const SingleSelectItem = <T extends SelectValue>(props: DropdownItemProps<T>) =>
       />
     );
   }, [props.isChosen, props.option.value]);
-
-export default SingleSelectItem;

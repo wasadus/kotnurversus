@@ -1,8 +1,8 @@
 import { useId } from "react";
-import ButtonWithAlert from "~/components/ButtonWithAlert";
-import Window, { WindowProps } from "~/components/Window";
+import { ButtonWithAlert } from "~/components/ButtonWithAlert";
+import { Window, WindowProps } from "~/components/Window";
 import { Challenge, CreateChallenge } from "~/types/challenge";
-import ChallengeForm, { ChallengeFormSchema } from "./ChallengeForm";
+import { ChallengeForm, ChallengeFormSchema } from "./ChallengeForm";
 
 type Props = {
   challenge: Challenge;
@@ -10,7 +10,7 @@ type Props = {
   onRemove?: () => void;
 };
 
-const EditChallengeWindow = ({
+export const EditChallengeWindow = ({
   challenge,
   onSubmit,
   onRemove,
@@ -52,5 +52,3 @@ const EditChallengeWindow = ({
     </Window>
   );
 };
-
-export default EditChallengeWindow;

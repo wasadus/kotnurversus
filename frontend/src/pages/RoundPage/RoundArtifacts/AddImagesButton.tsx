@@ -1,15 +1,15 @@
 import { Stack, Text, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import api from "~/api";
-import useCustomToast from "~/hooks/useCustomToast";
-import useHandleError from "~/hooks/useHandleError";
-import OutlinePlusIcon from "~/icons/OutlinePlusIcon";
-import declination from "~/utils/declination";
-import queryKeys from "~/utils/query-keys";
+import { api } from "~/api";
+import { useCustomToast } from "~/hooks/useCustomToast";
+import { useHandleError } from "~/hooks/useHandleError";
+import { OutlinePlusIcon } from "~/icons/OutlinePlusIcon";
+import { declination } from "~/utils/declination";
+import { queryKeys } from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
-import AddImagesWindow from "./AddImagesWindow";
+import { AddImagesWindow } from "./AddImagesWindow";
 
-const AddImagesButton = () => {
+export const AddImagesButton = () => {
   const window = useDisclosure();
   const queryClient = useQueryClient();
   const handleError = useHandleError();
@@ -67,5 +67,3 @@ const AddImagesButton = () => {
     </>
   );
 };
-
-export default AddImagesButton;

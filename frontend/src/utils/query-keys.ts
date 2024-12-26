@@ -1,4 +1,4 @@
-export default {
+export const queryKeys = {
   categories: ["categories"] as const,
   challenges: (roundId?: string) =>
     roundId ? (["challenges", roundId] as const) : (["challenges"] as const),

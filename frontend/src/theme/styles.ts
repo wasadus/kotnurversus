@@ -1,6 +1,6 @@
 import { Styles } from "@chakra-ui/theme-tools";
 
-const styles: Styles = {
+export const styles: Styles = {
   global: ({ colorMode }) => ({
     html: {
       h: "100%",
@@ -31,5 +31,3 @@ const styles: Styles = {
     },
   }),
 };
-
-export default styles;

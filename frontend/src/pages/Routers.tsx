@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PageLayout from "~/components/PageLayout";
-import pages from "~/pages";
+import { PageLayout } from "~/components/PageLayout";
+import { pages } from "~/pages";
 
-const Routers = () => (
+export const Routers = () => (
   <BrowserRouter>
     <PageLayout>
       <Routes>
@@ -13,5 +13,3 @@ const Routers = () => (
     </PageLayout>
   </BrowserRouter>
 );
-
-export default Routers;

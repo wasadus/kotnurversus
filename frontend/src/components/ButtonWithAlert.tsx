@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
-import Alert from "~/components/Alert";
+import { Alert } from "~/components/Alert";
 
 type Props = {
   buttonText: string;
@@ -9,7 +9,7 @@ type Props = {
   onSubmit?: () => void;
 } & Omit<ButtonProps, "onSubmit">;
 
-const ButtonWithAlert = ({
+export const ButtonWithAlert = ({
   buttonText,
   alertText,
   isLoading,
@@ -46,5 +46,3 @@ const ButtonWithAlert = ({
     </>
   );
 };
-
-export default ButtonWithAlert;

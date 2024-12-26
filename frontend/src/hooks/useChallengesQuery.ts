@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "~/api";
+import { api } from "~/api";
 import { Challenge } from "~/types/challenge";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 type UseChallengesQueryParams = {
   roundId?: string;
   enabled?: boolean;
 };
 
-const useChallengesQuery = ({
+export const useChallengesQuery = ({
   roundId,
   enabled,
 }: UseChallengesQueryParams = {}) => {
@@ -51,5 +51,3 @@ const useChallengesQuery = ({
     getChallengesByCategoryId,
   };
 };
-
-export default useChallengesQuery;

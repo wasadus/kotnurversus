@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 import Linkify from "react-linkify";
-import Link from "~/components/Link";
+import { Link } from "~/components/Link";
 
 type Props = {
   children: ReactNode;
 };
 
-const AutoLinkWrapper = ({ children }: Props) => (
+export const AutoLinkWrapper = ({ children }: Props) => (
   <Linkify
     children={children}
     componentDecorator={(href, decoratedText, key) => (
@@ -22,5 +22,3 @@ const AutoLinkWrapper = ({ children }: Props) => (
     )}
   />
 );
-
-export default AutoLinkWrapper;

@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { User } from "~/types/auth";
 import { TOKEN_STORAGE_KEY } from "~/utils/auth-context";
-import storage from "~/utils/storage";
+import {storageClient as storage} from "~/utils/storage";
 
 type TokenPayload = {
   IsAuthorized: string;

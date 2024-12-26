@@ -1,8 +1,8 @@
 import { BoxProps, Text } from "@chakra-ui/react";
-import CollapsibleSection from "~/components/CollapsibleSection";
+import { CollapsibleSection } from "~/components/CollapsibleSection";
 import { useRoundContext } from "./round-context";
 
-const RoundSpecificationSection = (props: BoxProps) => {
+export const RoundSpecificationSection = (props: BoxProps) => {
   const { isPublic, round } = useRoundContext();
 
   const text = round.specification?.techDescription?.trim() || "";
@@ -25,5 +25,3 @@ const RoundSpecificationSection = (props: BoxProps) => {
     </CollapsibleSection>
   );
 };
-
-export default RoundSpecificationSection;

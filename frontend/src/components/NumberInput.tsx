@@ -8,7 +8,7 @@ import {
   NumberInputStepper,
   forwardRef,
 } from "@chakra-ui/react";
-import FormControl from "./FormControl";
+import { FormControl } from "./FormControl";
 
 type Props = {
   label?: string;
@@ -17,7 +17,7 @@ type Props = {
   containerProps?: BoxProps;
 } & Omit<NumberInputProps, "onChange">;
 
-const NumberInput = forwardRef<Props, "input">(
+export const NumberInput = forwardRef<Props, "input">(
   (
     { label, errorMessage, onChange, min = 0, max, containerProps, ...props },
     ref
@@ -46,5 +46,3 @@ const NumberInput = forwardRef<Props, "input">(
     </FormControl>
   )
 );
-
-export default NumberInput;

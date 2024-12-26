@@ -1,13 +1,11 @@
-import { Center, Heading, Stack } from "@chakra-ui/react";
-import Loading from "~/components/Loading";
-import useAutoRedirect from "~/hooks/useAutoRedirect";
-import useChallengesQuery from "~/hooks/useChallengesQuery";
-import paths from "~/pages/paths";
+import { Heading, Stack } from "@chakra-ui/react";
+import { Loading } from "~/components/Loading";
+import { useAutoRedirect } from "~/hooks/useAutoRedirect";
+import { paths } from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
-import CategoryCard from "./CategoryCard";
-import CreateCategoryButton from "./CreateCategoryButton";
+import { ChallengeSection } from "~/pages/ChallengesPage/ChallengeSection.tsx";
 
-const ChallengesPage = () => {
+export const ChallengesPage = () => {
   const { isAuthenticated } = useAuthContext();
 
   useAutoRedirect({ isEnabled: !isAuthenticated, path: paths.main.path });
@@ -31,38 +29,3 @@ const ChallengesPage = () => {
     </Stack>
   );
 };
-
-const ChallengeSection = () => {
-  const query = useChallengesQuery();
-
-  if (query.isLoading) {
-    return <Loading />;
-  }
-
-  if (query.isError) {
-    return (
-      <Center py={10}>
-        <Heading fontSize="xl">Не удалось загрузить доп. требования</Heading>
-      </Center>
-    );
-  }
-
-  const challengesByCategoryId = query.getChallengesByCategoryId();
-
-  return (
-    <Stack spacing={12}>
-      {query.categories
-        .sort((a, b) => a.title.localeCompare(b.title))
-        .map((category) => (
-          <CategoryCard
-            key={category.id}
-            category={category}
-            challenges={challengesByCategoryId[category.id] || []}
-          />
-        ))}
-      <CreateCategoryButton />
-    </Stack>
-  );
-};
-
-export default ChallengesPage;

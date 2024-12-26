@@ -5,7 +5,7 @@ type Props = {
   isExternal?: boolean;
 } & LinkProps;
 
-const Link = ({ isExternal, href, ...props }: Props) => (
+export const Link = ({ isExternal, href, ...props }: Props) => (
   <ChakraLink
     as={isExternal ? ChakraLink : ReactLink}
     href={isExternal ? href : undefined}
@@ -13,5 +13,3 @@ const Link = ({ isExternal, href, ...props }: Props) => (
     {...props}
   />
 );
-
-export default Link;

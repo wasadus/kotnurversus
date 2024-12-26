@@ -11,7 +11,7 @@ export type IconButtonWithTooltipProps = {
   placement?: TooltipProps["placement"];
 } & Omit<IconButtonProps, "aria-label">;
 
-const IconButtonWithTooltip = forwardRef<IconButtonWithTooltipProps, "button">(
+export const IconButtonWithTooltip = forwardRef<IconButtonWithTooltipProps, "button">(
   ({ label, placement = "top", isDisabled, isLoading, ...props }, ref) => (
     <Tooltip
       hasArrow
@@ -31,5 +31,3 @@ const IconButtonWithTooltip = forwardRef<IconButtonWithTooltipProps, "button">(
     </Tooltip>
   )
 );
-
-export default IconButtonWithTooltip;

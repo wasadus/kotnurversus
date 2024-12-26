@@ -4,6 +4,6 @@ const baseStyle = defineStyle({
   lineHeight: "normal",
 });
 
-export default defineStyleConfig({
+export const textTheme = defineStyleConfig({
   baseStyle,
 });

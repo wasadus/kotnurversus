@@ -2,13 +2,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Input from "~/components/Input";
+import { Input } from "~/components/Input";
 import { loginField } from "~/utils/auth-schemas";
 import { SettingsFormProps } from "./SettingsLayout";
 
 const loginSchema = z.object({ value: loginField });
 
-const LoginSettings = ({
+export const LoginSettings = ({
   formId,
   defaultValue,
   onLoading,
@@ -45,4 +45,3 @@ const LoginSettings = ({
   );
 };
 
-export default LoginSettings;

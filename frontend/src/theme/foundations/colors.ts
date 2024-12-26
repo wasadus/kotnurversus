@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
   bg: {
     light: {
       1: "#FFFFFF",
@@ -29,5 +29,3 @@ const colors = {
   secondary: "#F03B36",
   accent: "#FFEEC2",
 };
-
-export default colors;

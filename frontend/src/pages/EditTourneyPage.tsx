@@ -2,26 +2,26 @@ import { Button, Center, HStack, Heading, Stack } from "@chakra-ui/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useId } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import api from "~/api";
-import ButtonWithAlert from "~/components/ButtonWithAlert";
-import Loading from "~/components/Loading";
-import TourneyForm from "~/components/TourneyForm";
+import { api } from "~/api";
+import { ButtonWithAlert } from "~/components/ButtonWithAlert";
+import { Loading } from "~/components/Loading";
+import { TourneyForm } from "~/components/TourneyForm";
 import {
   TourneyFormSchema,
   castToCreateTourney,
   castToFormSchema,
 } from "~/components/TourneyForm/schema";
-import useAutoRedirect from "~/hooks/useAutoRedirect";
-import useHandleError from "~/hooks/useHandleError";
-import paths from "~/pages/paths";
+import { useAutoRedirect } from "~/hooks/useAutoRedirect";
+import { useHandleError } from "~/hooks/useHandleError";
+import {paths} from "~/pages/paths";
 import { useAuthContext } from "~/utils/auth-context";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 type PageParams = {
   tourneyId: string;
 };
 
-const EditTourneyPage = () => {
+export const EditTourneyPage = () => {
   const formId = useId();
   const navigate = useNavigate();
   const handleError = useHandleError();
@@ -117,5 +117,3 @@ const EditTourneyPage = () => {
     </Stack>
   );
 };
-
-export default EditTourneyPage;

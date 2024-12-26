@@ -1,6 +1,6 @@
 import { useId } from "react";
-import Window, { WindowProps } from "~/components/Window";
-import ChallengeForm, { ChallengeFormSchema } from "./ChallengeForm";
+import { Window, WindowProps } from "~/components/Window";
+import { ChallengeForm, ChallengeFormSchema } from "./ChallengeForm";
 import { CreateChallenge } from "~/types/challenge";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   onSubmit?: (data: CreateChallenge) => void;
 };
 
-const CreateChallengeWindow = ({
+export const CreateChallengeWindow = ({
   defaultCategoryId,
   onSubmit,
   ...props
@@ -40,5 +40,3 @@ const CreateChallengeWindow = ({
     </Window>
   );
 };
-
-export default CreateChallengeWindow;

@@ -1,7 +1,7 @@
 import { startOfDay } from "date-fns";
 import { ZodIssueCode, z } from "zod";
 import { CreateTourney, Tourney, TourneyType } from "~/types/tourney";
-import time from "~/utils/time";
+import { timeHelpers as time } from "~/utils/time";
 
 export const tourneyFormSchema = z.object({
   title: z.string().min(1, "Заполните поле"),

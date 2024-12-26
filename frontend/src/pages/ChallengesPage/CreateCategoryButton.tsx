@@ -1,12 +1,12 @@
 import { Button, ButtonProps, useDisclosure } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import api from "~/api";
-import CategoryWindow from "~/components/CategoryWindow";
-import useHandleError from "~/hooks/useHandleError";
+import { api } from "~/api";
+import { CategoryWindow } from "~/components/CategoryWindow";
+import { useHandleError } from "~/hooks/useHandleError";
 import { CreateCategory } from "~/types/category";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
-const CreateCategoryButton = (props: ButtonProps) => {
+export const CreateCategoryButton = (props: ButtonProps) => {
   const window = useDisclosure();
   const queryClient = useQueryClient();
   const handleError = useHandleError();
@@ -43,5 +43,3 @@ const CreateCategoryButton = (props: ButtonProps) => {
     </>
   );
 };
-
-export default CreateCategoryButton;

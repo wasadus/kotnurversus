@@ -1,16 +1,14 @@
 import { useId } from "react";
 import { v4 as uuid } from "uuid";
-import Window, { WindowProps } from "~/components/Window";
+import { Window, WindowProps } from "~/components/Window";
 import { TourneySpecificationWithId } from "~/types/tourney";
-import SpecificationForm, {
-  SpecificationFormSchema,
-} from "./SpecificationForm";
+import { SpecificationForm, SpecificationFormSchema } from "./SpecificationForm";
 
 type Props = {
   onSubmit?: (specification: TourneySpecificationWithId) => void;
 };
 
-const CreateSpecificationWindow = ({
+export const CreateSpecificationWindow = ({
   onSubmit,
   ...props
 }: WindowProps<Props>) => {
@@ -38,5 +36,3 @@ const CreateSpecificationWindow = ({
     </Window>
   );
 };
-
-export default CreateSpecificationWindow;

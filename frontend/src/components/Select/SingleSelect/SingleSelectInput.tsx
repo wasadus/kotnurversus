@@ -1,9 +1,9 @@
 import { Spinner } from "@chakra-ui/react";
 import { forwardRef } from "react";
-import IconButtonWithTooltip from "~/components/IconButtonWithTooltip";
-import Input, { InputProps } from "~/components/Input";
-import ArrowDownIcon from "~/icons/ArrowDownIcon";
-import CrossIcon from "~/icons/CrossIcon";
+import { IconButtonWithTooltip } from "~/components/IconButtonWithTooltip";
+import { Input, InputProps } from "~/components/Input";
+import { ArrowDownIcon } from "~/icons/ArrowDownIcon";
+import { CrossIcon } from "~/icons/CrossIcon";
 
 type Props = {
   isDropdownOpen?: boolean;
@@ -13,7 +13,7 @@ type Props = {
   onClear?: () => void;
 } & InputProps;
 
-const SingleSelectInput = forwardRef<HTMLInputElement, Props>(
+export const SingleSelectInput = forwardRef<HTMLInputElement, Props>(
   (
     {
       isDropdownOpen,
@@ -57,5 +57,3 @@ const SingleSelectInput = forwardRef<HTMLInputElement, Props>(
     />
   )
 );
-
-export default SingleSelectInput;

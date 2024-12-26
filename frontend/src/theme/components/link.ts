@@ -31,7 +31,7 @@ const variants = {
   underline: variantUnderline,
 };
 
-export default defineStyleConfig({
+export const linkTheme = defineStyleConfig({
   baseStyle,
   variants,
 });

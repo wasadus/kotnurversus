@@ -1,10 +1,8 @@
 import { useId } from "react";
-import ButtonWithAlert from "~/components/ButtonWithAlert";
-import Window, { WindowProps } from "~/components/Window";
+import { ButtonWithAlert } from "~/components/ButtonWithAlert";
+import { Window, WindowProps } from "~/components/Window";
 import { TourneySpecificationWithId } from "~/types/tourney";
-import SpecificationForm, {
-  SpecificationFormSchema,
-} from "./SpecificationForm";
+import { SpecificationForm, SpecificationFormSchema } from "./SpecificationForm";
 
 type Props = {
   specification: TourneySpecificationWithId;
@@ -12,7 +10,7 @@ type Props = {
   onRemove?: () => void;
 };
 
-const EditSpecificationWindow = ({
+export const EditSpecificationWindow = ({
   specification,
   onSubmit,
   onRemove,
@@ -60,5 +58,3 @@ const EditSpecificationWindow = ({
     </Window>
   );
 };
-
-export default EditSpecificationWindow;

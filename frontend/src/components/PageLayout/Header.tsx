@@ -2,19 +2,16 @@ import {
   Box,
   BoxProps,
   HStack,
-  LinkProps,
-  Spacer,
-  Text,
-  useBreakpointValue,
+  Spacer
 } from "@chakra-ui/react";
-import ColorModeButton from "~/components/ColorModeButton";
-import BaseLink from "~/components/Link";
-import useBreakpoint from "~/hooks/useBreakpoint";
-import paths from "~/pages/paths";
-import { useAuthContext } from "~/utils/auth-context";
-import AuthButton from "./AuthButton";
+import { ColorModeButton } from "~/components/ColorModeButton";
+import { paths } from "~/pages/paths";
+import { AuthButton } from "./AuthButton";
+import {Logo} from "~/components/PageLayout/Logo";
+import {ChallengesLink} from "~/components/PageLayout/ChallengesLink";
+import {Link} from "~/components/PageLayout/Link";
 
-const Header = (props: BoxProps) => (
+export const Header = (props: BoxProps) => (
   <Box
     {...props}
     minH={{ base: "55px", md: "80px" }}
@@ -39,65 +36,3 @@ const Header = (props: BoxProps) => (
     </HStack>
   </Box>
 );
-
-const Logo = () => {
-  const { isAuthenticated } = useAuthContext();
-  const logoLabel = useBreakpointValue(
-    {
-      base: "К",
-      md: isAuthenticated ? "К" : "Котнур",
-      lg: "Котнур",
-    },
-    { ssr: false }
-  );
-
-  return (
-    <BaseLink href={paths.main.path} _hover={{ transform: "scale(1.025)" }}>
-      <Text
-        as="span"
-        color="secondary"
-        fontSize={{ base: "xl", md: "32px" }}
-        fontWeight="semibold"
-        children={logoLabel}
-      />
-      <Text
-        ml={0.5}
-        as="span"
-        fontSize={{ base: "xl", md: "32px" }}
-        fontWeight="medium"
-      >
-        Версус
-      </Text>
-    </BaseLink>
-  );
-};
-
-const ChallengesLink = () => {
-  const { isAuthenticated } = useAuthContext();
-  const breakpoint = useBreakpoint(["base", "md", "lg"]);
-
-  if (!isAuthenticated || breakpoint === "base") {
-    return null;
-  }
-
-  return (
-    <Link
-      href={paths.challenges.path}
-      children={breakpoint === "lg" ? "Доп. требования" : "Требования"}
-    />
-  );
-};
-
-const Link = (props: LinkProps) => (
-  <BaseLink
-    {...props}
-    px={{ base: 2, md: 4, xl: 6 }}
-    py={2}
-    fontSize={{ base: "md", md: "lg" }}
-    fontWeight="semibold"
-    borderRadius="full"
-    _hover={{ color: "secondary", borderColor: "secondary" }}
-  />
-);
-
-export default Header;

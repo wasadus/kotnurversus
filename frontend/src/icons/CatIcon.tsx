@@ -1,6 +1,6 @@
 import { Icon, IconProps, forwardRef } from "@chakra-ui/react";
 
-export default forwardRef<IconProps, "svg">((props, ref) => (
+export const CatIcon = forwardRef<IconProps, "svg">((props, ref) => (
   <Icon ref={ref} boxSize={4} fill="none" viewBox="0 0 28 26" {...props}>
     <path
       fill="#D9D9D9"

@@ -1,9 +1,9 @@
 import { AxiosError } from "axios";
 import { useCallback } from "react";
-import useCustomToast from "~/hooks/useCustomToast";
+import { useCustomToast } from "~/hooks/useCustomToast";
 import { isDev } from "~/utils";
 
-const useHandleError = () => {
+export const useHandleError = () => {
   const toast = useCustomToast();
 
   return useCallback((error: unknown) => {
@@ -24,5 +24,3 @@ const useHandleError = () => {
     toast.unknown();
   }, []);
 };
-
-export default useHandleError;

@@ -1,4 +1,7 @@
-import Create from "./CreateCategoryWindow";
-import Edit from "./EditCategoryWindow";
+import { CreateCategoryWindow } from "./CreateCategoryWindow";
+import { EditCategoryWindow } from "./EditCategoryWindow";
 
-export default { Create, Edit };
+export const CategoryWindow = { 
+    Create: CreateCategoryWindow,
+    Edit: EditCategoryWindow
+};

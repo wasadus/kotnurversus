@@ -2,8 +2,8 @@ import { Stack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import ColorInput from "~/components/ColorInput";
-import Input from "~/components/Input";
+import { ColorInput } from "~/components/ColorInput";
+import { Input } from "~/components/Input";
 
 type Props = {
   id: string;
@@ -11,7 +11,7 @@ type Props = {
   onSubmit: (data: CategoryFormSchema) => void;
 };
 
-const CategoryForm = ({ id, defaultValue, onSubmit }: Props) => {
+export const CategoryForm = ({ id, defaultValue, onSubmit }: Props) => {
   const {
     register,
     control,
@@ -55,5 +55,3 @@ const categoryFormSchema = z.object({
 });
 
 export type CategoryFormSchema = z.infer<typeof categoryFormSchema>;
-
-export default CategoryForm;

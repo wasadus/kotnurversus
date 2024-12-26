@@ -1,9 +1,9 @@
 import { Wrap } from "@chakra-ui/react";
 import { memo, useRef } from "react";
 import { v4 as uuid } from "uuid";
-import CollapsibleSection from "~/components/CollapsibleSection";
-import TeamCard from "~/components/TeamCard";
-import useForceUpdate from "~/hooks/useForceUpdate";
+import { CollapsibleSection } from "~/components/CollapsibleSection";
+import { TeamCard } from "~/components/TeamCard";
+import { useForceUpdate } from "~/hooks/useForceUpdate";
 import { TourneyTeam } from "~/types/tourney";
 import { useTourneyContext } from "./tourney-context";
 
@@ -11,7 +11,7 @@ type Props = {
   id: string;
 };
 
-const TourneyTeams = ({ id }: Props) => {
+export const TourneyTeams = memo(({ id }: Props) => {
   const { isEditable, teams, useSubscribe } = useTourneyContext();
   const { forceUpdate } = useForceUpdate();
   const defaultTeam = useRef(createDefaultTeam());
@@ -69,11 +69,9 @@ const TourneyTeams = ({ id }: Props) => {
       </Wrap>
     </CollapsibleSection>
   );
-};
+});
 
 const createDefaultTeam = (): Partial<TourneyTeam> => ({
   id: uuid(),
   mates: [""],
 });
-
-export default memo(TourneyTeams);

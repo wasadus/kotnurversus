@@ -1,4 +1,7 @@
-import Create from "./CreateSpecificationWindow";
-import Edit from "./EditSpecificationWindow";
+import { CreateSpecificationWindow } from "./CreateSpecificationWindow";
+import { EditSpecificationWindow } from "./EditSpecificationWindow";
 
-export default { Create, Edit };
+export const SpecificationWindow = {
+    Create: CreateSpecificationWindow,
+    Edit: EditSpecificationWindow
+};

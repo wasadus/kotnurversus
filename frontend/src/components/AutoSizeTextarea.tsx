@@ -4,13 +4,13 @@ import {
   useMergeRefs,
 } from "@chakra-ui/react";
 import { ChangeEvent, forwardRef, useEffect, useRef, useState } from "react";
-import Textarea, { TextareaProps } from "./Textarea";
+import { Textarea, TextareaProps } from "./Textarea";
 
 type Props = {
   minHeight?: number;
 } & Omit<TextareaProps, "minHeight">;
 
-const AutoSizeTextarea = forwardRef<HTMLTextAreaElement, Props>(
+export const AutoSizeTextarea = forwardRef<HTMLTextAreaElement, Props>(
   (
     {
       minHeight = 86,
@@ -77,5 +77,3 @@ const AutoSizeTextarea = forwardRef<HTMLTextAreaElement, Props>(
     );
   }
 );
-
-export default AutoSizeTextarea;

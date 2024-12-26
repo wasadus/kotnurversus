@@ -2,14 +2,14 @@ import { Button, HStack } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { Link } from "react-router-dom";
-import api from "~/api";
-import ButtonWithAlert from "~/components/ButtonWithAlert";
-import useCustomToast from "~/hooks/useCustomToast";
-import PenIcon from "~/icons/PenIcon";
-import UnlockIcon from "~/icons/UnlockIcon";
-import paths from "~/pages/paths";
+import { api } from "~/api";
+import { ButtonWithAlert } from "~/components/ButtonWithAlert";
+import { useCustomToast } from "~/hooks/useCustomToast";
+import { PenIcon } from "~/icons/PenIcon";
+import { UnlockIcon } from "~/icons/UnlockIcon";
+import { paths } from "~/pages/paths";
 import { Tourney } from "~/types/tourney";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 import { castToCreateRound } from "~/utils/round";
 import {
   addSpecificationToRound,
@@ -21,7 +21,7 @@ type Props = {
   tourney: Tourney;
 };
 
-const TourneyActionButtons = ({ tourney }: Props) => {
+export const TourneyActionButtons = ({ tourney }: Props) => {
   const toast = useCustomToast();
   const queryClient = useQueryClient();
 
@@ -80,5 +80,3 @@ const TourneyActionButtons = ({ tourney }: Props) => {
     </HStack>
   );
 };
-
-export default TourneyActionButtons;

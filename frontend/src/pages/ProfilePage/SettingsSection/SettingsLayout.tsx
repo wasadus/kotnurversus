@@ -1,11 +1,10 @@
 import {
-  Button as BaseButton,
-  ButtonProps,
   HStack,
   Text,
   useBoolean,
 } from "@chakra-ui/react";
 import { ReactNode, useId, useRef } from "react";
+import {Button} from "~/pages/ProfilePage/SettingsSection/Button.tsx";
 
 type Props = {
   name: string;
@@ -19,7 +18,7 @@ export type SettingsFormProps = {
   onLoading: (callback: () => Promise<string>) => void;
 };
 
-const SettingsLayout = ({ name, value, Form }: Props) => {
+export const SettingsLayout = ({ name, value, Form }: Props) => {
   const formId = useId();
 
   const valueRef = useRef(value);
@@ -91,9 +90,3 @@ const SettingsLayout = ({ name, value, Form }: Props) => {
     </>
   );
 };
-
-const Button = (props: ButtonProps) => (
-  <BaseButton p={2} variant="link" {...props} />
-);
-
-export default SettingsLayout;

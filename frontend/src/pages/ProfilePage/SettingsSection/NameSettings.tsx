@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Input from "~/components/Input";
+import { Input } from "~/components/Input";
 import { SettingsFormProps } from "./SettingsLayout";
 import { useEffect } from "react";
 
@@ -11,7 +11,7 @@ const nameSchema = z.object({
     .min(1, "Заполните поле"),
 });
 
-const NameSettings = ({
+export const NameSettings = ({
   formId,
   defaultValue,
   onLoading,
@@ -47,5 +47,3 @@ const NameSettings = ({
     </form>
   );
 };
-
-export default NameSettings;

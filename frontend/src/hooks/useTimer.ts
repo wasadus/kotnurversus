@@ -10,7 +10,7 @@ type UseTimerParams = {
   expiryTimestamp: Date;
 };
 
-const useTimer = ({
+export const useTimer = ({
   autoStart = true,
   autoStop = true,
   expiryTimestamp: expiry,
@@ -83,5 +83,3 @@ const getDelayFromExpiryTimestamp = (expiryTimestamp: Date) => {
   const extraMilliSeconds = Math.floor((seconds - Math.floor(seconds)) * 1000);
   return extraMilliSeconds > 0 ? extraMilliSeconds : DEFAULT_DELAY;
 };
-
-export default useTimer;

@@ -1,16 +1,16 @@
 import { Button, Heading, Stack } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import api from "~/api";
-import useHandleError from "~/hooks/useHandleError";
+import { api } from "~/api";
+import { useHandleError } from "~/hooks/useHandleError";
 import { RoundState } from "~/types/round";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 import { useRoundContext } from "../round-context";
-import Stage from "./Stage";
+import { Stage } from "./Stage";
 
 const STAGE_COLOR = "#38B2AC";
 const STAGE_STATE = RoundState.Pause;
 
-const PauseStage = () => {
+export const PauseStage = () => {
   const handleError = useHandleError();
   const queryClient = useQueryClient();
   const { isOrganizer, round, getTeams, getCurrentTeam, getTimerEnd } =
@@ -59,5 +59,3 @@ const PauseStage = () => {
     </>
   );
 };
-
-export default PauseStage;

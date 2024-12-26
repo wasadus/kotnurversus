@@ -1,16 +1,16 @@
 import { BoxProps, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import api from "~/api";
-import useHandleError from "~/hooks/useHandleError";
+import { api } from "~/api";
+import { useHandleError } from "~/hooks/useHandleError";
 import { useRoundContext } from "~/pages/RoundPage/round-context";
 import { RoundState } from "~/types/round";
-import queryKeys from "~/utils/query-keys";
+import { queryKeys } from "~/utils/query-keys";
 
 type Props = {
   teamId: string;
 } & BoxProps;
 
-const StageTimeout = ({ teamId, ...props }: Props) => {
+export const StageTimeout = ({ teamId, ...props }: Props) => {
   const handleError = useHandleError();
   const queryClient = useQueryClient();
   const { isOrganizer, round } = useRoundContext();
@@ -73,5 +73,3 @@ const StageTimeout = ({ teamId, ...props }: Props) => {
     </Flex>
   );
 };
-
-export default StageTimeout;

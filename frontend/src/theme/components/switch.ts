@@ -91,7 +91,7 @@ const sizes = {
   }),
 };
 
-export default defineMultiStyleConfig({
+export const switchTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
   defaultProps: {

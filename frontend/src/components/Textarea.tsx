@@ -3,7 +3,7 @@ import {
   TextareaProps as ChakraTextareaProps,
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
-import FormControl, { FormControlProps } from "./FormControl";
+import { FormControl, FormControlProps } from "./FormControl";
 
 export type TextareaProps = {
   label?: string;
@@ -11,12 +11,10 @@ export type TextareaProps = {
   containerProps?: FormControlProps;
 } & ChakraTextareaProps;
 
-const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ label, errorMessage, containerProps, ...props }, ref) => (
     <FormControl label={label} errorMessage={errorMessage} {...containerProps}>
       <ChakraTextArea ref={ref} resize="none" required={false} {...props} />
     </FormControl>
   )
 );
-
-export default Textarea;

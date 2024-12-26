@@ -2,7 +2,7 @@ import { Operation } from "fast-json-patch";
 import { Challenge } from "~/types/challenge";
 import { PaginationResponse } from "~/types/pagination";
 import { FinishRound, Round, RoundArtifact, RoundState } from "~/types/round";
-import axiosClient from "~/utils/axios-client";
+import { axiosClient } from "~/utils/axios-client";
 
 export class RoundsController {
   async getById(id: string): Promise<Round> {

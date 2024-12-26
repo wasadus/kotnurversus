@@ -1,8 +1,8 @@
 import { useId } from "react";
-import ButtonWithAlert from "~/components/ButtonWithAlert";
-import Window, { WindowProps } from "~/components/Window";
+import { ButtonWithAlert } from "~/components/ButtonWithAlert";
+import { Window, WindowProps } from "~/components/Window";
 import { Category, CreateCategory } from "~/types/category";
-import CategoryForm, { CategoryFormSchema } from "./CategoryForm";
+import { CategoryForm, CategoryFormSchema } from "./CategoryForm";
 
 type Props = {
   category: Category;
@@ -10,7 +10,7 @@ type Props = {
   onRemove?: () => void;
 };
 
-const EditCategoryWindow = ({
+export const EditCategoryWindow = ({
   category,
   onSubmit,
   onRemove,
@@ -46,5 +46,3 @@ const EditCategoryWindow = ({
     </Window>
   );
 };
-
-export default EditCategoryWindow;
