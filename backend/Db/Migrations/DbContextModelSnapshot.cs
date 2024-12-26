@@ -22,7 +22,7 @@ namespace Db.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -62,11 +62,6 @@ namespace Db.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("description");
-
-                    b.Property<int>("Difficulty")
-                        .IsRequired()
-                        .HasColumnType("integer")
-                        .HasColumnName("difficulty");
 
                     b.Property<bool>("IsCatInBag")
                         .HasColumnType("boolean")
@@ -111,11 +106,6 @@ namespace Db.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("description");
-
-                    b.Property<int>("Difficulty")
-                        .IsRequired()
-                        .HasColumnType("integer")
-                        .HasColumnName("difficulty");
 
                     b.Property<bool>("IsCatInBag")
                         .HasColumnType("boolean")

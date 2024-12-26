@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using Models.Challenges;
 
 namespace Db.Dbo.Challenges;
 
@@ -14,9 +13,6 @@ public class ChallengeDbo : Dbo
     
     [Column("description")]
     public string Description { get; set; } = null!;
-
-    [Column("difficulty")] 
-    public ChallengeDifficulty Difficulty { get; set; }
     
     [Column("categoryId")]
     public Guid CategoryId { get; set; }
