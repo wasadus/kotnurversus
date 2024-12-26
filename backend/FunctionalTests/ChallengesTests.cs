@@ -30,8 +30,7 @@ public class ChallengesTests : ApiTestBase
         {
             Description = "Some me",
             CategoryId = categoryId,
-            Title = $"Im Bob Cat {Guid.NewGuid()}",
-            Difficulty = ChallengeDifficulty.Easy
+            Title = $"Im Bob Cat {Guid.NewGuid()}"
         };
 
         var result = await Client.Challenges.CreateAsync(creationArgs);
@@ -42,7 +41,6 @@ public class ChallengesTests : ApiTestBase
         entity.Description.Should().Be(creationArgs.Description);
         entity.CategoryId.Should().Be(creationArgs.CategoryId);
         entity.Title.Should().Be(creationArgs.Title);
-        entity.Difficulty.Should().Be(creationArgs.Difficulty);
     }
 
     [Test]
@@ -52,8 +50,7 @@ public class ChallengesTests : ApiTestBase
         {
             Description = "Some me",
             CategoryId = categoryId,
-            Title = $"Im Bob Cat {Guid.NewGuid()}",
-            Difficulty = ChallengeDifficulty.Easy
+            Title = $"Im Bob Cat {Guid.NewGuid()}"
         };
 
         var entityRes = await Client.Challenges.CreateAsync(creationArgs);
@@ -69,7 +66,6 @@ public class ChallengesTests : ApiTestBase
         entity.Description.Should().Be(creationArgs.Description);
         entity.CategoryId.Should().Be(creationArgs.CategoryId);
         entity.Title.Should().Be(creationArgs.Title);
-        entity.Difficulty.Should().Be(creationArgs.Difficulty);
     }
 
     [Test]
@@ -79,8 +75,7 @@ public class ChallengesTests : ApiTestBase
         {
             Description = "Some me",
             CategoryId = categoryId,
-            Title = $"Im Bob Cat {Guid.NewGuid()}",
-            Difficulty = ChallengeDifficulty.Easy
+            Title = $"Im Bob Cat {Guid.NewGuid()}"
         };
 
         var entityRes = await Client.Challenges.CreateAsync(creationArgs);
@@ -109,7 +104,6 @@ public class ChallengesTests : ApiTestBase
         entity.Description.Should().Be(newDescription);
         entity.CategoryId.Should().Be(creationArgs.CategoryId);
         entity.Title.Should().Be(creationArgs.Title);
-        entity.Difficulty.Should().Be(creationArgs.Difficulty);
     }
 
     [Test]
@@ -119,8 +113,7 @@ public class ChallengesTests : ApiTestBase
         {
             Description = "Some me",
             CategoryId = categoryId,
-            Title = $"Im Bob Cat {Guid.NewGuid()}",
-            Difficulty = ChallengeDifficulty.Easy
+            Title = $"Im Bob Cat {Guid.NewGuid()}"
         };
 
         var entityRes = await Client.Challenges.CreateAsync(creationArgs);
@@ -142,8 +135,7 @@ public class ChallengesTests : ApiTestBase
         {
             Description = "Some me",
             CategoryId = categoryId,
-            Title = $"Im Bob Cat {Guid.NewGuid()}",
-            Difficulty = ChallengeDifficulty.Easy
+            Title = $"Im Bob Cat {Guid.NewGuid()}"
         };
 
         var entityRes = await Client.Challenges.CreateAsync(creationArgs);

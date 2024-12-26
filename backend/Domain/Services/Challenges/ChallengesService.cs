@@ -25,7 +25,6 @@ public class ChallengesService : EntityServiceBase<Challenge, ChallengeDbo, Chal
         dbo.CategoryId = entity.CategoryId;
         dbo.Title = entity.Title;
         dbo.IsCatInBag = entity.IsCatInBag;
-        dbo.Difficulty = entity.Difficulty;
 
         return Task.CompletedTask;
     }
@@ -38,7 +37,6 @@ public class ChallengesService : EntityServiceBase<Challenge, ChallengeDbo, Chal
         entity.CategoryId = dbo.CategoryId;
         entity.Title = dbo.Title;
         entity.IsCatInBag = dbo.IsCatInBag;
-        entity.Difficulty = dbo.Difficulty;
 
         return Task.CompletedTask;
     }

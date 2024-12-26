@@ -7,7 +7,6 @@ import {
   SimpleGrid,
   Text,
   Wrap,
-  useBoolean,
 } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { compare } from "fast-json-patch";
@@ -24,9 +23,6 @@ import { TourneyTeam } from "~/types/tourney";
 import { isDefined } from "~/utils";
 import queryKeys from "~/utils/query-keys";
 import ChallengeWindow from "./ChallengeWindow";
-import IconButtonWithTooltip from "~/components/IconButtonWithTooltip.tsx";
-import EyeClose from "~/icons/EyeClose.tsx";
-import EyeOpen from "~/icons/EyeOpen.tsx";
 
 type Props = {
   team?: TourneyTeam;
@@ -41,9 +37,6 @@ const ChallengeSelectionWindow = ({
   const handleError = useHandleError();
   const { round } = useRoundContext();
   const [chosenChallenge, setChosenChallenge] = useState<Challenge>();
-  const [showDetails, setShowDetails] = useBoolean(false);
-  const label = showDetails ? "Скрыть подробности" : "Показать подробности";
-  const Icon = showDetails ? EyeClose : EyeOpen;
 
   const query = useChallengesQuery({
     roundId: round.id,
@@ -122,15 +115,6 @@ const ChallengeSelectionWindow = ({
           onClick: handleSubmit,
           children: "Подтвердить",
         }}
-        extraButton={<IconButtonWithTooltip
-            size="sm"
-            variant="outline"
-            border="none"
-            tabIndex={-1}
-            label={label}
-            icon={<Icon boxSize={6} />}
-            onClick={setShowDetails.toggle}
-        />}
       >
         {(query.isError || data.categories.length < 1) && (
           <Center py={20}>
@@ -154,7 +138,6 @@ const ChallengeSelectionWindow = ({
                   chosenChallengeId={chosenChallenge?.id}
                   onChoose={setChosenChallenge}
                   disabledChallengeIds={data.disabledChallengeIds}
-                  showDetails={showDetails}
                 />
               ))}
           </SimpleGrid>
@@ -179,7 +162,6 @@ type CategoryCardProps = {
   onChoose: (challenge: Challenge) => void;
   disabledChallengeIds: Set<string>;
   isDisabled?: boolean;
-  showDetails: boolean;
 } & BoxProps;
 
 const CategoryCard = ({
@@ -189,7 +171,6 @@ const CategoryCard = ({
   onChoose,
   disabledChallengeIds,
   isDisabled,
-  showDetails,
   ...props
 }: CategoryCardProps) => (
   <HStack
@@ -214,50 +195,20 @@ const CategoryCard = ({
       {challenges.map((challenge, i) => {
         const isChosen = chosenChallengeId === challenge.id;
         const isDisabled = disabledChallengeIds.has(challenge.id);
-        let borderColor: string;
-        if (challenge.difficulty === "easy") {
-          borderColor = "green.500";
-        } else if (challenge.difficulty === "medium") {
-          borderColor = "yellow.500";
-        } else {
-          borderColor = "red.500";
-        }
         return (
-            <>
-              {!showDetails &&
-                <Button
-                  key={challenge.id}
-                  gridArea={i}
-                  size="xs"
-                  fontSize="xl"
-                  boxSize={8}
-                  isDisabled={isDisabled}
-                  onClick={() => onChoose(challenge)}
-                  children={i + 1}
-                  opacity={1}
-                  variant={isChosen || isDisabled ? "solid" : "outline"}
-                  colorScheme={isChosen ? "blue" : "gray"}
-                />
-              }
-              {showDetails &&
-                <IconButtonWithTooltip
-                  key={challenge.id}
-                  gridArea={i}
-                  size="xs"
-                  fontSize="xl"
-                  borderColor={borderColor}
-                  boxSize={8}
-                  isDisabled={isDisabled}
-                  onClick={() => onChoose(challenge)}
-                  icon={<span>{i + 1}</span>}
-                  opacity={1}
-                  variant={isChosen || isDisabled ? "solid" : "outline"}
-                  colorScheme={isChosen ? "blue" : "gray"}
-                  label={challenge.title}
-                />
-              }
-            </>
-
+          <Button
+            key={challenge.id}
+            gridArea={i}
+            size="xs"
+            fontSize="xl"
+            boxSize={8}
+            isDisabled={isDisabled}
+            onClick={() => onChoose(challenge)}
+            children={i + 1}
+            opacity={1}
+            variant={isChosen || isDisabled ? "solid" : "outline"}
+            colorScheme={isChosen ? "blue" : "gray"}
+          />
         );
       })}
     </Wrap>
