@@ -1,6 +1,7 @@
 import { Category } from "~/types/category.ts";
 import { Challenge } from "~/types/challenge.ts";
-import { BoxProps, Button, HStack, Text, Wrap } from "@chakra-ui/react";
+import { BoxProps, HStack, Text, Wrap } from "@chakra-ui/react";
+import { IconButtonWithTooltip } from "~/components/IconButtonWithTooltip";
 
 type CategoryCardProps = {
     category: Category;
@@ -42,19 +43,31 @@ export const CategoryCard = ({
             {challenges.map((challenge, i) => {
                 const isChosen = chosenChallengeId === challenge.id;
                 const isDisabled = disabledChallengeIds.has(challenge.id);
+                let borderColor: string;
+                if (challenge.difficulty === "easy") {
+                    borderColor = "green.500";
+                } else if (challenge.difficulty === "medium") {
+                    borderColor = "yellow.500";
+                } else if (challenge.difficulty === "hard") {
+                    borderColor = "red.500";
+                } else {
+                    borderColor = "gray.500";
+                }
                 return (
-                    <Button
+                    <IconButtonWithTooltip
                         key={challenge.id}
                         gridArea={i}
                         size="xs"
                         fontSize="xl"
+                        borderColor={borderColor}
                         boxSize={8}
                         isDisabled={isDisabled}
                         onClick={() => onChoose(challenge)}
-                        children={i + 1}
+                        icon={<span>{i + 1}</span>}
                         opacity={1}
                         variant={isChosen || isDisabled ? "solid" : "outline"}
                         colorScheme={isChosen ? "blue" : "gray"}
+                        label={challenge.title}
                     />
                 );
             })}
