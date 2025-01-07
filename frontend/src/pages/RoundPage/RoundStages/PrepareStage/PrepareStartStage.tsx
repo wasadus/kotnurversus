@@ -18,12 +18,14 @@ export const PrepareStartStage = () => {
     const { isOrganizer, round, getTeams } = useRoundContext();
     const [currentTeam, setCurrentTeam] = useState<TourneyTeam>();
     const [alertDismissed, setAlertDismissed] = useState<Record<string, boolean>>({});
+    const [showChallengesMismatchAlert, setShowChallengesMismatchAlert] = useState(false);
+    const currentRound = queryClient.getQueryData(queryKeys.round(round.id));
+    const currentRoundParticipants = (currentRound as Round).participants;
     const maxChallengesCount = 6;
 
     const handleChoose = (team?: TourneyTeam, alert?: () => void) => () => {
-        const currentRound = queryClient.getQueryData(queryKeys.round(round.id));
         if (team) {
-            const chosenParticipant = (currentRound as Round).participants.filter((p: RoundParticipant) => p.teamId === team.id)[0];
+            const chosenParticipant = currentRoundParticipants.filter((p: RoundParticipant) => p.teamId === team.id)[0];
             if (chosenParticipant.challenges.length < maxChallengesCount || alertDismissed[chosenParticipant.teamId]) {
                 setCurrentTeam(team);
             } else {
@@ -50,6 +52,17 @@ export const PrepareStartStage = () => {
         },
         onError: handleError,
     });
+
+    const handleStartClick = async () => {
+        const firstTeamChallenges = currentRoundParticipants[0].challenges.length;
+        const secondTeamChallenges = currentRoundParticipants[1].challenges.length;
+
+        if (firstTeamChallenges === secondTeamChallenges) {
+            await startMutation.mutateAsync();
+        } else {
+            setShowChallengesMismatchAlert(true);
+        }
+    };
 
     return (
         <>
@@ -89,7 +102,7 @@ export const PrepareStartStage = () => {
                     <Button
                         colorScheme="teal"
                         isLoading={startMutation.isPending}
-                        onClick={() => startMutation.mutateAsync()}
+                        onClick={() => handleStartClick()}
                         children="Запустить таймер"
                     />
                 </Stack>
@@ -101,6 +114,15 @@ export const PrepareStartStage = () => {
                     team={currentTeam}
                 />
             )}
+            <Alert
+                isOpen={showChallengesMismatchAlert}
+                onClose={() => setShowChallengesMismatchAlert(false)}
+                onSubmit={() => setShowChallengesMismatchAlert(false)}
+                heading="Внимание"
+                okText="Ок"
+                cancelText=""
+                children="Количество требований у команд не совпадает."
+            />
         </>
     );
 };
