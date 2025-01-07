@@ -17,13 +17,14 @@ export const PrepareStartStage = () => {
     const queryClient = useQueryClient();
     const { isOrganizer, round, getTeams } = useRoundContext();
     const [currentTeam, setCurrentTeam] = useState<TourneyTeam>();
+    const [alertDismissed, setAlertDismissed] = useState<Record<string, boolean>>({});
     const maxChallengesCount = 6;
 
     const handleChoose = (team?: TourneyTeam, alert?: () => void) => () => {
         const currentRound = queryClient.getQueryData(queryKeys.round(round.id));
         if (team) {
             const chosenParticipant = (currentRound as Round).participants.filter((p: RoundParticipant) => p.teamId === team.id)[0];
-            if (chosenParticipant.challenges.length < maxChallengesCount) {
+            if (chosenParticipant.challenges.length < maxChallengesCount || alertDismissed[chosenParticipant.teamId]) {
                 setCurrentTeam(team);
             } else {
                 if (alert) {
@@ -31,6 +32,13 @@ export const PrepareStartStage = () => {
                 }
             }
         }
+    };
+
+    const handleAlertClose = (alertOnClose: () => void, teamId?: string) => {
+      if (teamId) {
+        alertOnClose();
+        setAlertDismissed((prev) => ({ ...prev, [teamId]: true }));
+      }
     };
 
     const startMutation = useMutation({
@@ -59,8 +67,8 @@ export const PrepareStartStage = () => {
                             />
                             <Alert
                                 isOpen={alert.isOpen}
-                                onClose={alert.onClose}
-                                onSubmit={alert.onClose}
+                                onClose={() => handleAlertClose(alert.onClose, team?.id)}
+                                onSubmit={() => handleAlertClose(alert.onClose, team?.id)}
                                 heading="Внимание"
                                 okText="Ок"
                                 cancelText=""
