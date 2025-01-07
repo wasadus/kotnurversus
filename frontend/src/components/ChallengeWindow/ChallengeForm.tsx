@@ -1,4 +1,4 @@
-import { Stack, Switch } from "@chakra-ui/react";
+import {FormLabel, Radio, RadioGroup, Stack, Switch} from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -43,6 +43,27 @@ export const ChallengeForm = ({ id, defaultValue, onSubmit }: Props) => {
         label="Краткое описание"
       />
       <Textarea {...register("description")} minH="160px" label="Описание" />
+      <div>
+        <FormLabel id="difficulty-label">Сложность</FormLabel>
+        <Controller
+          name="difficulty"
+          control={control}
+          render={({ field, fieldState: { error } }) => (
+            <RadioGroup
+              {...field}
+              value={field.value}
+              aria-labelledby="difficulty-label"
+              aria-errormessage={error?.message}
+            >
+              <Stack direction="row">
+                <Radio value="easy">Лёгкая</Radio>
+                <Radio value="medium">Средняя</Radio>
+                <Radio value="hard">Сложная</Radio>
+              </Stack>
+            </RadioGroup>
+          )}
+        />
+      </div>
       <Switch
         {...register("isCatInBag")}
         my={2}
@@ -67,6 +88,7 @@ const challengeFormSchema = z.object({
     .max(50, "Максимальная длина 50 символов"),
   shortDescription: z.string().optional(),
   description: z.string().optional(),
+  difficulty: z.string().default("unknown"),
   isCatInBag: z.boolean().default(false),
 });
 
