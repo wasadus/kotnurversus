@@ -13,9 +13,7 @@ const passwordRequirements = "Минимальная длина пароля 5 �
 const passwordField = z
   .string({ required_error: "Заполните поле" })
   .min(5, passwordRequirements)
-  .regex(/[a-z]/, passwordRequirements)
-  .regex(/[A-Z]/, passwordRequirements)
-  .regex(/[0-9]/, passwordRequirements);
+  .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/, passwordRequirements);
 
 export const loginFormSchema = z.object({
   login: nonEmptyField,
