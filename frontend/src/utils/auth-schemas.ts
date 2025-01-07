@@ -8,7 +8,7 @@ export const loginField = z
   .string({ required_error: "Заполните поле" })
   .min(5, "Минимальная длина 5 символов");
 
-const passwordRequirements = "Минимальная длина пароля 5 символов. Пароль должен содержать строчную английскую букву, заглавную английскую букву и цифру.";
+export const passwordRequirements = "Минимальная длина пароля 5 символов. Пароль должен содержать строчную английскую букву, заглавную английскую букву и цифру.";
 
 const passwordField = z
   .string({ required_error: "Заполните поле" })

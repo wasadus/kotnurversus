@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { registerFormSchema } from "~/utils/auth-schemas.ts";
+import { registerFormSchema, passwordRequirements } from "~/utils/auth-schemas.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Stack } from "@chakra-ui/react";
 import { Input } from "~/components/Input.tsx";
@@ -35,6 +35,7 @@ export const RegisterForm = ({ id, onSubmit }: AuthFormProps) => {
                 size="lg"
                 label="Пароль"
                 placeholder="Пароль"
+                requirements={passwordRequirements}
                 errorMessage={errors.password?.message}
             />
             <PasswordInput
