@@ -1,6 +1,6 @@
 import { Category } from "~/types/category.ts";
 import { Challenge } from "~/types/challenge.ts";
-import { BoxProps, HStack, Text, Wrap } from "@chakra-ui/react";
+import { BoxProps, Button, HStack, Text, Wrap } from "@chakra-ui/react";
 import { IconButtonWithTooltip } from "~/components/IconButtonWithTooltip";
 
 type CategoryCardProps = {
@@ -10,6 +10,7 @@ type CategoryCardProps = {
     onChoose: (challenge: Challenge) => void;
     disabledChallengeIds: Set<string>;
     isDisabled?: boolean;
+    showDetails: boolean;
 } & BoxProps;
 
 export const CategoryCard = ({
@@ -19,6 +20,7 @@ export const CategoryCard = ({
                           onChoose,
                           disabledChallengeIds,
                           isDisabled,
+                          showDetails,
                           ...props
                       }: CategoryCardProps) => (
     <HStack
@@ -54,21 +56,40 @@ export const CategoryCard = ({
                     borderColor = "gray.500";
                 }
                 return (
-                    <IconButtonWithTooltip
-                        key={challenge.id}
-                        gridArea={i}
-                        size="xs"
-                        fontSize="xl"
-                        borderColor={borderColor}
-                        boxSize={8}
-                        isDisabled={isDisabled}
-                        onClick={() => onChoose(challenge)}
-                        icon={<span>{i + 1}</span>}
-                        opacity={1}
-                        variant={isChosen || isDisabled ? "solid" : "outline"}
-                        colorScheme={isChosen ? "blue" : "gray"}
-                        label={challenge.title}
-                    />
+                    <>
+                        {!showDetails &&
+                            <Button
+                                key={challenge.id}
+                                gridArea={i}
+                                size="xs"
+                                fontSize="xl"
+                                boxSize={8}
+                                isDisabled={isDisabled}
+                                onClick={() => onChoose(challenge)}
+                                children={i + 1}
+                                opacity={1}
+                                variant={isChosen || isDisabled ? "solid" : "outline"}
+                                colorScheme={isChosen ? "blue" : "gray"}
+                            />
+                        }
+                        {showDetails &&
+                            <IconButtonWithTooltip
+                                key={challenge.id}
+                                gridArea={i}
+                                size="xs"
+                                fontSize="xl"
+                                borderColor={borderColor}
+                                boxSize={8}
+                                isDisabled={isDisabled}
+                                onClick={() => onChoose(challenge)}
+                                icon={<span>{i + 1}</span>}
+                                opacity={1}
+                                variant={isChosen || isDisabled ? "solid" : "outline"}
+                                colorScheme={isChosen ? "blue" : "gray"}
+                                label={challenge.title}
+                            />
+                        }
+                    </>
                 );
             })}
         </Wrap>
