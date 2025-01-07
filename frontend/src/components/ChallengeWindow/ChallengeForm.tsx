@@ -88,9 +88,7 @@ const challengeFormSchema = z.object({
     .max(50, "Максимальная длина 50 символов"),
   shortDescription: z.string().optional(),
   description: z.string().optional(),
-  difficulty: z.string({
-    required_error: "Выберите сложность",
-  }),
+  difficulty: z.string().default("unknown"),
   isCatInBag: z.boolean().default(false),
 });
 
