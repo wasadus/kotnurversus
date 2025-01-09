@@ -6,17 +6,42 @@ import { TourneyTeam } from "~/types/tourney";
 import { api } from "~/api";
 import { queryKeys } from "~/utils/query-keys";
 import { Stage } from "~/pages/RoundPage/RoundStages/Stage";
-import { Button, Stack, Text } from "@chakra-ui/react";
+import { Button, Stack, Text, useDisclosure } from "@chakra-ui/react";
 import { ChallengeSelectionWindow } from "~/pages/RoundPage/RoundStages/Stage/ChallengeSelectionWindow";
 import { STAGE_COLOR, STAGE_STATE } from "~/pages/RoundPage/RoundStages/PrepareStage/constants";
+import { Alert } from "~/components/Alert.tsx";
+import { Round, RoundParticipant } from "~/types/round";
 
 export const PrepareStartStage = () => {
     const handleError = useHandleError();
     const queryClient = useQueryClient();
     const { isOrganizer, round, getTeams } = useRoundContext();
     const [currentTeam, setCurrentTeam] = useState<TourneyTeam>();
+    const [alertDismissed, setAlertDismissed] = useState<Record<string, boolean>>({});
+    const [showChallengesMismatchAlert, setShowChallengesMismatchAlert] = useState(false);
+    const currentRound = queryClient.getQueryData(queryKeys.round(round.id));
+    const currentRoundParticipants = (currentRound as Round).participants;
+    const maxChallengesCount = 6;
 
-    const handleChoose = (team?: TourneyTeam) => () => setCurrentTeam(team);
+    const handleChoose = (team?: TourneyTeam, alert?: () => void) => () => {
+        if (team) {
+            const chosenParticipant = currentRoundParticipants.filter((p: RoundParticipant) => p.teamId === team.id)[0];
+            if (chosenParticipant.challenges.length < maxChallengesCount || alertDismissed[chosenParticipant.teamId]) {
+                setCurrentTeam(team);
+            } else {
+                if (alert) {
+                    alert();
+                }
+            }
+        }
+    };
+
+    const handleAlertClose = (alertOnClose: () => void, teamId?: string) => {
+      if (teamId) {
+        alertOnClose();
+        setAlertDismissed((prev) => ({ ...prev, [teamId]: true }));
+      }
+    };
 
     const startMutation = useMutation({
         mutationFn: async () => {
@@ -28,18 +53,44 @@ export const PrepareStartStage = () => {
         onError: handleError,
     });
 
+    const handleStartClick = async () => {
+        const firstTeamChallenges = currentRoundParticipants[0].challenges.length;
+        const secondTeamChallenges = currentRoundParticipants[1].challenges.length;
+
+        if (firstTeamChallenges === secondTeamChallenges) {
+            await startMutation.mutateAsync();
+        } else {
+            setShowChallengesMismatchAlert(true);
+        }
+    };
+
     return (
         <>
-            {getTeams().map((team, i) => (
-                <Stage.Team
-                    key={team?.id || i}
-                    gridArea={`t${i + 1}`}
-                    activeColor={STAGE_COLOR}
-                    team={team}
-                    isDisabled={!isOrganizer || startMutation.isPending}
-                    onClick={handleChoose(team)}
-                />
-            ))}
+            {getTeams().map((team, i) => {
+                    const alert = useDisclosure();
+                    return (
+                        <>
+                            <Stage.Team
+                                key={team?.id || i}
+                                gridArea={`t${i + 1}`}
+                                activeColor={STAGE_COLOR}
+                                team={team}
+                                isDisabled={!isOrganizer || startMutation.isPending}
+                                onClick={handleChoose(team, alert.onOpen)}
+                            />
+                            <Alert
+                                isOpen={alert.isOpen}
+                                onClose={() => handleAlertClose(alert.onClose, team?.id)}
+                                onSubmit={() => handleAlertClose(alert.onClose, team?.id)}
+                                heading="Внимание"
+                                okText="Ок"
+                                cancelText=""
+                                children={`Для команды ${team?.title} уже выбрано максимальное количество требований`}
+                            />
+                        </>
+                    );
+                }
+            )}
             <Stage.MainInfo isMinContent children="Выбор дополнительных требований" />
             {isOrganizer && (
                 <Stack align="center" gridArea="b">
@@ -51,7 +102,7 @@ export const PrepareStartStage = () => {
                     <Button
                         colorScheme="teal"
                         isLoading={startMutation.isPending}
-                        onClick={() => startMutation.mutateAsync()}
+                        onClick={() => handleStartClick()}
                         children="Запустить таймер"
                     />
                 </Stack>
@@ -63,6 +114,15 @@ export const PrepareStartStage = () => {
                     team={currentTeam}
                 />
             )}
+            <Alert
+                isOpen={showChallengesMismatchAlert}
+                onClose={() => setShowChallengesMismatchAlert(false)}
+                onSubmit={() => setShowChallengesMismatchAlert(false)}
+                heading="Внимание"
+                okText="Ок"
+                cancelText=""
+                children="Количество требований у команд не совпадает."
+            />
         </>
     );
 };

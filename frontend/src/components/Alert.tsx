@@ -18,6 +18,8 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   heading?: string;
+  okText?: string;
+  cancelText?: string;
   isLoading?: boolean;
   onSubmit?: () => void;
   submitProps?: ButtonProps;
@@ -29,6 +31,8 @@ export const Alert = ({
   isOpen,
   onClose,
   heading = "Подтвердите действие",
+  okText = "Подтвердить",
+  cancelText = "Отмена",
   isLoading,
   onSubmit,
   submitProps,
@@ -87,20 +91,22 @@ export const Alert = ({
           children={children}
         />
         <AlertDialogFooter px={6} py={4} gap={4}>
-          <Button
-            ref={cancelRef}
-            variant="ghost"
-            isDisabled={isLoading}
-            onClick={onClose}
-            children="Отмена"
-            {...cancelProps}
-          />
+          {cancelText?.trim() && (
+            <Button
+              ref={cancelRef}
+              variant="ghost"
+              isDisabled={isLoading}
+              onClick={onClose}
+              children={cancelText}
+              {...cancelProps}
+            />
+          )}
           <Button
             variant="solid"
             colorScheme="red"
             isLoading={isLoading}
             onClick={onSubmit}
-            children="Подтвердить"
+            children={okText}
             {...submitProps}
           />
         </AlertDialogFooter>
