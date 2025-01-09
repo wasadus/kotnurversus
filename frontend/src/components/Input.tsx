@@ -14,6 +14,7 @@ import { FormControl } from "./FormControl";
 export type InputProps = {
   label?: string;
   errorMessage?: string;
+  requirements?: string;
   leftElement?: ReactNode;
   rightElement?: ReactNode;
   rightAddon?: ReactNode;
@@ -28,6 +29,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       size,
       label,
       errorMessage,
+      requirements,
       isRequired,
       leftElement,
       rightElement,
@@ -42,6 +44,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     <FormControl
       label={label}
       errorMessage={errorMessage}
+      requirements={requirements}
       isRequired={isRequired}
       {...containerProps}
     >

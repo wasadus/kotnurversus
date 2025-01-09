@@ -8,12 +8,12 @@ export const loginField = z
   .string({ required_error: "Заполните поле" })
   .min(5, "Минимальная длина 5 символов");
 
+export const passwordRequirements = "Минимальная длина пароля 5 символов. Пароль должен содержать строчную английскую букву, заглавную английскую букву и цифру.";
+
 const passwordField = z
   .string({ required_error: "Заполните поле" })
-  .min(5, "Минимальная длина 5 символов")
-  .regex(/[a-z]/, "Пароль должен содержать строчную английскую букву")
-  .regex(/[A-Z]/, "Пароль должен содержать заглавную английскую букву")
-  .regex(/[0-9]/, "Пароль должен содержать цифру");
+  .min(5, passwordRequirements)
+  .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/, passwordRequirements);
 
 export const loginFormSchema = z.object({
   login: nonEmptyField,
