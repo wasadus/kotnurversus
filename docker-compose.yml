@@ -10,6 +10,8 @@ services:
       POSTGRES_PASSWORD: "kot"
     ports:
       - "4000:4000"
+    volumes:
+      - ./data/images:/app/wwwroot/images
   
   postgres:
     image: postgres:16
@@ -20,4 +22,4 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./data/db:/var/lib/postgresql/data
