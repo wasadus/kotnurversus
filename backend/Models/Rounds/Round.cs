@@ -15,4 +15,5 @@ public class Round : EntityInfo, IEntity
     public int Order { get; set; }
     public Guid GameId { get; set; }
     public string? Description { get; set; }
+    public Stage Stage { get; set; }
 }

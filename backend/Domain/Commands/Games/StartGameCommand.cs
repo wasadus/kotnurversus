@@ -88,7 +88,7 @@ public class StartGameCommand : IStartGameCommand
 
         for (var i = 3; i < parameters.Specifications.Count; i++)
         {
-            rounds.Add(CreateRound(game.Id, parameters, parameters.Specifications[i]));
+            rounds.Add(CreateRound(game.Id, parameters, parameters.Specifications[i], Stage.Playoff));
         }
 
         foreach (var group in parameters.Groups)
@@ -102,6 +102,7 @@ public class StartGameCommand : IStartGameCommand
                         game.Id,
                         parameters,
                         parameters.Specifications[rule.SpecificationIndex],
+                        Stage.GroupStage,
                         (group[rule.FirstTeamIndex], group[rule.SecondTeamIndex])));
             }
         }
@@ -128,6 +129,7 @@ public class StartGameCommand : IStartGameCommand
         Guid gameId, 
         StartGameRequest parameters, 
         Specification specification,
+        Stage stage,
         (Participant first, Participant second)? participants = null)
     {
         var round = new Round
@@ -137,6 +139,7 @@ public class StartGameCommand : IStartGameCommand
             Specification = specification,
             Settings = parameters.Settings,
             Id = Guid.NewGuid(),
+            Stage = stage
         };
 
         return round;

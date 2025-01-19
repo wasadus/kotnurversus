@@ -34,4 +34,7 @@ public class RoundDbo : Dbo
 
     [Column("description")]
     public string? Description { get; set; }
+
+    [Column("stage")]
+    public Stage Stage { get; set; }
 }
