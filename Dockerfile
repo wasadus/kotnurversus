@@ -31,4 +31,4 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 COPY --from=build_frontend /app/dist/ ./wwwroot
 RUN rm -rf /app/config
-ENTRYPOINT ["dotnet", "KotnurVersus.Web.dll"]
+ENTRYPOINT ["dotnet", "KotnurVersus.Web.dll", "--environment=Development"]

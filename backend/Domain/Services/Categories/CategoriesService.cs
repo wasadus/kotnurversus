@@ -7,7 +7,7 @@ using Models.Challenges;
 
 namespace Domain.Services.Categories;
 
-public class CategoriesService : EntityServiceBase<Category, CategoryDbo, CategorySearchRequest>, ICategoriesService
+public class CategoriesService : EntityServiceWithSearchRequest<Category, CategoryDbo, CategorySearchRequest>, ICategoriesService
 {
     private readonly IChallengesService challengesService;
 

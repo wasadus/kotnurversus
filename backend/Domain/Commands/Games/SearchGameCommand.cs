@@ -7,7 +7,7 @@ namespace Domain.Commands.Games;
 
 public class SearchGameCommand : SearchCommandBase<Game, GameSearchRequest>
 {
-    public SearchGameCommand(IEntityService<Game, GameSearchRequest> service, IDataContextAccessor dataContextAccessor)
+    public SearchGameCommand(IFindEntityService<Game, GameSearchRequest> service, IDataContextAccessor dataContextAccessor)
         : base(service, dataContextAccessor)
     {
     }

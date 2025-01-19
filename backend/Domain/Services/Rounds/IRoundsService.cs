@@ -3,7 +3,7 @@ using Models.Rounds;
 
 namespace Domain.Services.Rounds;
 
-public interface IRoundsService : IEntityService<Round, RoundSearchRequest>
+public interface IRoundsService : IFindEntityService<Round, RoundSearchRequest>
 {
     Task<Round> AddHistoryItem(Guid roundId, HistoryItem item);
     Task<Round> UpdateCurrentHistory(Round round);

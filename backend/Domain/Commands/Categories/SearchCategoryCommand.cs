@@ -7,7 +7,7 @@ namespace Domain.Commands.Categories;
 
 public class SearchCategoryCommand : SearchCommandBase<Category, CategorySearchRequest>
 {
-    public SearchCategoryCommand(IEntityService<Category, CategorySearchRequest> service, IDataContextAccessor dataContextAccessor)
+    public SearchCategoryCommand(IFindEntityService<Category, CategorySearchRequest> service, IDataContextAccessor dataContextAccessor)
         : base(service, dataContextAccessor)
     {
     }

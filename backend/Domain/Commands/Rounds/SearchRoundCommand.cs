@@ -7,7 +7,7 @@ namespace Domain.Commands.Rounds;
 
 public class SearchRoundCommand : SearchCommandBase<Round, RoundSearchRequest>
 {
-    public SearchRoundCommand(IEntityService<Round, RoundSearchRequest> service, IDataContextAccessor dataContextAccessor)
+    public SearchRoundCommand(IFindEntityService<Round, RoundSearchRequest> service, IDataContextAccessor dataContextAccessor)
         : base(service, dataContextAccessor)
     {
     }

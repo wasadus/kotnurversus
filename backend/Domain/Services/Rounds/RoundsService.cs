@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Domain.Services.Rounds;
 
-public class RoundsService : EntityServiceBase<Round, RoundDbo, RoundSearchRequest>, IRoundsService
+public class RoundsService : EntityServiceWithSearchRequest<Round, RoundDbo, RoundSearchRequest>, IRoundsService
 {
     public RoundsService(IDataContext context)
         : base(context, x => x.Rounds)

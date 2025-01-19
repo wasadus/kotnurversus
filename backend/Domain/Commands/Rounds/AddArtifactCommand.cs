@@ -1,3 +1,4 @@
+using Db.Dbo.Images;
 using Domain.Context;
 using Domain.Services.Rounds;
 using Microsoft.AspNetCore.JsonPatch;
@@ -5,20 +6,24 @@ using Microsoft.AspNetCore.JsonPatch.Operations;
 using Models;
 using Models.Rounds;
 using Newtonsoft.Json.Serialization;
+using Vostok.Commons.Time.TimeProviders;
 
 namespace Domain.Commands.Rounds;
 
 public class AddArtifactCommand : IAddArtifactCommand
 {
     private readonly IRoundsService roundsService;
+    private readonly IDateTimeProvider dateTimeProvider;
     private readonly IDataContextAccessor dataContextAccessor;
 
     public AddArtifactCommand(
         IDataContextAccessor dataContextAccessor,
-        IRoundsService roundsService)
+        IRoundsService roundsService,
+        IDateTimeProvider dateTimeProvider)
     {
         this.dataContextAccessor = dataContextAccessor;
         this.roundsService = roundsService;
+        this.dateTimeProvider = dateTimeProvider;
     }
 
     public async Task<DomainResult<Artifact, AccessSingleEntityError>> RunAsync(
@@ -54,16 +59,16 @@ public class AddArtifactCommand : IAddArtifactCommand
                         artifact.Content = description!;
                         break;
                     case ArtifactType.Image:
-                        var staticFolder = Path.Join(AppContext.BaseDirectory, "wwwroot");
-                        var imagesFolder = Path.Join(staticFolder, "images");
-                        var fileFolder = Path.Join(imagesFolder, $"{Guid.NewGuid()}{Path.GetExtension(fileName)}");
-
-                        if (!Directory.Exists(imagesFolder))
-                            Directory.CreateDirectory(imagesFolder);
-
-                        await File.WriteAllBytesAsync(fileFolder, fileStream!.ToArray());
-
-                        artifact.Content = fileFolder.Replace(staticFolder, string.Empty);
+                        var imageDbo = new ImageDbo
+                        {
+                            CreatedAt = dateTimeProvider.Now,
+                            Data = fileStream!.ToArray(),
+                            Name = fileName
+                        };
+                        await context.Images.AddAsync(imageDbo);
+                        await context.SaveChangesAsync();
+                        
+                        artifact.Content = imageDbo.Id.ToString();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(artifactType), artifactType, null);

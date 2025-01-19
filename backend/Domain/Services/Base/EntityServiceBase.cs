@@ -9,10 +9,9 @@ using DbContext = Db.DbContext;
 
 namespace Domain.Services.Base;
 
-public abstract class EntityServiceBase<T, TDbo, TSearchRequest> : IEntityService<T, TSearchRequest>
+public abstract class EntityServiceBase<T, TDbo> : IEntityService<T>
     where T : EntityInfo, IEntity, new()
     where TDbo : Dbo, new()
-    where TSearchRequest : SearchRequestBase, ISearchRequest
 {
     private readonly Func<DbContext, DbSet<TDbo>> getMainDbSet;
     protected const int MaxLimit = 100;
@@ -99,29 +98,6 @@ public abstract class EntityServiceBase<T, TDbo, TSearchRequest> : IEntityServic
         Context.Cache.Remove(EntityCacheKey(entity.Id));
     }
 
-    public async Task<SearchResult<T>> SearchAsync(TSearchRequest searchRequest, CancellationToken cancellationToken)
-    {
-        var queryable = ReadDbosAsync();
-        queryable = await ApplyFilterAsync(queryable, searchRequest);
-
-        var dbos = await queryable
-            .AsEnumerable()
-            .Select(async x => await ToApiAsync(x))
-            .ToArrayAsync();
-
-        var result = new SearchResult<T>(dbos);
-
-        return result;
-    }
-
-    protected virtual Task<IQueryable<TDbo>> ApplyFilterAsync(IQueryable<TDbo> queryable, TSearchRequest searchRequest)
-    {
-        if (searchRequest.Limit != null)
-            queryable = queryable.Take(searchRequest.Limit.Value);
-
-        return Task.FromResult(queryable);
-    }
-
     protected async Task<T> ToApiAsync(TDbo dbos)
     {
         var result = new T();
@@ -146,7 +122,7 @@ public abstract class EntityServiceBase<T, TDbo, TSearchRequest> : IEntityServic
     private async Task<TDbo?> ReadDboAsync(Guid id) =>
         await getMainDbSet(Context.DbContext).Where(x => x.Id == id).AsTracking().FirstOrDefaultAsync();
 
-    private IQueryable<TDbo> ReadDbosAsync() =>
+    protected IQueryable<TDbo> ReadDbosAsync() =>
         getMainDbSet(Context.DbContext).AsQueryable();
 
     private class Data

@@ -13,7 +13,7 @@ public interface IEntityService<T>
     Task DeleteAsync(T entity);
 }
 
-public interface IEntityService<T, in TSearchRequest> : IEntityService<T>
+public interface IFindEntityService<T, in TSearchRequest> : IEntityService<T>
     where T : EntityInfo, IEntity
     where TSearchRequest : SearchRequestBase, ISearchRequest
 {

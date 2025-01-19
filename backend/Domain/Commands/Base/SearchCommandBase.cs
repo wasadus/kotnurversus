@@ -9,11 +9,11 @@ public abstract class SearchCommandBase<T, TSearchRequest> : ISearchCommand<T, T
     where T : EntityInfo, IEntity
     where TSearchRequest : SearchRequestBase, ISearchRequest, new()
 {
-    private readonly IEntityService<T, TSearchRequest> service;
+    private readonly IFindEntityService<T, TSearchRequest> service;
     private readonly IDataContextAccessor dataContextAccessor;
 
     protected SearchCommandBase(
-        IEntityService<T, TSearchRequest> service,
+        IFindEntityService<T, TSearchRequest> service,
         IDataContextAccessor dataContextAccessor)
     {
         this.service = service;

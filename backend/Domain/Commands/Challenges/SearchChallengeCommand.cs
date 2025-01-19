@@ -7,7 +7,7 @@ namespace Domain.Commands.Challenges;
 
 public class SearchChallengeCommand : SearchCommandBase<Challenge, ChallengeSearchRequest>
 {
-    public SearchChallengeCommand(IEntityService<Challenge, ChallengeSearchRequest> service, IDataContextAccessor dataContextAccessor)
+    public SearchChallengeCommand(IFindEntityService<Challenge, ChallengeSearchRequest> service, IDataContextAccessor dataContextAccessor)
         : base(service, dataContextAccessor)
     {
     }

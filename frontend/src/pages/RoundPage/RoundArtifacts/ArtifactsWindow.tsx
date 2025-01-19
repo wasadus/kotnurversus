@@ -73,7 +73,7 @@ const ArtifactItem = ({ artifact }: ArtifactItemProps) => {
       objectFit="contain"
       userSelect="none"
       onError={setIsError.on}
-      src={`${import.meta.env.VITE_API_URL}${artifact.content}`}
+      src={`${import.meta.env.VITE_API_URL}/images/${artifact.content}`}
     />
   );
 };

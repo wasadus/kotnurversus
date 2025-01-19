@@ -79,7 +79,7 @@ const ArtifactItem = ({ roundId, artifact, onClick, isOrganizer }: Props) => {
             borderRadius={8}
             onLoad={handleLoad}
             onError={handleError}
-            src={`${import.meta.env.VITE_API_URL}${artifact.content}`}
+            src={`${import.meta.env.VITE_API_URL}/images/${artifact.content}`}
           />
         )}
       </Box>

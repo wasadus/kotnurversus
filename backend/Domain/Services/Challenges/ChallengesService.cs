@@ -7,7 +7,7 @@ using Models.Challenges;
 
 namespace Domain.Services.Challenges;
 
-public class ChallengesService : EntityServiceBase<Challenge, ChallengeDbo, ChallengeSearchRequest>, IChallengesService
+public class ChallengesService : EntityServiceWithSearchRequest<Challenge, ChallengeDbo, ChallengeSearchRequest>, IChallengesService
 {
     private readonly Lazy<ICategoriesService> categoriesService;
 

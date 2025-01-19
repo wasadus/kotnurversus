@@ -1,6 +1,7 @@
 using Db.Dbo.Categories;
 using Db.Dbo.Challenges;
 using Db.Dbo.Games;
+using Db.Dbo.Images;
 using Db.Dbo.Rounds;
 using Db.Dbo.Users;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ public class DbContext : Microsoft.EntityFrameworkCore.DbContext
     public DbSet<ChallengeDbo> Challenges { get; set; } = null!;
     public DbSet<SnapshotChallengeDbo> SnapshotChallenges { get; set; } = null!;
     public DbSet<CategoryDbo> Categories { get; set; } = null!;
+    public DbSet<ImageDbo> Images { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {

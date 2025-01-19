@@ -6,7 +6,7 @@ using Models.Games;
 
 namespace Domain.Services.Games;
 
-public class GamesService : EntityServiceBase<Game, GameDbo, GameSearchRequest>, IGamesService
+public class GamesService : EntityServiceWithSearchRequest<Game, GameDbo, GameSearchRequest>, IGamesService
 {
     public GamesService(IDataContext context)
         : base(context, x => x.Games)

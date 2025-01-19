@@ -3,7 +3,7 @@ using Models.Categories;
 
 namespace Domain.Services.Categories;
 
-public interface ICategoriesService : IEntityService<Category, CategorySearchRequest>
+public interface ICategoriesService : IFindEntityService<Category, CategorySearchRequest>
 {
     
 }
