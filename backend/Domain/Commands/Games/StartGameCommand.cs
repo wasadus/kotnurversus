@@ -49,7 +49,7 @@ public class StartGameCommand : IStartGameCommand
                             {
                                 op = "replace",
                                 path = "/state",
-                                value = GameState.InProgress
+                                value = GameState.GroupStageInProgress
                             }
                         },
                         new DefaultContractResolver()));
@@ -140,7 +140,6 @@ public class StartGameCommand : IStartGameCommand
         };
 
         return round;
-        
     }
 
     private bool ValidateParameters(StartGameRequest parameters)
@@ -149,7 +148,6 @@ public class StartGameCommand : IStartGameCommand
             && parameters.Groups.All(x => x.Count >= 2)
             && parameters.Groups.Count <= 4
             && parameters.Specifications.Count >= 4;
-        
     }
 
     private static bool IsNumberAPowOfTwo(int n) => n > 0 && (n & (n - 1)) == 0;

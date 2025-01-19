@@ -21,7 +21,8 @@ export type CreateTourney = {
 
 export enum TourneyState {
   Prepare = "prepare",
-  InProgress = "inProgress",
+  GroupStageInProgress = "groupStageInProgress",
+  PlayoffInProgress = "playoffInProgress",
   Complete = "complete",
 }
 

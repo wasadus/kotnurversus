@@ -15,7 +15,8 @@ export const TOURNEY_TYPE_NAMES: Record<TourneyType, string> = {
 
 export const TOURNEY_STATE_NAMES: Record<TourneyState, string> = {
   [TourneyState.Prepare]: "Подготовка",
-  [TourneyState.InProgress]: "В процессе",
+  [TourneyState.GroupStageInProgress]: "Групповой этап",
+  [TourneyState.PlayoffInProgress]: "Плей-офф",
   [TourneyState.Complete]: "Завершен",
 };
 
