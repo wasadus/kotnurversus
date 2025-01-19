@@ -11,6 +11,8 @@ import { TourneySpecificationsSettings } from "./TourneySpecificationsSettings";
 import { TourneyTeams } from "./TourneyTeams";
 import { TourneyTimersSettings } from "./TourneyTimersSettings";
 import { TourneyProvider } from "~/pages/TourneyPage/TourneyProvider";
+import { TourneyState } from "~/types/tourney.ts";
+import {Prepare} from "src/pages/TourneyPage/Prepare";
 
 type PageParams = {
   tourneyId: string;
@@ -57,11 +59,17 @@ export const TourneyPage = () => {
           id={tourney.id}
           specifications={tourney.specifications}
         />
-        <TourneyBracket
-          id={tourney.id}
-          state={tourney.state}
-          specifications={tourney.specifications}
-        />
+        {tourney.state === TourneyState.Prepare && <Prepare/>}
+        {tourney.state === TourneyState.GroupStageInProgress &&
+            <div>
+
+            </div>}
+        {tourney.state === TourneyState.PlayoffInProgress &&
+            <TourneyBracket
+                id={tourney.id}
+                state={tourney.state}
+                specifications={tourney.specifications}
+            />}
         <TourneyTeams id={tourney.id} />
       </Stack>
     </TourneyProvider>
