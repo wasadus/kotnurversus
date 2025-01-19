@@ -18,7 +18,7 @@ public class RoundDbo : Dbo
     public Specification? Specification { get; set; }
 
     [Column("settings", TypeName = "jsonb")]
-    public Settings? Settings { get; set; } = null!;
+    public Settings Settings { get; set; } = null!;
 
     [Column("participants", TypeName = "jsonb")]
     public List<Participant> Participants { get; set; } = new();
