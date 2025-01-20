@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Models.Challenges;
 
 namespace Db.Dbo.Challenges;
 
@@ -13,6 +14,9 @@ public class SnapshotChallengeDbo : Dbo
 
     [Column("short_description")]
     public string? ShortDescription { get; set; }
+
+    [Column("difficulty")] 
+    public ChallengeDifficulty Difficulty { get; set; }
 
     [Column("categoryId")]
     public Guid CategoryId { get; set; }

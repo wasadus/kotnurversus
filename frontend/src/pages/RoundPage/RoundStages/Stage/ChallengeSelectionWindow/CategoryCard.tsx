@@ -1,6 +1,7 @@
 import { Category } from "~/types/category.ts";
 import { Challenge } from "~/types/challenge.ts";
 import { BoxProps, Button, HStack, Text, Wrap } from "@chakra-ui/react";
+import { IconButtonWithTooltip } from "~/components/IconButtonWithTooltip";
 
 type CategoryCardProps = {
     category: Category;
@@ -9,6 +10,7 @@ type CategoryCardProps = {
     onChoose: (challenge: Challenge) => void;
     disabledChallengeIds: Set<string>;
     isDisabled?: boolean;
+    showDetails: boolean;
 } & BoxProps;
 
 export const CategoryCard = ({
@@ -18,6 +20,7 @@ export const CategoryCard = ({
                           onChoose,
                           disabledChallengeIds,
                           isDisabled,
+                          showDetails,
                           ...props
                       }: CategoryCardProps) => (
     <HStack
@@ -42,20 +45,51 @@ export const CategoryCard = ({
             {challenges.map((challenge, i) => {
                 const isChosen = chosenChallengeId === challenge.id;
                 const isDisabled = disabledChallengeIds.has(challenge.id);
+                let borderColor: string;
+                if (challenge.difficulty === "easy") {
+                    borderColor = "green.500";
+                } else if (challenge.difficulty === "medium") {
+                    borderColor = "yellow.500";
+                } else if (challenge.difficulty === "hard") {
+                    borderColor = "red.500";
+                } else {
+                    borderColor = "gray.500";
+                }
                 return (
-                    <Button
-                        key={challenge.id}
-                        gridArea={i}
-                        size="xs"
-                        fontSize="xl"
-                        boxSize={8}
-                        isDisabled={isDisabled}
-                        onClick={() => onChoose(challenge)}
-                        children={i + 1}
-                        opacity={1}
-                        variant={isChosen || isDisabled ? "solid" : "outline"}
-                        colorScheme={isChosen ? "blue" : "gray"}
-                    />
+                    <>
+                        {!showDetails &&
+                            <Button
+                                key={challenge.id}
+                                gridArea={i}
+                                size="xs"
+                                fontSize="xl"
+                                boxSize={8}
+                                isDisabled={isDisabled}
+                                onClick={() => onChoose(challenge)}
+                                children={i + 1}
+                                opacity={1}
+                                variant={isChosen || isDisabled ? "solid" : "outline"}
+                                colorScheme={isChosen ? "blue" : "gray"}
+                            />
+                        }
+                        {showDetails &&
+                            <IconButtonWithTooltip
+                                key={challenge.id}
+                                gridArea={i}
+                                size="xs"
+                                fontSize="xl"
+                                borderColor={borderColor}
+                                boxSize={8}
+                                isDisabled={isDisabled}
+                                onClick={() => onChoose(challenge)}
+                                icon={<span>{i + 1}</span>}
+                                opacity={1}
+                                variant={isChosen || isDisabled ? "solid" : "outline"}
+                                colorScheme={isChosen ? "blue" : "gray"}
+                                label={challenge.title}
+                            />
+                        }
+                    </>
                 );
             })}
         </Wrap>

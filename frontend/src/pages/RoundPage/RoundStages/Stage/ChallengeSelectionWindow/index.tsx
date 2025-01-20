@@ -2,6 +2,7 @@ import {
   Center,
   Heading,
   SimpleGrid,
+  useBoolean,
 } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { compare } from "fast-json-patch";
@@ -18,6 +19,9 @@ import { isDefined } from "~/utils";
 import { queryKeys } from "~/utils/query-keys";
 import { ChallengeWindow } from "../ChallengeWindow";
 import { CategoryCard } from "~/pages/RoundPage/RoundStages/Stage/ChallengeSelectionWindow/CategoryCard";
+import { IconButtonWithTooltip } from "~/components/IconButtonWithTooltip";
+import { EyeClose } from "~/icons/EyeClose";
+import { EyeOpen } from "~/icons/EyeOpen";
 
 type Props = {
   team?: TourneyTeam;
@@ -32,6 +36,9 @@ export const ChallengeSelectionWindow = ({
   const handleError = useHandleError();
   const { round } = useRoundContext();
   const [chosenChallenge, setChosenChallenge] = useState<Challenge>();
+  const [showDetails, setShowDetails] = useBoolean(false);
+  const label = showDetails ? "Скрыть подробности" : "Показать подробности";
+  const Icon = showDetails ? EyeClose : EyeOpen;
 
   const query = useChallengesQuery({
     roundId: round.id,
@@ -110,6 +117,15 @@ export const ChallengeSelectionWindow = ({
           onClick: handleSubmit,
           children: "Подтвердить",
         }}
+        extraButton={<IconButtonWithTooltip
+            size="sm"
+            variant="outline"
+            border="none"
+            tabIndex={-1}
+            label={label}
+            icon={<Icon boxSize={6} />}
+            onClick={setShowDetails.toggle}
+        />}
       >
         {(query.isError || data.categories.length < 1) && (
           <Center py={20}>
@@ -133,6 +149,7 @@ export const ChallengeSelectionWindow = ({
                   chosenChallengeId={chosenChallenge?.id}
                   onChoose={setChosenChallenge}
                   disabledChallengeIds={data.disabledChallengeIds}
+                  showDetails={showDetails}
                 />
               ))}
           </SimpleGrid>
